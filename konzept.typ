@@ -12,9 +12,9 @@
 #set text(lang: "de", font: "Libertinus Serif")
 
 #show: ilm.with(
-  title: "Konzeptdokument",
-  authors: "Gruppe X0",
-  abstract: platzhalter("Dieses Dokument wird bewertet! Nehmen Sie es ernst!"),
+  title: "Konzeptdokument Heap-Sort",
+  authors: "Gruppe A3",
+  abstract: platzhalter("Alina Felber, Josef Peinelt, Felix Kuehn, Janic Hebenstreit, Maxim Soehnel, Noah Schubart, Pontus Wild"),
   date: datetime.today()
 )
 
