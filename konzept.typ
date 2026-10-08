@@ -14,7 +14,7 @@
 #show: ilm.with(
   title: "Konzeptdokument Heap-Sort",
   authors: "Gruppe A3",
-  abstract: platzhalter("Alina Felber, Josef Peinelt, Felix Kuehn, Janic Hebenstreit, Maxim Soehnel, Noah Schubart, Pontus Wild"),
+  abstract: text("Alina Felber, Josef Peinelt, Felix Kuehn, Janic Hebenstreit, Maxim Soehnel, Noah Schubart, Pontus Wild"),
   date: datetime.today()
 )
 
