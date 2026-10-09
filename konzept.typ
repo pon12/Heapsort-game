@@ -26,8 +26,37 @@
 #platzhalter[Beschreiben Sie in diesem Abschnitt, welches Problem Ihr Algorithmus oder Ihre Datenstruktur löst. Gehen Sie dabei auf die praktische Relevanz ein und verdeutlichen Sie Ihre Ausführungen anhand einer Skizze, Abbildung oder eines Beispiels.]
 
 == Überblick über die Lösungen
-#platzhalter[Geben Sie einen Überblick, welche Lösungsmöglichkeiten für das oben beschriebene Problem durch Algorithmen oder Datenstrukturen existieren. Nutzen Sie nach Möglichkeit eine Visualisierung, um die Übersicht anschaulich zu gestalten. Ordnen Sie anschließend Ihren gewählten Ansatz in dieses Gesamtfeld ein. So wird deutlich, wo sich Ihr Thema im größeren Kontext befindet und welche Berührungspunkte es zu anderen Lösungen gibt.]
+#text[
 
+Neben Heapsort gibt es wie z.B in 1.1 bereits genannt auch andere Algorithmen zur
+Datensortierung. Bubblesort vergleicht Beispielsweise benachbarte Elemente und vertauscht diese
+bei falscher Reihenfolge bis das Array vollständig sortiert ist. Quicksort hingegen teilt zunächst das
+Array in zwei Listen mit einem „Pivotelement“ als Mittelwert auf. In die eine Liste kommen dann
+alle Elemente, die kleiner als dieses Element sind und in die Andere die Größeren. Danach werden
+die Listen einzeln geordnet, wodurch sich am Ende ein vollständig geordnetes Array ergibt. Beim
+Mergesort wird das Array in seiner aktuellen Reihenfolge halbiert. Die daraus entstandenen Listen
+können danach erneut halbiert werden. Anschließend werden zwei Listen miteinander verglichen in
+dem man die noch nicht verglichenen und somit auch noch nicht übernommenen Elemente
+miteinander vergleicht. Das kleinere Element wird nach diesem Vergleich übernommen. Somit
+„merget“ man sich dann von den vielen kleinen und kurzen Listen zu einem vollständigen Array.
+
+
+#align(left, image("pictures/tabelle_algorithmen_2.png", height: 6cm))
+Quelle: https://neetcode.io/cheatsheets/sorting-algorithms
+
+Einordnung Heapsort:
+Heapsort ist somit ein effizienter, vergleichsbasierter Algorithmus welcher im Gegensatz zu
+Mergesort ohne zusätzliche Hilfsarrays funktioniert. Seine besondere Stärke liegt in der garantierten
+Laufzeit, welche von der Länge des Arrays abhängt und dem konstanten zusätzlichen
+Speicherbedarf. Im Vergleich zu Quicksort ist Heapsort in praktischen Anwendungen aufgrund der
+voneinander abhänigen Vergleichsabläufe innerhalb des Arrays häufig langsamer, bietet dafür aber einen 
+besseren Worst Case, da er unabhänig von der
+urpsürnlgichen Reihenfolge immer die gleichen Schritte abarbeitet (nicht adaptiv). Gegenüber
+Mergesort benötigt er weniger zusätzlichen Speicher, ist jedoch sowie Quicksort nicht stabil.
+Heapsort eignet sich deshalb besonders gut, wenn eine verlässliche obere Laufzeitgrenze und ein
+geringer Speicherverbrauch wichtig sind und Stabilität sowie Maximalgeschwindigkeit eine
+kleinere Rolle spielen
+]
 == Vorstellung des Algorithmus / der Datenstruktur
 #platzhalter[Stellen Sie an dieser Stelle den gewählten Algorithmus bzw. die Datenstruktur im Detail vor. Gehen Sie auf die zugrunde liegenden Prinzipien, die algorithmischen Eigenschaften sowie den genauen Ablauf bzw. Aufbau ein. Verdeutlichen Sie außerdem, warum dieser Ansatz das zuvor beschriebene Problem zufriedenstellend löst. Nutzen Sie Abbildungen, und berücksichtigen Sie auch Sonderfälle und notwendige Operationen. Ziel ist es, ein fundiertes Verständnis aufzubauen, das Ihnen im weiteren Projektverlauf als Grundlage dient. Je genauer Sie hier Ihr eigenes Verständnis entwickeln und dokumentieren, desto leichter fällt Ihnen die spätere Arbeit im Projekt.]
 
