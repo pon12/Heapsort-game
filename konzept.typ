@@ -11,6 +11,7 @@
 
 #set text(lang: "de", font: "Libertinus Serif")
 
+
 #show: ilm.with(
   title: "Konzeptdokument Heap-Sort",
   authors: "Gruppe A3",
@@ -31,8 +32,6 @@
 #platzhalter[Stellen Sie an dieser Stelle den gewählten Algorithmus bzw. die Datenstruktur im Detail vor. Gehen Sie auf die zugrunde liegenden Prinzipien, die algorithmischen Eigenschaften sowie den genauen Ablauf bzw. Aufbau ein. Verdeutlichen Sie außerdem, warum dieser Ansatz das zuvor beschriebene Problem zufriedenstellend löst. Nutzen Sie Abbildungen, und berücksichtigen Sie auch Sonderfälle und notwendige Operationen. Ziel ist es, ein fundiertes Verständnis aufzubauen, das Ihnen im weiteren Projektverlauf als Grundlage dient. Je genauer Sie hier Ihr eigenes Verständnis entwickeln und dokumentieren, desto leichter fällt Ihnen die spätere Arbeit im Projekt.]
 
 == Durchführung des Algorithmus / Demonstration der Datenstruktur an einem Beispiel
-#platzhalter[TODO: BILDER ZUM BEISPIEL DU HS]
-
 #text[
 Für Heap-Sort verwenden wir einen Max-Heap (das sollte euch aus „Fortgeschrittene Programmiertechniken“ schon bekannt sein): In einem Max-Heap ist jeder Elternknoten mindestens so groß wie seine Kinder. Deshalb steht das Maximum immer an der Wurzel.
 
@@ -40,6 +39,7 @@ Beispiel: Das Array [4, 10, 3, 5, 1, 8, 7, 6]
 
 Zuerst stellen wir das Array als vollständigen Binärbaum dar. Ein Binärbaum hat höchstens zwei Kinder pro Knoten. Bei einem vollständigen Binärbaum werden die Ebenen von oben nach unten und innerhalb jeder Ebene von links nach rechts gefüllt. Deshalb steht die 4 oben, darunter stehen 10 und 3, dann 5, 1, 8 und 7. Das letzte Element, die 6, kommt als linkes Kind unter die 5.
 text
+#align(center,image("pictures/tree_unsorted.png", height: 4cm))
 
 Wir bearbeiten die Array-Indizes rückwärts, beginnend beim letzten Knoten, der noch Kinder hat. So sind die Teilbäume unter einem Knoten bereits geprüft, wenn wir ihn bearbeiten.
 
@@ -49,22 +49,105 @@ Wert:   4  10  3  5  1  8  7  6
 
 Bei einer 0-basierten Indizierung beginnt der Index bei 0. Der Knoten an Index i hat seine Kinder an den Indizes 2i + 1 und 2i + 2. Der letzte Knoten mit Kindern ist hier an Index 3; deshalb bearbeiten wir die Indizes 3, 2, 1 und 0 in dieser Reihenfolge.
 
-1. Wir beginnen bei Index 3. Dort steht die 5. Sie hat ein Kind an Index 7 mit dem Wert 6. Weil 6 > 5, tauschen wir die beiden Werte. Das Array lautet jetzt [4, 10, 3, 6, 1, 8, 7, 5]. \
+1. Wir beginnen bei Index 3. Dort steht die 5. Sie hat ein Kind an Index 7 mit dem Wert 6. Weil 6 > 5, tauschen wir die beiden Werte. Das Array lautet jetzt [4, 10, 3, 6, 1, 8, 7, 5].
+#align(center,image("pictures/tree_sort_1.png", height: 3cm))
 2. Wir gehen rückwärts zu Index 2. Dort steht die 3, und ihre Kinder stehen an den Indizes 5 und 6: Dort stehen 8 und 7. Beide sind größer als 3, also tauschen wir die 3 mit dem größeren Kind, der 8. Das Array lautet jetzt [4, 10, 8, 6, 1, 3, 7, 5]. \
+#align(center,image("pictures/tree_sort_2.png", height: 3cm))
 3. Als Nächstes kommt Index 1. Dort steht die 10. Ihre Kinder stehen an den Indizes 3 und 4: Dort stehen 6 und 1. Beide sind kleiner als 10, deshalb ist hier kein Tausch nötig. Das Array bleibt [4, 10, 8, 6, 1, 3, 7, 5]. \
+#align(center,image("pictures/tree_sort_3.png", height: 3cm))
 4. Zuletzt bearbeiten wir Index 0, also die Wurzel mit dem Wert 4. Ihre Kinder sind 10 und 8. Wir tauschen die 4 mit dem größeren Kind, der 10. Jetzt steht die 4 an Index 1 und hat die Kinder 6 und 1. Da 6 > 4, tauschen wir die 4 mit der 6. Nun steht die 4 an Index 3 und hat dort noch das Kind 5. Weil 5 > 4, tauschen wir erneut.
+#align(center,image("pictures/tree_sort_4.png", height: 3cm))
 
 Danach lautet das Array [10, 6, 8, 5, 1, 3, 7, 4]. Damit ist der Max-Heap aufgebaut. Die 10 steht an der Wurzel, und jeder Knoten ist mindestens so groß wie seine Kinder.
 
 Nun tauschen wir die Wurzel mit dem letzten Element des noch unsortierten Heaps. Das größte Element steht dann an seiner endgültigen Position. Anschließend verkleinern wir den Heap um ein Element und stellen die Heap-Eigenschaft wieder her, indem wir die neue Wurzel bei Bedarf mit ihrem größeren Kind nach unten tauschen.
 
 1. Wir tauschen die Wurzel 10 mit dem letzten Element des Heaps, der 4. Die 10 steht jetzt am Ende des Arrays und ist sortiert. Die neue Wurzel 4 ist kleiner als ihre Kinder 6 und 8. Deshalb tauschen wir sie mit dem größeren Kind, der 8. Danach hat die 4 die Kinder 3 und 7; wir tauschen sie mit der größeren Zahl, der 7. Das Array lautet jetzt [8, 6, 7, 5, 1, 3, 4, (10)].
+#grid(
+  columns: (2),
+  rows: (1),
+  gutter: 2cm,
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_1.png", height: 3cm),
+  ),
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_2.png", height: 3cm),
+  ),
+)
 2. Jetzt tauschen wir die Wurzel 8 mit dem letzten Element des noch unsortierten Heaps, der 4. Die 8 kommt damit an ihre endgültige Position. Die neue Wurzel 4 ist kleiner als ihre Kinder 6 und 7, also tauschen wir sie mit der 7. Das Array lautet jetzt [7, 6, 4, 5, 1, 3, (8), (10)]. Die 4 hat im aktiven Heap nur noch ein Kind: die 3. Da 3 < 4, ist die Heap-Eigenschaft wiederhergestellt.
+#grid(
+  columns: (2),
+  rows: (1),
+  gutter: 2cm,
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_3.png", height: 3cm),
+  ),
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_4.png", height: 3cm),
+  ),
+)
 3. Wir tauschen die Wurzel 7 mit dem letzten Element des noch unsortierten Heaps, der 3. Danach sinkt die 3 nach unten: Sie tauscht zuerst mit der größeren ihrer Kinder, der 6, und anschließend mit der 5. Das Array lautet jetzt [6, 5, 4, 3, 1, (7), (8), (10)].
+#grid(
+  columns: (2),
+  rows: (1),
+  gutter: 2cm,
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_5.png", height: 3cm),
+  ),
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_6.png", height: 3cm),
+  ),
+)
 4. Wir tauschen die Wurzel 6 mit dem letzten Element des noch unsortierten Heaps, der 1. Die 6 ist nun sortiert. Die neue Wurzel 1 sinkt nach unten: Sie tauscht zuerst mit der 5 und danach mit der 3. Das Array lautet jetzt [5, 3, 4, 1, (6), (7), (8), (10)].
+#grid(
+  columns: (2),
+  rows: (1),
+  gutter: 2cm,
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_7.png", height: 3cm),
+  ),
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_8.png", height: 3cm),
+  ),
+)
 5. Wir tauschen die Wurzel 5 mit dem letzten Element des noch unsortierten Heaps, der 1. Die 5 ist nun sortiert. Die neue Wurzel 1 tauscht mit ihrem größeren Kind, der 4. Das Array lautet jetzt [4, 3, 1, (5), (6), (7), (8), (10)].
+#grid(
+  columns: (2),
+  rows: (1),
+  gutter: 2cm,
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_9.png", height: 3cm),
+  ),
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_10.png", height: 3cm),
+  ),
+)
 6. Wir tauschen die Wurzel 4 mit dem letzten Element des noch unsortierten Heaps, der 1. Die 4 ist nun sortiert. Die neue Wurzel 1 tauscht mit ihrem größeren Kind, der 3. Das Array lautet jetzt [3, 1, (4), (5), (6), (7), (8), (10)].
+#grid(
+  columns: (2),
+  rows: (1),
+  gutter: 2cm,
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_11.png", height: 3cm),
+  ),
+  grid.cell(
+    colspan: 1,
+    image("pictures/tree_heap_12.png", height: 3cm),
+  ),
+)
 7. Zuletzt tauschen wir die Wurzel 3 mit dem letzten noch unsortierten Element, der 1. Damit ist das Array vollständig sortiert: [1, 3, 4, 5, 6, 7, 8, 10].
+#align(center,image("pictures/tree_heap_13.png", height: 3cm))
 ]
 
 
