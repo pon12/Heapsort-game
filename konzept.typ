@@ -85,6 +85,56 @@ Doppelte Werte: Heapsort funktioniert auch bei gleichen Elementen korrekt, denn 
 Bereits sortierte und umgekehrt sortierte Eingabe.: Heapsort ist nicht adaptiv, es nutzt eine vorhandene Vorsortierung nicht aus. Bei einem aufsteigend sortierten Array muss Phase 1 fast jeden inneren Knoten über viele Ebenen absenken, da die großen Werte hinten stehen. Ein absteigend sortiertes Array ist dagegen bereits ein gültiger Max-Heap, sodass Phase 1 keine Tausche benötigt. Die Sortierphase benötigt dennoch in beiden Fällen O(n log n), weil die Wurzel nach jedem Tausch durch ein kleines Element ersetzt wird, das im Regelfall bis in die unteren Ebenen absinkt. Die garantierte Laufzeit hängt damit nicht von der Eingabeordnung ab. Das ist ein Vorteil gegenüber Quicksort, dessen Laufzeit bei ungünstigen Eingaben auf O(n^2) steigen kann.
 
 
+Heapsort
+
+Heapsort ist ein vergleichsbasiertes, in-place arbeitendes Sortierverfahren mit einer garantierten Laufzeit von $O(n log n)$ im besten, mittleren und schlechtesten Fall. Es basiert auf der Datenstruktur des binären Max-Heaps und ordnet ein unsortiertes Array von $n$ Elementen aufsteigend nach ihrer Größe.
+
+*Der Max-Heap.* Ein binärer Max-Heap ist ein vollständiger Binärbaum: Jeder Knoten hat höchstens zwei Kinder, alle Ebenen außer der letzten sind voll besetzt, und die letzte Ebene wird von links nach rechts aufgefüllt. Zusätzlich gilt die Max-Heap-Bedingung: Jeder Knoten ist mindestens so groß wie seine beiden Kinder. Daraus folgt, dass das größte Element stets in der Wurzel steht. Ein Heap ist jedoch nicht vollständig sortiert, denn eine Ordnung besteht nur zwischen Eltern- und Kindknoten, nicht zwischen Geschwistern oder verschiedenen Ästen.
+
+*Abbildung auf das Array.* Der Baum wird nicht als eigene Struktur gespeichert, sondern direkt im Array abgebildet, indem es Ebene für Ebene von links nach rechts gelesen wird. Bei nullbasierter Indizierung gilt für einen Knoten an Index $i$: linkes Kind $2i + 1$, rechtes Kind $2i + 2$, Elternknoten $floor((i-1)/2)$. Die Wurzel liegt an Index 0. Existiert ein berechneter Kindindex nicht mehr innerhalb des Heaps, hat der Knoten dieses Kind nicht. Bei gerader Elementanzahl besitzt der letzte innere Knoten daher nur ein Kind.
+
+*Sift-Down (Heapify).* Die zentrale Operation ist das Absenken eines Knotens, dessen Heap-Bedingung verletzt sein kann, wobei seine beiden Teilbäume bereits gültige Heaps sind. Der Knoten wird mit seinem größeren Kind verglichen. Ist dieses Kind echt größer, werden beide getauscht, und der Vorgang wiederholt sich an der neuen Position. Er endet, sobald kein Kind mehr größer ist oder ein Blatt erreicht wurde. Der Aufwand ist durch die Baumhöhe begrenzt, also $O(log n)$.
+
+*Phase 1: Heap aufbauen.* Zu Beginn ist das Array unsortiert, die Max-Heap-Bedingung also noch nicht erfüllt. Beginnend beim letzten inneren Knoten (Index $n/2 - 1$) wird rückwärts bis zur Wurzel (Index 0) für jeden Knoten Sift-Down ausgeführt. Blätter müssen nicht betrachtet werden, da sie bereits gültige Heaps sind. Nach Abschluss ist das Array ein gültiger Max-Heap und das größte Element steht an Index 0.
+
+*Phase 2: Sortieren.* Solange der Heap mehr als ein Element enthält, wird wiederholt: (1) die Wurzel, also das Maximum, mit dem letzten Element des Heap-Bereichs getauscht, (2) die Heap-Größe um 1 verringert, da das Maximum nun an seiner endgültigen Position steht, und (3) die neue Wurzel, die die Heap-Bedingung vermutlich verletzt, per Sift-Down auf den verkleinerten Heap abgesenkt. Am Array-Ende wächst so der sortierte Bereich, vorne schrumpft der Heap. Bei Heap-Größe 1 endet der Algorithmus; das verbleibende Element ist das kleinste und steht bereits an der richtigen Stelle. Das Array ist dann aufsteigend sortiert.
+
+
+Visuelle Darstellung 
+
+Als Beispiel dient das Array `[4, 10, 3, 5, 1]` mit $n = 5$.
+
+*Phase 1: Max-Heap aufbauen*
+
+Der letzte innere Knoten liegt an Index $5/2 - 1 = 1$ (Wert `10`).
+- Sift-Down von Index 1: Die `10` ist größer als ihre Kinder `5` und `1`, kein Tausch.
+- Sift-Down von Index 0: Die `4` wird mit dem größeren Kind `10` getauscht: `[10, 4, 3, 5, 1]`. Danach sinkt sie weiter und wird mit dem größeren Kind `5` getauscht.
+
+Ergebnis als Max-Heap: `[10, 5, 3, 4, 1]`. Das Maximum `10` steht an der Wurzel.
+
+*Phase 2: Sortieren durch Tauschen*
+
+- Schritt 1: Tausche Wurzel (`10`) mit dem letzten Heap-Element (`1`).
+  - Array: `[1, 5, 3, 4 | 10]` (die `10` ist fest sortiert).
+  - Sift-Down der `1`: Sie wird mit dem größeren Kind `5` getauscht, sinkt dann weiter und wird mit `4` getauscht.
+  - Neuer Heap: `[5, 4, 3, 1 | 10]`
+- Schritt 2: Tausche Wurzel (`5`) mit dem letzten Heap-Element (`1`).
+  - Array: `[1, 4, 3 | 5, 10]`
+  - Sift-Down der `1`: Tausch mit dem größeren Kind `4`.
+  - Neuer Heap: `[4, 1, 3 | 5, 10]`
+- Schritt 3: Tausche Wurzel (`4`) mit dem letzten Heap-Element (`3`).
+  - Array: `[3, 1 | 4, 5, 10]`
+  - Sift-Down: Das einzige Kind `1` ist kleiner als `3`, kein Tausch nötig.
+- Schritt 4: Tausche Wurzel (`3`) mit dem letzten Heap-Element (`1`).
+  - Array: `[1 | 3, 4, 5, 10]`. Der Heap hat nur noch ein Element, der Algorithmus endet.
+
+Endresultat: `[1, 3, 4, 5, 10]`. Das Array ist sortiert.
+
+*Problemlösung durch den Algorithmus*
+
+Das Problem eines unsortierten Arrays, in welchem die Daten in einer ungünstigen Datenanordnung für Quicksort liegen löst Heapsort am zuverlässigsten. 
+Die Worst-Case-Laufzeit von Heapsort ist deutlich schneller mit $O(n log n)$ als Quicksort mit einer O-Notation von $O(n²)$. Somit ist Heapsort im Worst-Case der schnellere Algorhithmus zum Sortieren eines unsortierten Arrays.
+
 == Durchführung des Algorithmus / Demonstration der Datenstruktur an einem Beispiel
 #text[
 Für Heap-Sort verwenden wir einen Max-Heap (das sollte euch aus „Fortgeschrittene Programmiertechniken“ schon bekannt sein): In einem Max-Heap ist jeder Elternknoten mindestens so groß wie seine Kinder. Deshalb steht das Maximum immer an der Wurzel.
