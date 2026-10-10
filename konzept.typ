@@ -234,6 +234,29 @@ Beispiel:
 
 == Übersicht über die Verteilung der Inhalte
 #platzhalter[Gerade bei den Spezialisierungen Video und interaktives Tutorial sollen Sie hier die Struktur Ihres Materials darstellen. Geben Sie also Video für Video bzw. Level für Level an, welche Inhalte in welcher Reihenfolge vermittelt werden und welche Mechaniken Sie jeweils einsetzen. Auf diese Weise werden bereits Zusammenhänge und Abhängigkeiten sichtbar, sodass ein stimmiger Ablauf entsteht. Wichtig ist dabei, nicht nur Oberbegriffe zu nennen, sondern schon so konkret zu werden, dass sich die geplante Struktur auf Plausibilität prüfen lässt.]
+#text[
+=== Universalmodus
+Der Universalmodus ist eine freie Übungsumgebung, in der Nutzerinnen und Nutzer Heapsort selbst ausprobieren und mit dem Ablauf des eingebauten Algorithmus vergleichen können.
+
+- Eingabe und Darstellung: Zu Beginn legen die Nutzerinnen und Nutzer die Anzahl und Werte der Elemente fest oder lassen eine zufällige Folge erzeugen. Die Elemente werden sowohl als Array als auch als Heap-Baum dargestellt. Die Startanordnung lässt sich ebenfalls festlegen.
+- Heap aufbauen: Zunächst wird aus den Elementen ein Max-Heap erstellt. Der jeweils betrachtete Knoten und seine Kinder werden hervorgehoben. Nutzerinnen und Nutzer können die nötigen Vergleiche und Vertauschungen selbst ausführen.
+- Heap sortieren: Anschließend wird wiederholt das größte Element an die letzte noch unsortierte Position verschoben. Der verkleinerte Heap wird danach durch weitere Vergleiche und Vertauschungen wiederhergestellt. Sortierter Bereich und verbleibender Heap werden visuell voneinander abgegrenzt.
+
+Während des gesamten Ablaufs stehen folgende Bedienelemente zur Verfügung:
+
+- Rückgängig: Macht den letzten Schritt rückgängig. Optional können zusätzliche Tastenkombinationen mehrere Schritte zurückspringen, zum Beispiel fünf oder zehn.
+- Einen Schritt vorwärts: Führt den nächsten Schritt des eingebauten Heapsort-Algorithmus aus. Optional kann die Schrittweite per Tastenkombination auf fünf oder zehn Schritte erhöht werden.
+- Automatisch: Lässt den Algorithmus selbstständig ablaufen. Die Geschwindigkeit wird über eine einstellbare Anzahl von Zügen pro Sekunde festgelegt.
+- Pause/Weiter: Pausiert den automatischen Ablauf beziehungsweise setzt ihn fort.
+
+Die Nutzerinnen und Nutzer können die Heap-Operationen außerdem selbst ausführen, etwa Elemente vergleichen und vertauschen. Eine Schritt-für-Schritt-Historie ermöglicht es, den Vorgang zurückzuverfolgen und einzelne Entscheidungen nachzuvollziehen.
+
+=== Optionaler Levelmodus
+
+Falls ausreichend Zeit zur Verfügung steht, kann ergänzend ein Levelmodus mit vorbereiteten Aufgaben umgesetzt werden. Die Level könnten schrittweise schwieriger werden, zum Beispiel durch größere Arrays oder zusätzliche Bedingungen. Denkbar wären auch verschiedenfarbige Kugeln oder andere Formen, deren Eigenschaften sich auf die Sortieraufgabe auswirken. Dieser Modus ist bislang nicht konkret ausgearbeitet und hat gegenüber dem Universalmodus keine Priorität.
+
+
+]
 
 = Audio-Visuelles Konzept
 #platzhalter[Hier folgt die Konzeption der audio-visuellen Darstellung. Bevor Sie mit der eigentlichen Umsetzung beginnen, entwickeln Sie zunächst ein klares Gestaltungskonzept. Da Ihre Projektarbeit nicht nur inhaltlich, sondern auch visuell und akustisch überzeugen soll, ist es wichtig, dass Farben, Formen, Stimmen und Klänge, Stimmungen und vieles weitere bewusst gewählt und auf die Lehr-Lern-Ziele abgestimmt sind. So stellen Sie sicher, dass die Materialien nicht nur korrekt, sondern auch ansprechend, konsistent und lernförderlich gestaltet werden. Denken Sie daran: Das gesamte Dokument wird benotet – also auch dieser Abschnitt.]
