@@ -257,12 +257,39 @@ enthalten kann! Es lohnt sich aber, da Sie die Ziele zu jedem Zeitpunkt als Chec
 ]
 
 == Didaktische Entscheidungen
-#platzhalter[Im Abschnitt Didaktische Entscheidungen werden alle wesentlichen Festlegungen dokumentiert, die sonst oft "aus dem Bauch heraus" getroffen würden. Jede Entscheidung besteht aus einem kurzen Titel, einer knappen Beschreibung und einer Begründung. So wird nachvollziehbar, warum bestimmte Methoden, Medien, Formate, Mechaniken, ... gewählt wurden und wie diese mit den Lehr-Lern-Zielen zusammenhängen. Auf diese Weise wird sichergestellt, dass zentrale didaktische Überlegungen explizit gemacht, reflektiert und für Dritte transparent werden. Zuerst wird es aussehen, als würden hier nur wenige Basisentscheidungen stehen; überlegen Sie aber genau und das Kapitel wird sich füllen!
+1. Baum und Array werden parallel visualisiert
+Beschreibung: Jede Aktion im Baum wird zeitgleich im Array (als Kisten) sichtbar.
+Begründung: Heapsort wird abstrakt als Baum erklärt, aber auf einem Array implementiert. Die Doppeldarstellung verbindet beide Sichten und fördert den Transfer in die Programmierung.
 
-Beispiel:
+#v(2em)
 
-#entscheidung("Gesprochene Dialoge im Lehrspiel", "Alle Texte im interaktiven Tutorial (z. B. NPC-Dialoge, Hilfestellungen, Hinweise) werden nicht nur als Text angezeigt, sondern zusätzlich eingesprochen. Die Stimmen stammen von Mitgliedern des Projektteams.", "Durch den Einsatz menschlicher Stimmen entsteht eine persönlichere, angenehmere Lernumgebung, die die Beziehung zwischen Lernenden und Inhalt stärkt. Gesprochene Sprache vermittelt Emotionen und Nähe besser als reiner Text und wirkt dadurch motivierender. Außerdem wird das Risiko reduziert, dass Lernende Texte lediglich überfliegen oder überspringen, ohne sich mit dem Inhalt auseinanderzusetzen.")
-]
+2. Direkte Manipulation per Drag & Drop
+Beschreibung: Kugeln werden gezogen, ein Rechtsklick legt sie zurück in die Kiste.
+Begründung: Aktives, handelndes Lernen statt passiven Zuschauens. Das Zurücklegen senkt die Hemmschwelle, Dinge auszuprobieren.
+
+3. Sofort-Feedback über Lichterketten
+Beschreibung: Verbindungen zwischen Knoten leuchten rot bei verletzter Heap-Bedingung und bunt, wenn sie korrekt sind.
+Begründung: Fehler werden unmittelbar und räumlich lokalisiert, ohne Text lesen zu müssen. Als Ergänzung (nicht als einziger Kanal) gibt es den Hinweistext, z. B. "Heap-Bedingung verletzt", der das Warum erklärt. Das ist auch barrierefreundlicher, da Farbe nicht allein Information trägt.
+
+4. Sortierfehler sind erlaubt
+Beschreibung: Falsche Züge werden nicht hart bestraft und führen nicht zum Abbruch.
+Begründung: Fehler gelten als Lerngelegenheit. Spieler erkunden die Regeln selbst, statt Angst vor Fehlern zu haben.
+
+5. Simulation mit Play, Pause und Einzelschritt
+Beschreibung: Der Heapsort läuft automatisch ab, lässt sich pausieren und Schritt für Schritt weiterschalten.
+Begründung: Spieler steuern ihr eigenes Tempo (Reduktion der kognitiven Belastung). Die Simulation dient als bearbeitbares Beispiel, an dem man den Ablauf nachvollzieht, bevor man ihn selbst anwendet.
+
+6. Verschiedene Modi statt Level: sortiert, halbsortiert, Sandbox
+Beschreibung: Es gibt einen fertigen Baum, einen halbsortierten und einen unsortierten Baum, in dem Heapsort selbst aufgebaut wird.
+Begründung: Schrittweiser Abbau der Unterstützung vom Beobachten über das Reparieren bis zum freien Bauen. Die genaue Umsetzung ist noch fragwürdig, da noch keine konkret Zeitplanung unsererseits vorliegt.
+
+7. Zuerst das Grundprinzip, dann Farben und Zahlen
+Beschreibung: Erst wird die reine Heap-Struktur gespielt, danach kommen Wertungen (Farbe, Größe, Zahl) hinzu.
+Begründung: Schrittweise Komplexitätssteigerung. Die verschiedenen Wertungen zeigen außerdem, dass ein Heap nur von der Vergleichsrelation abhängt, nicht von Zahlen (Variation der Merkmale fördert Transfer).
+
+8. Kisten-Metapher in 2D-Sicht
+Beschreibung: Das Array wird als geöffnete Kiste dargestellt, in der Kugeln liegen.
+Begründung: Konkrete, vertraute Metapher für abstrakte Speicherplätze. Die 2D-Sicht hält die Darstellung übersichtlich und die Bedienung einfach.
 
 == Übersicht über die Verteilung der Inhalte
 #platzhalter[Gerade bei den Spezialisierungen Video und interaktives Tutorial sollen Sie hier die Struktur Ihres Materials darstellen. Geben Sie also Video für Video bzw. Level für Level an, welche Inhalte in welcher Reihenfolge vermittelt werden und welche Mechaniken Sie jeweils einsetzen. Auf diese Weise werden bereits Zusammenhänge und Abhängigkeiten sichtbar, sodass ein stimmiger Ablauf entsteht. Wichtig ist dabei, nicht nur Oberbegriffe zu nennen, sondern schon so konkret zu werden, dass sich die geplante Struktur auf Plausibilität prüfen lässt.]
