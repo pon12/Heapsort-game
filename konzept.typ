@@ -216,7 +216,19 @@ Nun tauschen wir die Wurzel mit dem letzten Element des noch unsortierten Heaps.
 #platzhalter[Bevor Sie mit der Implementierung starten, entwickeln Sie zunächst ein umfassendes Konzept. Da Ihre Projektarbeit auf die Erstellung von Lehrmaterialien abzielt, ist es wichtig, dass dieses Konzept didaktisch gut durchdacht ist. Denken Sie daran: Das gesamte Dokument wird benotet – also auch dieser Abschnitt.]
 
 == Zielgruppe
-#platzhalter[Beschreiben Sie Ihre Zielgruppe -- also Ihre Kommilitonen--, die sich in der zweiten Hälfte des Moduls mithilfe Ihres Projektergebnisses weiterbilden werden.]
+Zielgruppe sind die Studenten und Interessierten Informatiker Mittweidas, die sich auf interaktive Weise den Heapsort Algorithmus aneignen und verstehen möchten. Insbesondere Studenten aus dem Studiengang Medieninformatik und Interaktives Entertainment, als auch Kommilitonen aus der gesamten Fakultät "Angewandte Computer- und Biowissenschaften" sollen sich mit diesem Spiel ein Bild über den Heapsort Algorithmus machen können. Die Funktionsweise dieser Lehrmethode soll im Rahmen der Veranstaltungen dieses Moduls im Dezember abgegeben und im Januar vorgestellt werden. Zusammen mit den anderen Gruppen soll ein umfangreiches Lehrkonzept, bestehend aus einer analogen Aufbereitung via Arbeitsblättern, einem Tutorial und eines Interaktiven Spiels, geschaffen werden.
+
+Unsere Zielgruppe muss kein Vorwissen zu dem Thema Heapsort haben. Nach dem Spielen sollen die Spielenden Heap-Bedingung und Sift-Down erklären und den Ablauf von Heapsort an einem kleinen Beispiel selbstständig durchführen können. 
+
+Die Studierenden sind überwiegend zwischen 19 und 22 Jahren alt, das Durchschnittsalter liegt voraussichtlich bei etwa 20 Jahren. Die meisten befinden sich im 3. Fachsemester eines Bachelorstudiums in Vollzeit.
+
+Die Mehrheit hat die allgemeine Hochschulreife oder Fachhochschulreife erworben, ein Teil kommt über eine abgeschlossene Ausbildung, etwa im IT- oder Mediensektor, oder über einen Quereinstieg. Dadurch unterscheiden sich Mathematikkenntnisse und Programmiererfahrung teils deutlich, obwohl alle denselben Studienstand haben.
+
+Die Studierenden haben bereits Module zu Programmierung und Mathematik absolviert und kennen daher Arrays, Schleifen, Rekursion und einfache Sortierverfahren wie Bubble- oder Selection-Sort. Binärbäume und Heaps sind für die meisten neu oder nur aus Überblicksvorlesungen bekannt. Einige können Algorithmen selbstständig implementieren, andere benötigen Beispiele und Visualisierungen, um Abläufe nachzuvollziehen.
+
+Als Medieninformatiker sind die Studierenden im Umgang mit Software, Browsern und verschiedenen Betriebssystemen sicher. Sie nutzen im Alltag Laptop und Smartphone und sind durch Streaming, Soziale Medien und Spiele an hochwertig gestaltete Interfaces gewöhnt. Daher reicht die  Spielerfahrung von gelegentlichem Spielen auf dem Smartphone bis zu regelmäßigem Spielen am PC oder an der Konsole, sodass das Spiel keine Vorkenntnisse in Spielmechaniken voraussetzen darf.
+
+
 
 == Lehr-Lern-Ziele
 #platzhalter[Grundlage für alles sind die Lehr-Lern-Ziele, die beschreiben, was Sie mit Ihrem Projektergebnis erreichen wollen. Sie legen fest, was Lernende nach einer Veranstaltung tatsächlich können sollen. Deshalb werden sie konsequent aus der Perspektive der Studierenden formuliert ("Die Studierenden können ...") und nicht aus der Sicht der Lehrenden. Vage Formulierungen wie "verstehen" oder "wissen" eignen sich nicht, weil sie schwer prüfbar sind. Stattdessen verwendet man handlungsorientierte Verben wie "analysieren", "erklären", "vergleichen", "anwenden" oder "konstruieren". Hilfreich ist dabei das SMART-Prinzip, das Ziele spezifisch, messbar, attraktiv, realistisch und terminiert macht. Eine wichtige Rolle spielt die Bloom'sche Taxonomie, die Lernziele nach kognitiver Anspruchshöhe staffelt. Sie unterscheidet zwischen den Stufen Erinnern, Verstehen, Anwenden, Analysieren, Evaluieren und Erschaffen. Je nach gewünschtem Kompetenzniveau werden passende Verben gewählt, sodass Lernziele vom einfachen Faktenabruf bis hin zu komplexen Problemlösungen differenziert formuliert werden können.
