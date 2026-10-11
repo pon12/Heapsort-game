@@ -231,16 +231,29 @@ Als Medieninformatiker sind die Studierenden im Umgang mit Software, Browsern un
 
 
 == Lehr-Lern-Ziele
-#platzhalter[Grundlage für alles sind die Lehr-Lern-Ziele, die beschreiben, was Sie mit Ihrem Projektergebnis erreichen wollen. Sie legen fest, was Lernende nach einer Veranstaltung tatsächlich können sollen. Deshalb werden sie konsequent aus der Perspektive der Studierenden formuliert ("Die Studierenden können ...") und nicht aus der Sicht der Lehrenden. Vage Formulierungen wie "verstehen" oder "wissen" eignen sich nicht, weil sie schwer prüfbar sind. Stattdessen verwendet man handlungsorientierte Verben wie "analysieren", "erklären", "vergleichen", "anwenden" oder "konstruieren". Hilfreich ist dabei das SMART-Prinzip, das Ziele spezifisch, messbar, attraktiv, realistisch und terminiert macht. Eine wichtige Rolle spielt die Bloom'sche Taxonomie, die Lernziele nach kognitiver Anspruchshöhe staffelt. Sie unterscheidet zwischen den Stufen Erinnern, Verstehen, Anwenden, Analysieren, Evaluieren und Erschaffen. Je nach gewünschtem Kompetenzniveau werden passende Verben gewählt, sodass Lernziele vom einfachen Faktenabruf bis hin zu komplexen Problemlösungen differenziert formuliert werden können.
+#platzhalter[Grundlage für alles sind die Lehr-Lern-Ziele, die beschreiben, was Sie mit Ihrem Projektergebnis erreichen wollen. Sie legen fest, was 
+Lernende nach einer Veranstaltung tatsächlich können sollen. Deshalb werden sie konsequent aus der Perspektive der Studierenden formuliert 
+("Die Studierenden können ...") und nicht aus der Sicht der Lehrenden. Vage Formulierungen wie "verstehen" oder "wissen" eignen sich nicht, 
+weil sie schwer prüfbar sind. Stattdessen verwendet man handlungsorientierte Verben wie "analysieren", "erklären", "vergleichen", "anwenden" 
+oder "konstruieren". Hilfreich ist dabei das SMART-Prinzip, das Ziele spezifisch, messbar, attraktiv, realistisch und terminiert macht. 
+Eine wichtige Rolle spielt die Bloom'sche Taxonomie, die Lernziele nach kognitiver Anspruchshöhe staffelt. Sie unterscheidet zwischen den Stufen 
+Erinnern, Verstehen, Anwenden, Analysieren, Evaluieren und Erschaffen. Je nach gewünschtem Kompetenzniveau werden passende Verben gewählt, sodass 
+Lernziele vom einfachen Faktenabruf bis hin zu komplexen Problemlösungen differenziert formuliert werden können.
 
-Ein Beispiel aus einem anderen Bereich verdeutlicht den Unterschied. Das Ziel "UML verstehen" ist ungeeignet, weil es kein konkretes Können beschreibt, unklar bleibt, was genau gemeint ist, und damit auch nicht überprüfbar wird. Besser sind mehrere, abgestufte Ziele, die verschiedene Anspruchsniveaus der Taxonomie abdecken. Hier ist eine Auswahl möglicher konkreter Ziele als Beispiel:
+Ein Beispiel aus einem anderen Bereich verdeutlicht den Unterschied. Das Ziel "UML verstehen" ist ungeeignet, weil es kein konkretes Können beschreibt, unklar bleibt, 
+was genau gemeint ist, und damit auch nicht überprüfbar wird. Besser sind mehrere, abgestufte Ziele, die verschiedene Anspruchsniveaus der Taxonomie abdecken. 
+Hier ist eine Auswahl möglicher konkreter Ziele als Beispiel:
 - Die Studierenden können zentrale Elemente der UML (z. B. Klasse, Assoziation, Generalisierung) korrekt benennen. (Erinnern)
 - Die Studierenden können in eigenen Worten erklären, wie ein Klassendiagramm grundlegende Strukturen eines Softwaresystems darstellt. (Verstehen)
 - Die Studierenden können für ein gegebenes Szenario ein UML-Klassendiagramm erstellen, das die relevanten Entitäten und Beziehungen korrekt abbildet. (Anwenden)
 - Die Studierenden können in einem vorliegenden UML-Aktivitätsdiagramm Modellierungsfehler identifizieren und begründen, warum diese problematisch sind. (Analysieren)
-- Die Studierenden können unterschiedliche UML-Diagrammtypen (z. B. Klassen-, Aktivitäts-, Sequenzdiagramm) hinsichtlich ihrer Eignung für eine bestimmte Aufgabenstellung beurteilen. (Evaluieren)
-- Die Studierenden können auf Basis einer textuellen Anforderungsspezifikation ein konsistentes Set aus mindestens drei UML-Diagrammen entwickeln, das die wichtigsten strukturellen und dynamischen Aspekte des Systems abbildet. (Erschaffen)
-Die 6 Beispielziele decken die vage Formulierung "UML verstehen" nicht vollständig ab; die konkrete Formulierung der Ziele ermöglicht es Ihnen aber, viel besser abzustecken, was wirklich erreicht werden soll. Sie merken also hoffentlich, dass hier Sorgfalt notwendig ist; und dass die Liste durchaus einige Ziele enthalten kann! Es lohnt sich aber, da Sie die Ziele zu jedem Zeitpunkt als Checklist / Maßstab nutzen können, um ihren Projektfortschritt zu evaluieren.
+- Die Studierenden können unterschiedliche UML-Diagrammtypen (z. B. Klassen-, Aktivitäts-, Sequenzdiagramm) hinsichtlich ihrer Eignung für eine bestimmte 
+  Aufgabenstellung beurteilen. (Evaluieren)
+- Die Studierenden können auf Basis einer textuellen Anforderungsspezifikation ein konsistentes Set aus mindestens drei UML-Diagrammen entwickeln, das die 
+  wichtigsten strukturellen und dynamischen Aspekte des Systems abbildet. (Erschaffen)
+Die 6 Beispielziele decken die vage Formulierung "UML verstehen" nicht vollständig ab; die konkrete Formulierung der Ziele ermöglicht es Ihnen aber, 
+viel besser abzustecken, was wirklich erreicht werden soll. Sie merken also hoffentlich, dass hier Sorgfalt notwendig ist; und dass die Liste durchaus einige Ziele 
+enthalten kann! Es lohnt sich aber, da Sie die Ziele zu jedem Zeitpunkt als Checklist / Maßstab nutzen können, um ihren Projektfortschritt zu evaluieren.
 ]
 
 == Didaktische Entscheidungen
