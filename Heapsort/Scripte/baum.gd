@@ -5,10 +5,11 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
- # Replace with function body.
-	var test = tree_node_2.position
-	tree_node_2.position = tree_node.position
-	tree_node.position = test
+	#Macht Beides Effektiv das selbe (tauschen)
+	#var test = tree_node_2.position
+	#tree_node_2.position = tree_node.position
+	#tree_node.position = test
+	tree_node.swap(tree_node_2)
 
 
 

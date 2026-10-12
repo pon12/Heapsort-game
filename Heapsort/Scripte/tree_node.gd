@@ -23,10 +23,9 @@ func swap(node: Node2D) -> void:
 	var old_pos: Vector2 = self.rest_position
 	self.global_position = node.global_position
 	self.rest_position = global_position
-	###
-	node.get_parent().global_position = old_pos
-	node.get_parent().rest_position = old_pos
-	print(node.get_parent().position)
+	node.global_position = old_pos
+	node.rest_position = old_pos
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -69,7 +68,7 @@ func _snap_to_slot() -> void:
 		print(node)
 		if node == marker_2d:
 			continue
-		var slot := node as Node2D
+		var slot := node
 		if slot == null:
 			continue
 
@@ -79,7 +78,7 @@ func _snap_to_slot() -> void:
 			nearest_slot = slot
 
 	if nearest_slot:
-		swap(nearest_slot)
+		swap(nearest_slot.get_parent())
 
 	else:
 		global_position = rest_position
