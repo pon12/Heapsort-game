@@ -1,1 +1,28 @@
 *.pdf
+
+
+# Godot 4.2+ specific ignores
+~*.dll
+
+# Godot 4+ specific ignores
+Heapsort/.godot/
+Heapsort/.nomedia
+
+# Godot-specific ignores
+Heapsort/.import/
+Heapsort/export.cfg
+Heapsort/export_credentials.cfg
+*.tmp
+
+# Imported translations (automatically generated from CSV files)
+Heapsort/*.translation
+
+# Mono-specific ignores
+Heapsort/.mono/
+Heapsort/data_*/
+Heapsort/mono_crash.*.json
+
+# Export outputs
+*.exe
+# Uncomment if your project does not version PCK files as runtime dependencies.
+# *.pck

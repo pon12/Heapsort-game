@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cjmefb58jcby8"]
+
+[ext_resource type="Script" uid="uid://chlhbnqrryfg1" path="res://Scripte/tree_node.gd" id="1_n3plf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fn6h7"]
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yux83"]
+size = Vector2(50, 50)
+
+[node name="TreeNode" type="Node2D" unique_id=1373877517]
+script = ExtResource("1_n3plf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1471684995]
+position = Vector2(-8.073428e-06, -6.3180923e-06)
+scale = Vector2(0.016534386, 0.01653439)
+
+[node name="Label" type="Label" parent="." unique_id=1208299577]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+text = "0"
+label_settings = SubResource("LabelSettings_fn6h7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="." unique_id=550356880]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=558985479]
+shape = SubResource("RectangleShape2D_yux83")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1288868495 groups=["drop_slots"]]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
