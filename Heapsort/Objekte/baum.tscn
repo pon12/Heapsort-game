@@ -1,29 +1,10 @@
 [gd_scene format=3 uid="uid://b4yq4oh7ah74r"]
 
 [ext_resource type="PackedScene" uid="uid://cjmefb58jcby8" path="res://Objekte/tree_node.tscn" id="1_ockag"]
-
-[sub_resource type="GDScript" id="GDScript_2f5ba"]
-script/source = "extends Node2D
-
-@onready var tree_node: Node2D = $TreeNode
-@onready var tree_node_2: Node2D = $TreeNode2
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
- # Replace with function body.
-	var test = tree_node_2.position
-	tree_node_2.position = tree_node.position
-	tree_node.position = test
-
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[ext_resource type="Script" uid="uid://7rm2dqhgcuh1" path="res://Scripte/baum.gd" id="1_s6xw5"]
 
 [node name="Baum" type="Node2D" unique_id=1351460824]
-script = SubResource("GDScript_2f5ba")
+script = ExtResource("1_s6xw5")
 
 [node name="TreeNode2" parent="." unique_id=1373877517 instance=ExtResource("1_ockag")]
 position = Vector2(345, 240)
