@@ -258,7 +258,7 @@ enthalten kann! Es lohnt sich aber, da Sie die Ziele zu jedem Zeitpunkt als Chec
 
 == Didaktische Entscheidungen
 1. Baum und Array werden parallel visualisiert
-Beschreibung: Jede Aktion im Baum wird zeitgleich im Array (als Kisten) sichtbar.
+Beschreibung: Jede Aktion im Baum wird zeitgleich im Array (als Weihnachtssocken) sichtbar.
 Begründung: Heapsort wird abstrakt als Baum erklärt, aber auf einem Array implementiert. Die Doppeldarstellung verbindet beide Sichten und fördert den Transfer in die Programmierung.
 
 #v(2em)
@@ -325,7 +325,90 @@ Falls ausreichend Zeit zur Verfügung steht, kann ergänzend ein Levelmodus mit 
 ]
 
 == Designentscheidungen
-#platzhalter[Im Abschnitt Designentscheidungen werden alle wesentlichen Festlegungen dokumentiert, die sonst oft "aus dem Bauch heraus" getroffen würden. Diesmal beziehen Sie sich jedoch nicht primär auf die Didaktik, sondern eher auf die audio-visuelle Ausgestaltung des Projektes. Jede Entscheidung besteht aus einem kurzen Titel, einer knappen Beschreibung und einer Begründung. Wenn vorhanden, kann ein Bild angfügt werden. So wird nachvollziehbar, warum bestimmte Stile, Farben, Anordnungen, Töne, Stimmungen,... gewählt wurden und wie diese mit den Lehr-Lern-Zielen zusammenhängen. Auf diese Weise wird sichergestellt, dass zentrale audiovisuelle Designüberlegungen explizit gemacht, reflektiert und für Dritte transparent werden. Zuerst wird es aussehen, als würden hier nur wenige Basisentscheidungen stehen; überlegen Sie aber genau und das Kapitel wird sich füllen!
+
+
+Entscheidung 1: Gesamtsetting „Weihnachtsraum“
+
+*Beschreibung:* Das Spiel findet in einem gemütlichen Weihnachtsraum statt. Zu sehen sind ein Kamin mit Feuer, ein Bild an der Wand sowie Socken am Kamin. Die Farbpalette besteht aus warmen Farben (Rot-, Orange- und Gelbtöne).
+
+*Begründung:* Ein durchgängiges Setting verbindet alle Spielelemente zu einer stimmigen Geschichte. Die warme, ruhige Atmosphäre senkt die Hemmschwelle gegenüber dem abstrakten Thema Heapsort und lädt zum Ausprobieren ein. Da Fehler im Spiel ausdrücklich erlaubt sind, unterstützt die einladende Stimmung eine entspannte Lernsituation ohne Leistungsdruck.
+
+// Bild: Moodboard / Skizze des Weihnachtsraums
+
+Entscheidung 2: Der Baum als Tannenbaum mit Kugeln
+
+*Beschreibung:* Der Heap wird als Tannenbaum dargestellt. Die Knoten des Baumes sind Christbaumkugeln, die auf dem grünen Baum angeordnet werden. Die Kugeln werden per Drag and Drop bewegt.
+
+*Begründung:* Ein Tannenbaum besitzt eine natürliche hierarchische Struktur und passt damit gut zur Baumstruktur des Heaps. Das Schmücken eines Baumes ist eine vertraute Handlung, die das Verschieben und Vertauschen von Knoten anschaulich und intuitiv macht. So kann sich die Aufmerksamkeit auf die Heap-Bedingung statt auf die Bedienung richten.
+
+Entscheidung 3: Das Array als Weihnachtssocken am Kamin
+
+*Beschreibung:* Das Array wird als Reihe von Weihnachtssocken am Kamin abgebildet. Jede Socke entspricht einem Arrayfeld und enthält die zugehörige Kugel. Wird die größte Kugel aussortiert, ändert sich die Darstellung der Socken entsprechend. Die Socken fungieren als UI-Element und erinnern an einen Adventskalender, dessen Fächer nacheinander „geleert“ werden.
+
+*Begründung:* Zentrales Lernziel ist, dass das, was im Baum passiert, zugleich im Array passiert. Beide Darstellungen sind deshalb gleichzeitig sichtbar. Die Socken passen zum Setting, und die Adventskalender-Metapher ähnelt dem schrittweisen Vorgehen des Sortierverfahrens: Mit jedem Schritt wird ein Element aus dem Heap entnommen und an die richtige Stelle gesetzt.
+
+// Bild: Skizze Kamin mit Socken-Array
+
+Entscheidung 4: Kugeln mit Farbe, Größe und Zahl als Wertung
+
+*Beschreibung:* Die Kugeln unterscheiden sich in Farbe (Rot, Gelb, Lila), Größe und Zahl. Der Baum selbst bleibt einheitlich grün. Zunächst steht das grundlegende Prinzip im Vordergrund, anschließend werden Farben, Größen und Zahlen als zusätzliche Wertungskriterien eingeführt.
+
+*Begründung:* Verschiedene Wertungen ermöglichen unterschiedliche Schwierigkeitsgrade, ohne ein Levelsystem zu benötigen. Die Kugelfarben heben sich deutlich vom grünen Baum ab und bleiben gut erkennbar. Der schrittweise Aufbau verhindert eine Überforderung zu Beginn.
+
+Entscheidung 5: Lichterketten als visuelles Feedback
+
+*Beschreibung:* Lichterketten verbinden die Knoten des Baumes. Solange ein Knoten die Heap-Bedingung verletzt (unsortiert ist), bleibt die Lichterkette an dieser Stelle dunkel. Sobald der Knoten korrekt eingeordnet ist, leuchtet sie auf.
+
+*Begründung:* Die Lichterketten machen die Kanten des Baumes sichtbar und zeigen unmittelbar, wo die Heap-Bedingung erfüllt oder verletzt ist. Das Feedback ist direkt, wortlos und passt zum Setting. Lernende erkennen so selbstständig, an welcher Stelle noch Handlungsbedarf besteht.
+
+Entscheidung 6: Weihnachtsstern als Erfolgsrückmeldung
+
+*Beschreibung:* Sind die Kugeln korrekt sortiert, erscheint der Weihnachtsstern als Abschlussfeedback. Optional kann Grundwald als Wichtel im Spiel auftreten, etwa als Begleiter oder Kommentator.
+
+*Begründung:* Der Stern ist der klassische Abschluss beim Schmücken eines Baumes und bildet damit einen natürlichen Höhepunkt. Er belohnt den Lernerfolg, ohne dass ein zusätzlicher Text nötig ist. Die Wichtel-Figur könnte die Identifikation erhöhen, ist aber noch optional.
+
+Entscheidung 7: Interaktion über eine Hand als Cursor
+
+*Beschreibung:* Der Mauszeiger ist eine offene Hand zum Greifen. Beim Drücken der linken Maustaste schließt sich die Hand, sodass eine Kugel per Drag and Drop bewegt werden kann. Das Ganze simuliert eine Person, die den Weihnachtsbaum schmückt.
+
+*Begründung:* Der Zustandswechsel von offener zu geschlossener Hand gibt direktes Feedback, ob ein Objekt gegriffen wurde, und macht die Handlung greifbar. Die Metapher unterstützt das Setting und sorgt dafür, dass die Interaktion ohne Erklärung verständlich ist.
+
+Entscheidung 8: Simulationssteuerung als abgebissene Kekse
+
+*Beschreibung:* Die Steuerelemente für Start, Pause und „einen Schritt weiter“ werden als Keksformen mit Bissspuren gestaltet. Die Bissform bildet jeweils das Symbol des Buttons.
+
+*Begründung:* Die Bedienelemente fügen sich in das Weihnachtssetting ein und bleiben dennoch als Standardsymbole erkennbar. Die Simulation, die den Heapsort selbstständig durchläuft, kann so jederzeit angehalten oder Schritt für Schritt nachvollzogen werden.
+
+Entscheidung 9: Hintergrund und Fokus
+
+*Beschreibung:* Als Hintergrund dient ein Bild in 2K-Auflösung. Rückt der Baum in den Fokus, wird der Hintergrund unscharf dargestellt (Blur).
+
+*Begründung:* Der Weichzeichner lenkt die Aufmerksamkeit auf den Baum und das Array, während die Atmosphäre des Raumes erhalten bleibt. Dadurch wird kognitive Überlastung durch Nebenelemente vermieden.
+
+Entscheidung 10: Typografie
+
+*Beschreibung:* Es werden weihnachtlich wirkende Schriftarten verwendet, vorgesehen sind „Santa’s Big Secret“ (https://www.1001freefonts.com/de/santas-big-secret.font) und „Navidad“ (https://www.dafontfree.io/navidad-font/).
+
+*Begründung:* Die Schriften unterstützen das Setting und die Stimmung. Wichtig ist, dass Zahlen auf den Kugeln gut lesbar bleiben, da sie für die Wertung entscheidend sind. Dies ist beim Testen zu prüfen.
+
+Entscheidung 11: Hinweistexte (offen)
+
+*Beschreibung:* Es ist noch offen, ob Hinweistexte wie „Heap-Bedingung verletzt“ umgesetzt werden. Zu klären ist, ob dies technisch machbar ist und ob das visuelle Feedback durch die Lichterketten bereits ausreicht.
+
+*Begründung:* Zu viel Text kann die Atmosphäre stören und vom Geschehen ablenken. Andererseits können kurze Hinweise Lernenden helfen, den Grund eines Fehlers zu verstehen. Die Entscheidung wird nach ersten Tests getroffen.
+
+Entscheidung 12: Hintergrundmusik
+
+*Beschreibung:* Im Hintergrund läuft ruhige, urheberrechtsfreie Weihnachtsmusik.
+
+*Begründung:* Die Musik verstärkt die Atmosphäre des Settings. Die Verwendung urheberrechtsfreier Stücke vermeidet rechtliche Probleme. Die Musik sollte leise und unaufdringlich sein, damit sie die Konzentration nicht stört.
+
+Entscheidung 13: Soundeffekte (offen)
+
+*Beschreibung:* Soundeffekte für richtige und falsche Platzierungen sowie für den Abschluss sind noch nicht festgelegt. Denkbar sind etwa ein Glöckchenklang bei Erfolg und ein sanfter, nicht abwertender Ton bei Fehlern. Quellen und Lizenzen der Audio-Assets sind noch zu klären.
+
+*Begründung:* Akustisches Feedback ergänzt das visuelle Feedback und verstärkt den Lerneffekt. Da Sortierfehler im Spiel erlaubt sind, sollten Fehlertöne ermutigend statt bestrafend wirken.
+
 
 Beispiel (könnten auch zwei Entscheidungen sein!):
 
