@@ -4,15 +4,29 @@ extends Node2D
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var label: Label = $Label
 
-@export var snap_distance: float = 70.0
 @export var number: int = 1
 @export var picture: CompressedTexture2D
 @export var Scaling: Vector2 = Vector2(0.017, 0.017)
 
+@export var left_child: Node2D
+@export var right_child: Node2D
 
+var snap_distance: float = 70.0
 var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 var rest_position: Vector2 = Vector2.ZERO
+
+
+
+
+func swap(node: Node2D) -> void:
+	var old_pos: Vector2 = self.rest_position
+	self.global_position = node.global_position
+	self.rest_position = global_position
+	###
+	node.get_parent().global_position = old_pos
+	node.get_parent().rest_position = old_pos
+	print(node.get_parent().position)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -65,7 +79,7 @@ func _snap_to_slot() -> void:
 			nearest_slot = slot
 
 	if nearest_slot:
-		global_position = nearest_slot.global_position
-		rest_position = global_position
+		swap(nearest_slot)
+
 	else:
 		global_position = rest_position
