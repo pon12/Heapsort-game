@@ -7,6 +7,7 @@ extends Node2D
 @export var snap_distance: float = 70.0
 @export var number: int = 1
 @export var picture: CompressedTexture2D
+@export var Scaling: Vector2 = Vector2(0.017, 0.017)
 
 
 var dragging: bool = false
@@ -18,8 +19,8 @@ var rest_position: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	rest_position = global_position
 	sprite.texture = picture
+	sprite.scale = Scaling
 	label.text = str(number)
-	print(label.text)
 
 
 func _on_area_2d_input_event(
