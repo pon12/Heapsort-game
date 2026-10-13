@@ -2,16 +2,61 @@
 
 [ext_resource type="PackedScene" uid="uid://cjmefb58jcby8" path="res://Objekte/tree_node.tscn" id="1_ockag"]
 [ext_resource type="Script" uid="uid://7rm2dqhgcuh1" path="res://Scripte/baum.gd" id="1_s6xw5"]
+[ext_resource type="Texture2D" uid="uid://dk85fjm45qtfu" path="res://Assets/IMG_0125.png" id="3_4p7yv"]
 
 [node name="Baum" type="Node2D" unique_id=1351460824]
+position = Vector2(514, 276)
 script = ExtResource("1_s6xw5")
 
-[node name="TreeNode2" parent="." unique_id=1373877517 instance=ExtResource("1_ockag")]
-position = Vector2(345, 240)
+[node name="TreeNode4" parent="." unique_id=1373877517 instance=ExtResource("1_ockag")]
+position = Vector2(-336, -74)
+number = 4
+
+[node name="TreeNode2" parent="." unique_id=2017047121 instance=ExtResource("1_ockag")]
+position = Vector2(-319, 186)
 number = 2
 
 [node name="TreeNode" parent="." unique_id=638626216 instance=ExtResource("1_ockag")]
-position = Vector2(168, 229)
+position = Vector2(-338, 287)
 
 [node name="TreeNode3" parent="." unique_id=818584138 instance=ExtResource("1_ockag")]
-position = Vector2(262, 84)
+position = Vector2(-228, 334)
+number = 3
+
+[node name="TreeNode5" parent="." unique_id=1525558895 instance=ExtResource("1_ockag")]
+position = Vector2(-333, 58)
+number = 5
+
+[node name="TreeNode6" parent="." unique_id=318462087 instance=ExtResource("1_ockag")]
+position = Vector2(-346, -186)
+number = 6
+
+[node name="TreeNode7" parent="." unique_id=534181557 instance=ExtResource("1_ockag")]
+position = Vector2(-251, 2)
+number = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1754006987]
+position = Vector2(220, 95.000015)
+scale = Vector2(0.7025, 0.764375)
+texture = ExtResource("3_4p7yv")
+
+[node name="Slot1" type="Marker2D" parent="Sprite2D" unique_id=866485972]
+position = Vector2(11.3878765, -245.95259)
+
+[node name="Slot2" type="Marker2D" parent="Sprite2D" unique_id=831233136]
+position = Vector2(-88.256226, -95.50287)
+
+[node name="Slot3" type="Marker2D" parent="Sprite2D" unique_id=1034434596]
+position = Vector2(86.83274, -98.11938)
+
+[node name="Slot4" type="Marker2D" parent="Sprite2D" unique_id=1223803014]
+position = Vector2(-193.5943, 47.0973)
+
+[node name="Slot5" type="Marker2D" parent="Sprite2D" unique_id=1885357802]
+position = Vector2(-42.704636, 52.330338)
+
+[node name="Slot6" type="Marker2D" parent="Sprite2D" unique_id=1633892858]
+position = Vector2(99.644135, 56.255127)
+
+[node name="Slot7" type="Marker2D" parent="Sprite2D" unique_id=371594720]
+position = Vector2(206.40573, 65.41292)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cjmefb58jcby8"]
 
 [ext_resource type="Script" uid="uid://chlhbnqrryfg1" path="res://Scripte/tree_node.gd" id="1_n3plf"]
+[ext_resource type="Texture2D" uid="uid://bh7qf6pg1fxtt" path="res://Assets/IMG_0124.png" id="2_n3plf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fn6h7"]
 font_size = 32
@@ -12,10 +13,12 @@ size = Vector2(50, 50)
 
 [node name="TreeNode" type="Node2D" unique_id=1373877517]
 script = ExtResource("1_n3plf")
+picture = ExtResource("2_n3plf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1471684995]
 position = Vector2(-8.073428e-06, -6.3180923e-06)
 scale = Vector2(0.016534386, 0.01653439)
+texture = ExtResource("2_n3plf")
 
 [node name="Label" type="Label" parent="." unique_id=1208299577]
 offset_left = -25.0
