@@ -14,6 +14,7 @@ size = Vector2(50, 50)
 [node name="TreeNode" type="Node2D" unique_id=1373877517]
 script = ExtResource("1_n3plf")
 picture = ExtResource("2_n3plf")
+Scaling = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1471684995]
 position = Vector2(-8.073428e-06, -6.3180923e-06)

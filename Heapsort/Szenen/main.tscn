@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://bmiq3vx3hrdb1"]
 
-[ext_resource type="Texture2D" uid="uid://dk85fjm45qtfu" path="res://Assets/IMG_0125.png" id="1_pw8tf"]
 [ext_resource type="PackedScene" uid="uid://b4yq4oh7ah74r" path="res://Objekte/baum.tscn" id="2_ekuxy"]
 
 [node name="Main" type="Node2D" unique_id=1885438329]
-
-[node name="Img0125" type="Sprite2D" parent="." unique_id=1747714334]
-position = Vector2(402, 309)
-texture = ExtResource("1_pw8tf")
 
 [node name="Baum" parent="." unique_id=1351460824 instance=ExtResource("2_ekuxy")]
