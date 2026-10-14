@@ -11,36 +11,29 @@ script = ExtResource("1_s6xw5")
 [node name="TreeNode4" parent="." unique_id=1373877517 instance=ExtResource("1_ockag")]
 position = Vector2(-336, -74)
 number = 4
-Scaling = Vector2(0.2, 0.2)
 
 [node name="TreeNode2" parent="." unique_id=2017047121 instance=ExtResource("1_ockag")]
 position = Vector2(-319, 186)
 number = 2
-Scaling = Vector2(0.2, 0.2)
 
 [node name="TreeNode" parent="." unique_id=638626216 instance=ExtResource("1_ockag")]
 position = Vector2(-338, 287)
-Scaling = Vector2(0.2, 0.2)
 
 [node name="TreeNode3" parent="." unique_id=818584138 instance=ExtResource("1_ockag")]
 position = Vector2(-228, 334)
 number = 3
-Scaling = Vector2(0.2, 0.2)
 
 [node name="TreeNode5" parent="." unique_id=1525558895 instance=ExtResource("1_ockag")]
 position = Vector2(-333, 58)
 number = 5
-Scaling = Vector2(0.2, 0.2)
 
 [node name="TreeNode6" parent="." unique_id=318462087 instance=ExtResource("1_ockag")]
 position = Vector2(-346, -186)
 number = 6
-Scaling = Vector2(0.2, 0.2)
 
 [node name="TreeNode7" parent="." unique_id=534181557 instance=ExtResource("1_ockag")]
 position = Vector2(-251, 2)
 number = 7
-Scaling = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1754006987]
 position = Vector2(220, 95.000015)

@@ -149,7 +149,7 @@ func _clear_highlights() -> void:
 		kugel.set_highlight(false)
 
 
-func pruefe_sortierung() -> void:
+func pruefe_sortierung() -> bool:
 	_sync_order_from_slots()
 
 	var werte: Array[int] = []
@@ -166,5 +166,7 @@ func pruefe_sortierung() -> void:
 
 	if korrekt:
 		print("RICHTIG! Die Zahlen sind aufsteigend sortiert.")
+		return true
 	else:
 		print("NOCH NICHT RICHTIG. Die Zahlen sind nicht aufsteigend sortiert.")
+		return false
