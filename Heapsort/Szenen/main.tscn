@@ -1,7 +1,17 @@
 [gd_scene format=3 uid="uid://bmiq3vx3hrdb1"]
 
 [ext_resource type="PackedScene" uid="uid://b4yq4oh7ah74r" path="res://Objekte/baum.tscn" id="2_ekuxy"]
+[ext_resource type="PackedScene" uid="uid://pgn1h54fol1a" path="res://Szenen/ui.tscn" id="2_ldghw"]
 
 [node name="Main" type="Node2D" unique_id=1885438329]
 
 [node name="Baum" parent="." unique_id=1351460824 instance=ExtResource("2_ekuxy")]
+position = Vector2(354, 255)
+
+[node name="UI" parent="." unique_id=2099053967 node_paths=PackedStringArray("tree") instance=ExtResource("2_ldghw")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+tree = NodePath("../Baum")
