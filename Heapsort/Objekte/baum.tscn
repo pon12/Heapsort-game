@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cjmefb58jcby8" path="res://Objekte/tree_node.tscn" id="1_ockag"]
 [ext_resource type="Script" uid="uid://7rm2dqhgcuh1" path="res://Scripte/baum.gd" id="1_s6xw5"]
-[ext_resource type="Texture2D" uid="uid://dk85fjm45qtfu" path="res://Assets/IMG_0125.png" id="3_4p7yv"]
+[ext_resource type="Texture2D" uid="uid://chosqb3ohq4li" path="res://Assets/Skizze_Christmastree_Heapsort_Game.png" id="3_4p7yv"]
+[ext_resource type="Texture2D" uid="uid://dgkdwaql584bm" path="res://Assets/Kugel_Rot.png" id="3_pnr6q"]
+[ext_resource type="Texture2D" uid="uid://bmh7qter5axtq" path="res://Assets/Kugel_Gelb.png" id="4_pnr6q"]
 
 [node name="Baum" type="Node2D" unique_id=1351460824]
 position = Vector2(518, 269)
@@ -18,22 +20,27 @@ number = 2
 
 [node name="TreeNode" parent="." unique_id=638626216 instance=ExtResource("1_ockag")]
 position = Vector2(-338, 287)
+picture = ExtResource("3_pnr6q")
 
 [node name="TreeNode3" parent="." unique_id=818584138 instance=ExtResource("1_ockag")]
 position = Vector2(-228, 334)
 number = 3
+picture = ExtResource("3_pnr6q")
 
 [node name="TreeNode5" parent="." unique_id=1525558895 instance=ExtResource("1_ockag")]
 position = Vector2(-333, 58)
 number = 5
+picture = ExtResource("4_pnr6q")
 
 [node name="TreeNode6" parent="." unique_id=318462087 instance=ExtResource("1_ockag")]
 position = Vector2(-346, -186)
 number = 6
+picture = ExtResource("4_pnr6q")
 
 [node name="TreeNode7" parent="." unique_id=534181557 instance=ExtResource("1_ockag")]
 position = Vector2(-251, 2)
 number = 7
+picture = ExtResource("3_pnr6q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1754006987]
 position = Vector2(220, 95.000015)
