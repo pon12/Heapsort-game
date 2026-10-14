@@ -292,8 +292,6 @@ Beschreibung: Das Array wird als geöffnete Kiste dargestellt, in der Kugeln lie
 Begründung: Konkrete, vertraute Metapher für abstrakte Speicherplätze. Die 2D-Sicht hält die Darstellung übersichtlich und die Bedienung einfach.
 
 == Übersicht über die Verteilung der Inhalte
-#platzhalter[Gerade bei den Spezialisierungen Video und interaktives Tutorial sollen Sie hier die Struktur Ihres Materials darstellen. Geben Sie also Video für Video bzw. Level für Level an, welche Inhalte in welcher Reihenfolge vermittelt werden und welche Mechaniken Sie jeweils einsetzen. Auf diese Weise werden bereits Zusammenhänge und Abhängigkeiten sichtbar, sodass ein stimmiger Ablauf entsteht. Wichtig ist dabei, nicht nur Oberbegriffe zu nennen, sondern schon so konkret zu werden, dass sich die geplante Struktur auf Plausibilität prüfen lässt.]
-#text[
 === Universalmodus
 Der Universalmodus ist eine freie Übungsumgebung, in der Nutzerinnen und Nutzer Heapsort selbst ausprobieren und mit dem Ablauf des eingebauten Algorithmus vergleichen können.
 
@@ -408,11 +406,5 @@ Entscheidung 13: Soundeffekte (offen)
 *Beschreibung:* Soundeffekte für richtige und falsche Platzierungen sowie für den Abschluss sind noch nicht festgelegt. Denkbar sind etwa ein Glöckchenklang bei Erfolg und ein sanfter, nicht abwertender Ton bei Fehlern. Quellen und Lizenzen der Audio-Assets sind noch zu klären.
 
 *Begründung:* Akustisches Feedback ergänzt das visuelle Feedback und verstärkt den Lerneffekt. Da Sortierfehler im Spiel erlaubt sind, sollten Fehlertöne ermutigend statt bestrafend wirken.
-
-
-Beispiel (könnten auch zwei Entscheidungen sein!):
-
-#entscheidung("Hochschulblau als Akzentfarbe im Pixel-Art-Stil", "Das offizielle Hochschulblau wird als Akzentfarbe verwendet und gezielt in einer Pixel-Art-Optik umgesetzt, die sich durch klare, kantige Formen und reduzierte Farbflächen auszeichnet. So erscheinen Buttons, Symbole und Illustrationen in einer spielerisch anmutenden Gestaltung.", "Die Wahl der Hochschulfarbe sorgt für Wiedererkennbarkeit und Verankerung im institutionellen Kontext, während die Pixel-Art-Umsetzung positive Assoziationen zu Spielen weckt. Diese spielerische Anmutung erleichtert den Zugang, senkt Hemmschwellen und steigert die Motivation. Lernende erleben die Oberfläche als vertraut und gleichzeitig spielerisch herausfordernd, was nachweislich die Aufmerksamkeit und die Bereitschaft zum Ausprobieren fördert. Durch die Kombination von institutioneller Vertrautheit und spielerischem Design wird so die Lernumgebung sowohl konsistent als auch lernförderlich gestaltet.", bild: image("bild2.png", scaling: "pixelated", height: 4cm))
-]
 
 = Weitere Ergänzungen, die Sie für sinnvoll halten.
