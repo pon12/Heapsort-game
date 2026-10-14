@@ -239,10 +239,6 @@ analysiert und anschließend korrigiert werden. Fehlererkennung ist auch in der 
 einen binären Baum ein wichtiger Teil und gehört auch da zu den erlernten Fähigkeiten der Studierenden. 
 Jene Fehler können dann analysiert und anschließend korrigiert werden.
 
-
-
-Zeile 55 klingt komisch
-
 == Didaktische Entscheidungen
 1. Baum und Array werden parallel visualisiert
 Beschreibung: Jede Aktion im Baum wird zeitgleich im Array (als Weihnachtssocken) sichtbar.
@@ -268,6 +264,7 @@ Begründung: Spieler steuern ihr eigenes Tempo (Reduktion der kognitiven Belastu
 Beschreibung: Erst wird die reine Heap-Struktur gespielt, danach kommen Wertungen (Farbe, Größe, Zahl) hinzu.
 Begründung: Schrittweise Komplexitätssteigerung. Die verschiedenen Wertungen zeigen außerdem, dass ein Heap nur von der Vergleichsrelation abhängt, nicht von Zahlen (Variation der Merkmale fördert Transfer).
 
+#v(5em)
 7. Socken-Adventskalender in 2D-Sicht
 Beschreibung: Das Array wird als Weihanhctssocken am Kamin dargestellt, auf denen Zahlen stehen. 
 Begründung: Konkrete, vertraute Metapher für abstrakte Speicherplätze. Die 2D-Sicht hält die Darstellung übersichtlich und die Bedienung einfach.
@@ -293,8 +290,6 @@ Die Nutzerinnen und Nutzer können die Heap-Operationen außerdem selbst ausfüh
 
 Falls ausreichend Zeit zur Verfügung steht, kann ergänzend ein Levelmodus mit vorbereiteten Aufgaben umgesetzt werden. Die Level könnten schrittweise schwieriger werden, zum Beispiel durch größere Arrays oder zusätzliche Bedingungen. Denkbar wären auch verschiedenfarbige Kugeln oder andere Formen, deren Eigenschaften sich auf die Sortieraufgabe auswirken. Dieser Modus ist bislang nicht konkret ausgearbeitet und hat gegenüber dem Universalmodus keine Priorität.
 
-
-]
 
 = Audio-Visuelles Konzept
 
@@ -329,11 +324,12 @@ Entscheidung 2: Der Baum als Tannenbaum mit Kugeln
 
 Entscheidung 3: Das Array als Weihnachtssocken am Kamin
 
-*Beschreibung:* Das Array wird als Reihe von Weihnachtssocken am Kamin abgebildet. Jede Socke entspricht einem Arrayfeld und enthält die zugehörige Kugel. Wird die größte Kugel aussortiert, ändert sich die Darstellung der Socken entsprechend. Die Socken fungieren als UI-Element und erinnern an einen Adventskalender, dessen Zahlen der "korrekten" Reihenfolge nach sortiert werden.
+*Beschreibung:* Das Array wird als Reihe von Weihnachtssocken am Kamin abgebildet. Jede Socke entspricht einem Arrayfeld der dazugehörigen Kugel. Wird die größte Kugel "aussortiert", ändert sich die Darstellung der Socken entsprechend. Die Socken fungieren als UI-Element und erinnern an einen Adventskalender, dessen Zahlen der "korrekten" Reihenfolge nach sortiert werden.
 
 *Begründung:* Zentrales Lernziel ist, dass das, was im Baum passiert, zugleich im Array passiert. Beide Darstellungen sind deshalb gleichzeitig sichtbar. Die Socken passen zum Setting, und die Adventskalender-Metapher ähnelt dem schrittweisen Vorgehen des Sortierverfahrens: Mit jedem Schritt wird ein Element aus dem Heap entnommen und an die richtige Stelle gesetzt.
 
 // Bild: Skizze Kamin mit Socken-Array
+#v(2em)
 
 Entscheidung 4: Kugeln mit Farbe, Größe und Zahl als Wertung
 
@@ -359,14 +355,13 @@ Entscheidung 7: Interaktion über eine Hand als Cursor
 
 *Begründung:* Der Zustandswechsel von offener zu geschlossener Hand gibt direktes Feedback, ob ein Objekt gegriffen wurde, und macht die Handlung greifbar. Die Metapher unterstützt das Setting und sorgt dafür, dass die Interaktion ohne Erklärung verständlich ist.
 
-#v(2em)
-
 Entscheidung 8: Simulationssteuerung als abgebissene Kekse
 
 *Beschreibung:* Die Steuerelemente für Start, Pause und „einen Schritt weiter“ werden als Keksformen mit Bissspuren gestaltet. Die Bissform bildet jeweils das Symbol des Buttons.
 
 *Begründung:* Die Bedienelemente fügen sich in das Weihnachtssetting ein und bleiben dennoch als Standardsymbole erkennbar. Die Simulation, die den Heapsort selbstständig durchläuft, kann so jederzeit angehalten oder Schritt für Schritt nachvollzogen werden.
 
+#v(2em)
 Entscheidung 9: Hintergrund und Fokus
 
 *Beschreibung:* Als Hintergrund dient ein Bild in 2K-Auflösung. Rückt der Baum in den Fokus, wird der Hintergrund unscharf dargestellt (Blur).
@@ -398,3 +393,5 @@ Entscheidung 13: Soundeffekte (offen)
 *Begründung:* Akustisches Feedback ergänzt das visuelle Feedback und verstärkt den Lerneffekt. Da Sortierfehler von uns aus im Spiel erlaubt sind, sollten Fehlertöne ermutigend statt bestrafend wirken.
 
 = Weitere Ergänzungen, die Sie für sinnvoll halten.
+
+Bisher sind noch keine sinnvollen Ergänzungen in Frage gekommen, bzw. durchdacht worden. Allerdings wird die Erweiterung des Dokuments auf eine Teststrategie, Evaluation und Feedback-Visualisierung in Zukunft sicherlich sinnvoll.
