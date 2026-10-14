@@ -20,11 +20,9 @@
 )
 
 = Einführung zum Thema
-#platzhalter[In der Einführung zeigen Sie, wie intensiv Sie sich bereits mit dem Algorithmus bzw. der Datenstruktur auseinandergesetzt haben. Gehen Sie dabei ordentlich ins Detail, damit Ihre Ausarbeitung später als Referenz genutzt werden kann. Denken Sie daran: Das gesamte Dokument wird benotet – also auch dieser Abschnitt.]
 
 == Zugrundeliegendes Problem
-#platzhalter[Beschreiben Sie in diesem Abschnitt, welches Problem Ihr Algorithmus oder Ihre Datenstruktur löst. Gehen Sie dabei auf die praktische Relevanz ein und verdeutlichen Sie Ihre Ausführungen anhand einer Skizze, Abbildung oder eines Beispiels.]
-
+Heapsort löst das Problem, eine Menge von Elementen effizient in eine Reihenfolge zu bringen. Die Laufzeit beträgt im besten, mittleren und schlechtesten Fall O(n log n), und der Algorithmus arbeitet in place, benötigt also keinen zusätzlichen Speicher. Dadurch unterscheidet er sich von Quicksort (im Worst Case O(n²)) und von Mergesort (benötigt O(n) Zusatzspeicher).
 == Überblick über die Lösungen
 #text[
 
@@ -70,7 +68,7 @@ Phase 1: Heap aufbauen: Zu Beginn ist das Array unsortiert, die Max-Heap-Bedingu
 
 Phase 2: Sortieren: Solange der Heap mehr als ein Element enthält, wird wiederholt: (1) die Wurzel, also das Maximum, mit dem letzten Element des Heap-Bereichs getauscht, (2) die Heap-Größe um 1 verringert, da das Maximum nun an seiner endgültigen Position steht, und (3) die neue Wurzel, die die Heap-Bedingung vermutlich verletzt, per Sift-Down auf den verkleinerten Heap abgesenkt. Am Array-Ende wächst so der sortierte Bereich, vorne schrumpft der Heap. Bei Heap-Größe 1 endet der Algorithmus; das verbleibende Element ist das kleinste und steht bereits an der richtigen Stelle. Das Array ist dann aufsteigend sortiert.
 
-#v(2em)
+#v(5em)
 
 
 Heapsort – Sonderfälle 
@@ -287,8 +285,8 @@ Begründung: Schrittweiser Abbau der Unterstützung vom Beobachten über das Rep
 Beschreibung: Erst wird die reine Heap-Struktur gespielt, danach kommen Wertungen (Farbe, Größe, Zahl) hinzu.
 Begründung: Schrittweise Komplexitätssteigerung. Die verschiedenen Wertungen zeigen außerdem, dass ein Heap nur von der Vergleichsrelation abhängt, nicht von Zahlen (Variation der Merkmale fördert Transfer).
 
-8. Kisten-Metapher in 2D-Sicht
-Beschreibung: Das Array wird als geöffnete Kiste dargestellt, in der Kugeln liegen.
+8. Socken-Adventskalender in 2D-Sicht
+Beschreibung: Das Array wird als Weihanhctssocken am Kamin dargestellt, auf denen Zahlen stehen. 
 Begründung: Konkrete, vertraute Metapher für abstrakte Speicherplätze. Die 2D-Sicht hält die Darstellung übersichtlich und die Bedienung einfach.
 
 == Übersicht über die Verteilung der Inhalte
