@@ -211,7 +211,6 @@ Nun tauschen wir die Wurzel mit dem letzten Element des noch unsortierten Heaps.
 
 
 = Didaktisches Konzept
-#platzhalter[Bevor Sie mit der Implementierung starten, entwickeln Sie zunächst ein umfassendes Konzept. Da Ihre Projektarbeit auf die Erstellung von Lehrmaterialien abzielt, ist es wichtig, dass dieses Konzept didaktisch gut durchdacht ist. Denken Sie daran: Das gesamte Dokument wird benotet – also auch dieser Abschnitt.]
 
 == Zielgruppe
 Zielgruppe sind die Studenten und Interessierten Informatiker Mittweidas, die sich auf interaktive Weise den Heapsort Algorithmus aneignen und verstehen möchten. Insbesondere Studenten aus dem Studiengang Medieninformatik und Interaktives Entertainment, als auch Kommilitonen aus der gesamten Fakultät "Angewandte Computer- und Biowissenschaften" sollen sich mit diesem Spiel ein Bild über den Heapsort Algorithmus machen können. Die Funktionsweise dieser Lehrmethode soll im Rahmen der Veranstaltungen dieses Moduls im Dezember abgegeben und im Januar vorgestellt werden. Zusammen mit den anderen Gruppen soll ein umfangreiches Lehrkonzept, bestehend aus einer analogen Aufbereitung via Arbeitsblättern, einem Tutorial und eines Interaktiven Spiels, geschaffen werden.
@@ -274,14 +273,12 @@ Zeile 55 klingt komisch
 Beschreibung: Jede Aktion im Baum wird zeitgleich im Array (als Weihnachtssocken) sichtbar.
 Begründung: Heapsort wird abstrakt als Baum erklärt, aber auf einem Array implementiert. Die Doppeldarstellung verbindet beide Sichten und fördert den Transfer in die Programmierung.
 
-#v(2em)
-
 2. Direkte Manipulation per Drag & Drop
 Beschreibung: Kugeln werden gezogen, ein Rechtsklick legt sie zurück in die Kiste.
 Begründung: Aktives, handelndes Lernen statt passiven Zuschauens. Das Zurücklegen senkt die Hemmschwelle, Dinge auszuprobieren.
 
 3. Sofort-Feedback über Lichterketten
-Beschreibung: Verbindungen zwischen Knoten leuchten rot bei verletzter Heap-Bedingung und bunt, wenn sie korrekt sind.
+Beschreibung: Verbindungen zwischen Knoten leuchten nicht bei verletzter Heap-Bedingung und bunt, wenn sie korrekt sind.
 Begründung: Fehler werden unmittelbar und räumlich lokalisiert, ohne Text lesen zu müssen. Als Ergänzung (nicht als einziger Kanal) gibt es den Hinweistext, z. B. "Heap-Bedingung verletzt", der das Warum erklärt. Das ist auch barrierefreundlicher, da Farbe nicht allein Information trägt.
 
 4. Sortierfehler sind erlaubt
@@ -292,15 +289,11 @@ Begründung: Fehler gelten als Lerngelegenheit. Spieler erkunden die Regeln selb
 Beschreibung: Der Heapsort läuft automatisch ab, lässt sich pausieren und Schritt für Schritt weiterschalten.
 Begründung: Spieler steuern ihr eigenes Tempo (Reduktion der kognitiven Belastung). Die Simulation dient als bearbeitbares Beispiel, an dem man den Ablauf nachvollzieht, bevor man ihn selbst anwendet.
 
-6. Verschiedene Modi statt Level: sortiert, halbsortiert, Sandbox
-Beschreibung: Es gibt einen fertigen Baum, einen halbsortierten und einen unsortierten Baum, in dem Heapsort selbst aufgebaut wird.
-Begründung: Schrittweiser Abbau der Unterstützung vom Beobachten über das Reparieren bis zum freien Bauen. Die genaue Umsetzung ist noch fragwürdig, da noch keine konkret Zeitplanung unsererseits vorliegt.
-
-7. Zuerst das Grundprinzip, dann Farben und Zahlen
+6. Zuerst das Grundprinzip, dann Farben und Zahlen
 Beschreibung: Erst wird die reine Heap-Struktur gespielt, danach kommen Wertungen (Farbe, Größe, Zahl) hinzu.
 Begründung: Schrittweise Komplexitätssteigerung. Die verschiedenen Wertungen zeigen außerdem, dass ein Heap nur von der Vergleichsrelation abhängt, nicht von Zahlen (Variation der Merkmale fördert Transfer).
 
-8. Socken-Adventskalender in 2D-Sicht
+7. Socken-Adventskalender in 2D-Sicht
 Beschreibung: Das Array wird als Weihanhctssocken am Kamin dargestellt, auf denen Zahlen stehen. 
 Begründung: Konkrete, vertraute Metapher für abstrakte Speicherplätze. Die 2D-Sicht hält die Darstellung übersichtlich und die Bedienung einfach.
 
@@ -363,7 +356,7 @@ Entscheidung 2: Der Baum als Tannenbaum mit Kugeln
 
 Entscheidung 3: Das Array als Weihnachtssocken am Kamin
 
-*Beschreibung:* Das Array wird als Reihe von Weihnachtssocken am Kamin abgebildet. Jede Socke entspricht einem Arrayfeld und enthält die zugehörige Kugel. Wird die größte Kugel aussortiert, ändert sich die Darstellung der Socken entsprechend. Die Socken fungieren als UI-Element und erinnern an einen Adventskalender, dessen Fächer nacheinander „geleert“ werden.
+*Beschreibung:* Das Array wird als Reihe von Weihnachtssocken am Kamin abgebildet. Jede Socke entspricht einem Arrayfeld und enthält die zugehörige Kugel. Wird die größte Kugel aussortiert, ändert sich die Darstellung der Socken entsprechend. Die Socken fungieren als UI-Element und erinnern an einen Adventskalender, dessen Zahlen der "korrekten" Reihenfolge nach sortiert werden.
 
 *Begründung:* Zentrales Lernziel ist, dass das, was im Baum passiert, zugleich im Array passiert. Beide Darstellungen sind deshalb gleichzeitig sichtbar. Die Socken passen zum Setting, und die Adventskalender-Metapher ähnelt dem schrittweisen Vorgehen des Sortierverfahrens: Mit jedem Schritt wird ein Element aus dem Heap entnommen und an die richtige Stelle gesetzt.
 
@@ -383,7 +376,7 @@ Entscheidung 5: Lichterketten als visuelles Feedback
 
 Entscheidung 6: Weihnachtsstern als Erfolgsrückmeldung
 
-*Beschreibung:* Sind die Kugeln korrekt sortiert, erscheint der Weihnachtsstern als Abschlussfeedback. Optional kann Grundwald als Wichtel im Spiel auftreten, etwa als Begleiter oder Kommentator.
+*Beschreibung:* Sind die Kugeln korrekt sortiert, erscheint der Weihnachtsstern als Abschlussfeedback. Optional kann Prof. Grundwald als Wichtel im Spiel auftreten, beispielsweise als Begleiter oder Kommentator.
 
 *Begründung:* Der Stern ist der klassische Abschluss beim Schmücken eines Baumes und bildet damit einen natürlichen Höhepunkt. Er belohnt den Lernerfolg, ohne dass ein zusätzlicher Text nötig ist. Die Wichtel-Figur könnte die Identifikation erhöhen, ist aber noch optional.
 
@@ -392,6 +385,8 @@ Entscheidung 7: Interaktion über eine Hand als Cursor
 *Beschreibung:* Der Mauszeiger ist eine offene Hand zum Greifen. Beim Drücken der linken Maustaste schließt sich die Hand, sodass eine Kugel per Drag and Drop bewegt werden kann. Das Ganze simuliert eine Person, die den Weihnachtsbaum schmückt.
 
 *Begründung:* Der Zustandswechsel von offener zu geschlossener Hand gibt direktes Feedback, ob ein Objekt gegriffen wurde, und macht die Handlung greifbar. Die Metapher unterstützt das Setting und sorgt dafür, dass die Interaktion ohne Erklärung verständlich ist.
+
+#v(2em)
 
 Entscheidung 8: Simulationssteuerung als abgebissene Kekse
 
@@ -425,8 +420,8 @@ Entscheidung 12: Hintergrundmusik
 
 Entscheidung 13: Soundeffekte (offen)
 
-*Beschreibung:* Soundeffekte für richtige und falsche Platzierungen sowie für den Abschluss sind noch nicht festgelegt. Denkbar sind etwa ein Glöckchenklang bei Erfolg und ein sanfter, nicht abwertender Ton bei Fehlern. Quellen und Lizenzen der Audio-Assets sind noch zu klären.
+*Beschreibung:* Soundeffekte für richtige und falsche Platzierungen sowie für den Abschluss sind noch nicht festgelegt. Denkbar sind ein Glöckchenklang bei Erfolg und ein sanfter, nicht abwertender Ton bei Fehlern. Quellen und Lizenzen der Audio-Assets sind noch zu klären.
 
-*Begründung:* Akustisches Feedback ergänzt das visuelle Feedback und verstärkt den Lerneffekt. Da Sortierfehler im Spiel erlaubt sind, sollten Fehlertöne ermutigend statt bestrafend wirken.
+*Begründung:* Akustisches Feedback ergänzt das visuelle Feedback und verstärkt den Lerneffekt. Da Sortierfehler von uns aus im Spiel erlaubt sind, sollten Fehlertöne ermutigend statt bestrafend wirken.
 
 = Weitere Ergänzungen, die Sie für sinnvoll halten.
