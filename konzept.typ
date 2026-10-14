@@ -254,6 +254,21 @@ viel besser abzustecken, was wirklich erreicht werden soll. Sie merken also hoff
 enthalten kann! Es lohnt sich aber, da Sie die Ziele zu jedem Zeitpunkt als Checklist / Maßstab nutzen können, um ihren Projektfortschritt zu evaluieren.
 ]
 
+Die Studierenden können den Heapsort Algorithmus in seinem Ablauf mit eigenen Worten erklären und auf 
+unsortierte Arrays anwenden. Die Länge der Arrays variiert dabei je nach Komplexitätsstufe. Des Weiteren 
+können die Studierenden die einzelnen Arbeitsschritte des Algorithmus unabhängig voneinander logisch ordnen 
+und in der richtigen Reihenfolge anwenden.
+Darüber hinaus ist das Umwandeln eines unsortierten Arrays in einen binären Baum ebenfalls Teil der 
+Lernziele. Die Studierenden sind in der Lage, den binären Baum zielgerichtet in einen binären Max-Heap 
+umzuwandeln und gleichzeitig Fehler in jenem zu erkennen. Diese Fehler können dann von den Studierenden 
+analysiert und anschließend korrigiert werden. Fehlererkennung ist auch in der Umwandlung eines Arrays in 
+einen binären Baum ein wichtiger Teil und gehört auch da zu den erlernten Fähigkeiten der Studierenden. 
+Jene Fehler können dann analysiert und anschließend korrigiert werden.
+
+
+
+Zeile 55 klingt komisch
+
 == Didaktische Entscheidungen
 1. Baum und Array werden parallel visualisiert
 Beschreibung: Jede Aktion im Baum wird zeitgleich im Array (als Weihnachtssocken) sichtbar.
@@ -317,8 +332,17 @@ Falls ausreichend Zeit zur Verfügung steht, kann ergänzend ein Levelmodus mit 
 #platzhalter[Hier folgt die Konzeption der audio-visuellen Darstellung. Bevor Sie mit der eigentlichen Umsetzung beginnen, entwickeln Sie zunächst ein klares Gestaltungskonzept. Da Ihre Projektarbeit nicht nur inhaltlich, sondern auch visuell und akustisch überzeugen soll, ist es wichtig, dass Farben, Formen, Stimmen und Klänge, Stimmungen und vieles weitere bewusst gewählt und auf die Lehr-Lern-Ziele abgestimmt sind. So stellen Sie sicher, dass die Materialien nicht nur korrekt, sondern auch ansprechend, konsistent und lernförderlich gestaltet werden. Denken Sie daran: Das gesamte Dokument wird benotet – also auch dieser Abschnitt.]
 
 == Erste wichtige Skizzen / Visionen
-#platzhalter[Sicher haben Sie zu Beginn bereits ein erstes Set an Skizzen angefertigt, um Ihre Vision zu verdeutlichen. Ergänzen Sie diese hier und fügen Sie kurze textuelle Erläuterungen hinzu. #align(center,image("bild.png", height: 8cm))
+#platzhalter[
+Sicher haben Sie zu Beginn bereits ein erstes Set an Skizzen angefertigt, um Ihre Vision zu 
+verdeutlichen. Ergänzen Sie diese hier und fügen Sie kurze textuelle Erläuterungen hinzu. 
 ]
+#figure(
+  grid(columns: (2),
+    image("Heapsort/Assets/IMG_0124.png", height: 3cm, width: auto),
+    image("Heapsort/Assets/Skizze_Christmastree_Heapsort_Game.png", height: 3cm, width: auto)
+  ), caption: "Skizzen und erste Ideen für die Visualisierung des Spiels"
+)
+
 
 == Designentscheidungen
 
