@@ -42,6 +42,23 @@ func swap(node: Node2D) -> void:
 
 	rest_position = global_position
 	node.rest_position = node.global_position
+	var new_action: Action = Action.new()
+	new_action.set_action(self, node)
+	new_action.debug_print_action()
+	ActionStack.push_action(new_action)
+	ActionStack.debug_print_action_list()
+	
+
+func swap_back(node: Node2D) -> void:
+	if node == self:
+		return
+
+	var my_position: Vector2 = global_position
+	global_position = node.global_position
+	node.global_position = my_position
+
+	rest_position = global_position
+	node.rest_position = node.global_position
 
 
 func _on_area_2d_input_event(
@@ -140,8 +157,9 @@ func _snap_to_slot() -> void:
 		return
 
 	# Kugel auf den Marker setzen
-	global_position = nearest_slot.global_position
-	rest_position = global_position
+	#global_position = nearest_slot.global_position
+	#rest_position = global_position
+	swap(nearest_slot.get_parent())
 
 	_notify_tree()
 

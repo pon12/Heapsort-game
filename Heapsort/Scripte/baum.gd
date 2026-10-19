@@ -83,23 +83,23 @@ func _prepare_algorithm() -> void:
 	steps = HeapSort.create_steps(werte)
 	step_index = 0
 
-	print("")
-	print("========== HEAP SORT ==========")
-	print("Aktuelle Startreihenfolge: ", werte)
-	print("Schritte vorbereitet: ", steps.size())
-	print("N = naechster Simulationsschritt")
-	print("P = manuelle Sortierung pruefen")
-	print("================================")
+	#print("")
+	#print("========== HEAP SORT ==========")
+	#print("Aktuelle Startreihenfolge: ", werte)
+	#print("Schritte vorbereitet: ", steps.size())
+	#print("N = naechster Simulationsschritt")
+	#print("P = manuelle Sortierung pruefen")
+	#print("================================")
 
 
 func on_manual_move() -> void:
 	_prepare_algorithm()
-	print("Manuelle Aenderung erkannt. Simulation zurueckgesetzt.")
+	#print("Manuelle Aenderung erkannt. Simulation zurueckgesetzt.")
 
 
 func next_step() -> void:
 	if step_index >= steps.size():
-		print("Simulation abgeschlossen. Druecke P fuer die Sortierpruefung.")
+		#print("Simulation abgeschlossen. Druecke P fuer die Sortierpruefung.")
 		return
 
 	_clear_highlights()
@@ -108,11 +108,12 @@ func next_step() -> void:
 	var typ: String = str(step.get("type", ""))
 	var meldung: String = str(step.get("message", ""))
 
-	print("Schritt %d/%d: %s" % [step_index + 1, steps.size(), meldung])
+	#print("Schritt %d/%d: %s" % [step_index + 1, steps.size(), meldung])
 
 	match typ:
 		"info":
-			print("--- Phasenwechsel ---")
+			#print("--- Phasenwechsel ---")
+			pass
 
 		"compare":
 			var a: int = int(step["a"])
@@ -138,7 +139,7 @@ func next_step() -> void:
 				kugeln[b].set_highlight(true)
 
 		"done":
-			print("--- Simulation beendet ---")
+			#print("--- Simulation beendet ---")
 			pruefe_sortierung()
 
 	step_index += 1
@@ -162,11 +163,11 @@ func pruefe_sortierung() -> bool:
 			korrekt = false
 			break
 
-	print("Pruefung der aktuellen Reihenfolge: ", werte)
+	#print("Pruefung der aktuellen Reihenfolge: ", werte)
 
 	if korrekt:
-		print("RICHTIG! Die Zahlen sind aufsteigend sortiert.")
+		#print("RICHTIG! Die Zahlen sind aufsteigend sortiert.")
 		return true
 	else:
-		print("NOCH NICHT RICHTIG. Die Zahlen sind nicht aufsteigend sortiert.")
+		#print("NOCH NICHT RICHTIG. Die Zahlen sind nicht aufsteigend sortiert.")
 		return false
