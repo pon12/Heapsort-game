@@ -228,16 +228,13 @@ Als Medieninformatiker sind die Studierenden im Umgang mit Software, Browsern un
 
 
 == Lehr-Lern-Ziele
-Die Studierenden können den Heapsort Algorithmus in seinem Ablauf mit eigenen Worten erklären und auf 
-unsortierte Arrays anwenden. Die Länge der Arrays variiert dabei je nach Komplexitätsstufe. Des Weiteren 
-können die Studierenden die einzelnen Arbeitsschritte des Algorithmus unabhängig voneinander logisch ordnen 
-und in der richtigen Reihenfolge anwenden.
-Darüber hinaus ist das Umwandeln eines unsortierten Arrays in einen binären Baum ebenfalls Teil der 
-Lernziele. Die Studierenden sind in der Lage, den binären Baum zielgerichtet in einen binären Max-Heap 
-umzuwandeln und gleichzeitig Fehler in jenem zu erkennen. Diese Fehler können dann von den Studierenden 
-analysiert und anschließend korrigiert werden. Fehlererkennung ist auch in der Umwandlung eines Arrays in 
-einen binären Baum ein wichtiger Teil und gehört auch da zu den erlernten Fähigkeiten der Studierenden. 
-Jene Fehler können dann analysiert und anschließend korrigiert werden.
+- Die Studierenden können den Ablauf des Heapsort-Algorithmus in eigenen Worten erklären und die einzelnen Arbeitsschritte logisch in der richtigen Reihenfolge ordnen.
+
+- Die Studierenden können den Heapsort-Algorithmus auf unsortierte Arrays unterschiedlicher Längen anwenden.
+
+- Die Studierenden können ein unsortiertes Array in einen binären Baum umwandeln sowie darin enthaltene Fehler identifizieren, analysieren und korrigieren.
+
+- Die Studierenden können einen binären Baum zielgerichtet in einen binären Max-Heap umwandeln, Fehler in diesem Max-Heap erkennen, analysieren und anschließend korrigieren.
 
 == Didaktische Entscheidungen
 #entscheidung("Baum und Array werden parallel visualisiert",
