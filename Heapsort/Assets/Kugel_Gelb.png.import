@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh7qf6pg1fxtt"
-path="res://.godot/imported/IMG_0124.png-d2e7e26c1c336b13fa8e667d18f87d57.ctex"
+uid="uid://bmh7qter5axtq"
+path="res://.godot/imported/Kugel_Gelb.png-fe71f1fd3dac179a9369eaa3e97b6547.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/IMG_0124.png"
-dest_files=["res://.godot/imported/IMG_0124.png-d2e7e26c1c336b13fa8e667d18f87d57.ctex"]
+source_file="res://Assets/Kugel_Gelb.png"
+dest_files=["res://.godot/imported/Kugel_Gelb.png-fe71f1fd3dac179a9369eaa3e97b6547.ctex"]
 
 [params]
 

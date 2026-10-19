@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cjmefb58jcby8"]
 
 [ext_resource type="Script" uid="uid://chlhbnqrryfg1" path="res://Scripte/tree_node.gd" id="1_n3plf"]
-[ext_resource type="Texture2D" uid="uid://bh7qf6pg1fxtt" path="res://Assets/IMG_0124.png" id="2_n3plf"]
+[ext_resource type="Texture2D" uid="uid://bmh7qter5axtq" path="res://Assets/Kugel_Gelb.png" id="2_n3plf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n3plf"]
+load_path = "res://.godot/imported/Kugel_Lila.png-c762a725d0237f98c9cd33410c9d09c5.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_fn6h7"]
 font_size = 32
@@ -13,7 +16,7 @@ size = Vector2(50, 50)
 
 [node name="TreeNode" type="Node2D" unique_id=1373877517]
 script = ExtResource("1_n3plf")
-picture = ExtResource("2_n3plf")
+picture = SubResource("CompressedTexture2D_n3plf")
 Scaling = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1471684995]

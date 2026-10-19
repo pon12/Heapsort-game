@@ -20,11 +20,9 @@
 )
 
 = Einführung zum Thema
-#platzhalter[In der Einführung zeigen Sie, wie intensiv Sie sich bereits mit dem Algorithmus bzw. der Datenstruktur auseinandergesetzt haben. Gehen Sie dabei ordentlich ins Detail, damit Ihre Ausarbeitung später als Referenz genutzt werden kann. Denken Sie daran: Das gesamte Dokument wird benotet – also auch dieser Abschnitt.]
 
 == Zugrundeliegendes Problem
-#platzhalter[Beschreiben Sie in diesem Abschnitt, welches Problem Ihr Algorithmus oder Ihre Datenstruktur löst. Gehen Sie dabei auf die praktische Relevanz ein und verdeutlichen Sie Ihre Ausführungen anhand einer Skizze, Abbildung oder eines Beispiels.]
-
+Heapsort löst das Problem, eine Menge von Elementen effizient in eine Reihenfolge zu bringen. Die Laufzeit beträgt im besten, mittleren und schlechtesten Fall O(n log n), und der Algorithmus arbeitet in place, benötigt also keinen zusätzlichen Speicher. Dadurch unterscheidet er sich von Quicksort (im Worst Case O(n²)) und von Mergesort (benötigt O(n) Zusatzspeicher).
 == Überblick über die Lösungen
 #text[
 
@@ -70,7 +68,7 @@ Phase 1: Heap aufbauen: Zu Beginn ist das Array unsortiert, die Max-Heap-Bedingu
 
 Phase 2: Sortieren: Solange der Heap mehr als ein Element enthält, wird wiederholt: (1) die Wurzel, also das Maximum, mit dem letzten Element des Heap-Bereichs getauscht, (2) die Heap-Größe um 1 verringert, da das Maximum nun an seiner endgültigen Position steht, und (3) die neue Wurzel, die die Heap-Bedingung vermutlich verletzt, per Sift-Down auf den verkleinerten Heap abgesenkt. Am Array-Ende wächst so der sortierte Bereich, vorne schrumpft der Heap. Bei Heap-Größe 1 endet der Algorithmus; das verbleibende Element ist das kleinste und steht bereits an der richtigen Stelle. Das Array ist dann aufsteigend sortiert.
 
-#v(2em)
+#v(5em)
 
 
 Heapsort – Sonderfälle 
@@ -213,7 +211,6 @@ Nun tauschen wir die Wurzel mit dem letzten Element des noch unsortierten Heaps.
 
 
 = Didaktisches Konzept
-#platzhalter[Bevor Sie mit der Implementierung starten, entwickeln Sie zunächst ein umfassendes Konzept. Da Ihre Projektarbeit auf die Erstellung von Lehrmaterialien abzielt, ist es wichtig, dass dieses Konzept didaktisch gut durchdacht ist. Denken Sie daran: Das gesamte Dokument wird benotet – also auch dieser Abschnitt.]
 
 == Zielgruppe
 Zielgruppe sind die Studenten und Interessierten Informatiker Mittweidas, die sich auf interaktive Weise den Heapsort Algorithmus aneignen und verstehen möchten. Insbesondere Studenten aus dem Studiengang Medieninformatik und Interaktives Entertainment, als auch Kommilitonen aus der gesamten Fakultät "Angewandte Computer- und Biowissenschaften" sollen sich mit diesem Spiel ein Bild über den Heapsort Algorithmus machen können. Die Funktionsweise dieser Lehrmethode soll im Rahmen der Veranstaltungen dieses Moduls im Dezember abgegeben und im Januar vorgestellt werden. Zusammen mit den anderen Gruppen soll ein umfangreiches Lehrkonzept, bestehend aus einer analogen Aufbereitung via Arbeitsblättern, einem Tutorial und eines Interaktiven Spiels, geschaffen werden.
@@ -231,44 +228,28 @@ Als Medieninformatiker sind die Studierenden im Umgang mit Software, Browsern un
 
 
 == Lehr-Lern-Ziele
-#platzhalter[Grundlage für alles sind die Lehr-Lern-Ziele, die beschreiben, was Sie mit Ihrem Projektergebnis erreichen wollen. Sie legen fest, was 
-Lernende nach einer Veranstaltung tatsächlich können sollen. Deshalb werden sie konsequent aus der Perspektive der Studierenden formuliert 
-("Die Studierenden können ...") und nicht aus der Sicht der Lehrenden. Vage Formulierungen wie "verstehen" oder "wissen" eignen sich nicht, 
-weil sie schwer prüfbar sind. Stattdessen verwendet man handlungsorientierte Verben wie "analysieren", "erklären", "vergleichen", "anwenden" 
-oder "konstruieren". Hilfreich ist dabei das SMART-Prinzip, das Ziele spezifisch, messbar, attraktiv, realistisch und terminiert macht. 
-Eine wichtige Rolle spielt die Bloom'sche Taxonomie, die Lernziele nach kognitiver Anspruchshöhe staffelt. Sie unterscheidet zwischen den Stufen 
-Erinnern, Verstehen, Anwenden, Analysieren, Evaluieren und Erschaffen. Je nach gewünschtem Kompetenzniveau werden passende Verben gewählt, sodass 
-Lernziele vom einfachen Faktenabruf bis hin zu komplexen Problemlösungen differenziert formuliert werden können.
-
-Ein Beispiel aus einem anderen Bereich verdeutlicht den Unterschied. Das Ziel "UML verstehen" ist ungeeignet, weil es kein konkretes Können beschreibt, unklar bleibt, 
-was genau gemeint ist, und damit auch nicht überprüfbar wird. Besser sind mehrere, abgestufte Ziele, die verschiedene Anspruchsniveaus der Taxonomie abdecken. 
-Hier ist eine Auswahl möglicher konkreter Ziele als Beispiel:
-- Die Studierenden können zentrale Elemente der UML (z. B. Klasse, Assoziation, Generalisierung) korrekt benennen. (Erinnern)
-- Die Studierenden können in eigenen Worten erklären, wie ein Klassendiagramm grundlegende Strukturen eines Softwaresystems darstellt. (Verstehen)
-- Die Studierenden können für ein gegebenes Szenario ein UML-Klassendiagramm erstellen, das die relevanten Entitäten und Beziehungen korrekt abbildet. (Anwenden)
-- Die Studierenden können in einem vorliegenden UML-Aktivitätsdiagramm Modellierungsfehler identifizieren und begründen, warum diese problematisch sind. (Analysieren)
-- Die Studierenden können unterschiedliche UML-Diagrammtypen (z. B. Klassen-, Aktivitäts-, Sequenzdiagramm) hinsichtlich ihrer Eignung für eine bestimmte 
-  Aufgabenstellung beurteilen. (Evaluieren)
-- Die Studierenden können auf Basis einer textuellen Anforderungsspezifikation ein konsistentes Set aus mindestens drei UML-Diagrammen entwickeln, das die 
-  wichtigsten strukturellen und dynamischen Aspekte des Systems abbildet. (Erschaffen)
-Die 6 Beispielziele decken die vage Formulierung "UML verstehen" nicht vollständig ab; die konkrete Formulierung der Ziele ermöglicht es Ihnen aber, 
-viel besser abzustecken, was wirklich erreicht werden soll. Sie merken also hoffentlich, dass hier Sorgfalt notwendig ist; und dass die Liste durchaus einige Ziele 
-enthalten kann! Es lohnt sich aber, da Sie die Ziele zu jedem Zeitpunkt als Checklist / Maßstab nutzen können, um ihren Projektfortschritt zu evaluieren.
-]
+Die Studierenden können den Heapsort Algorithmus in seinem Ablauf mit eigenen Worten erklären und auf 
+unsortierte Arrays anwenden. Die Länge der Arrays variiert dabei je nach Komplexitätsstufe. Des Weiteren 
+können die Studierenden die einzelnen Arbeitsschritte des Algorithmus unabhängig voneinander logisch ordnen 
+und in der richtigen Reihenfolge anwenden.
+Darüber hinaus ist das Umwandeln eines unsortierten Arrays in einen binären Baum ebenfalls Teil der 
+Lernziele. Die Studierenden sind in der Lage, den binären Baum zielgerichtet in einen binären Max-Heap 
+umzuwandeln und gleichzeitig Fehler in jenem zu erkennen. Diese Fehler können dann von den Studierenden 
+analysiert und anschließend korrigiert werden. Fehlererkennung ist auch in der Umwandlung eines Arrays in 
+einen binären Baum ein wichtiger Teil und gehört auch da zu den erlernten Fähigkeiten der Studierenden. 
+Jene Fehler können dann analysiert und anschließend korrigiert werden.
 
 == Didaktische Entscheidungen
 1. Baum und Array werden parallel visualisiert
 Beschreibung: Jede Aktion im Baum wird zeitgleich im Array (als Weihnachtssocken) sichtbar.
 Begründung: Heapsort wird abstrakt als Baum erklärt, aber auf einem Array implementiert. Die Doppeldarstellung verbindet beide Sichten und fördert den Transfer in die Programmierung.
 
-#v(2em)
-
 2. Direkte Manipulation per Drag & Drop
 Beschreibung: Kugeln werden gezogen, ein Rechtsklick legt sie zurück in die Kiste.
 Begründung: Aktives, handelndes Lernen statt passiven Zuschauens. Das Zurücklegen senkt die Hemmschwelle, Dinge auszuprobieren.
 
 3. Sofort-Feedback über Lichterketten
-Beschreibung: Verbindungen zwischen Knoten leuchten rot bei verletzter Heap-Bedingung und bunt, wenn sie korrekt sind.
+Beschreibung: Verbindungen zwischen Knoten leuchten nicht bei verletzter Heap-Bedingung und bunt, wenn sie korrekt sind.
 Begründung: Fehler werden unmittelbar und räumlich lokalisiert, ohne Text lesen zu müssen. Als Ergänzung (nicht als einziger Kanal) gibt es den Hinweistext, z. B. "Heap-Bedingung verletzt", der das Warum erklärt. Das ist auch barrierefreundlicher, da Farbe nicht allein Information trägt.
 
 4. Sortierfehler sind erlaubt
@@ -279,16 +260,13 @@ Begründung: Fehler gelten als Lerngelegenheit. Spieler erkunden die Regeln selb
 Beschreibung: Der Heapsort läuft automatisch ab, lässt sich pausieren und Schritt für Schritt weiterschalten.
 Begründung: Spieler steuern ihr eigenes Tempo (Reduktion der kognitiven Belastung). Die Simulation dient als bearbeitbares Beispiel, an dem man den Ablauf nachvollzieht, bevor man ihn selbst anwendet.
 
-6. Verschiedene Modi statt Level: sortiert, halbsortiert, Sandbox
-Beschreibung: Es gibt einen fertigen Baum, einen halbsortierten und einen unsortierten Baum, in dem Heapsort selbst aufgebaut wird.
-Begründung: Schrittweiser Abbau der Unterstützung vom Beobachten über das Reparieren bis zum freien Bauen. Die genaue Umsetzung ist noch fragwürdig, da noch keine konkret Zeitplanung unsererseits vorliegt.
-
-7. Zuerst das Grundprinzip, dann Farben und Zahlen
+6. Zuerst das Grundprinzip, dann Farben und Zahlen
 Beschreibung: Erst wird die reine Heap-Struktur gespielt, danach kommen Wertungen (Farbe, Größe, Zahl) hinzu.
 Begründung: Schrittweise Komplexitätssteigerung. Die verschiedenen Wertungen zeigen außerdem, dass ein Heap nur von der Vergleichsrelation abhängt, nicht von Zahlen (Variation der Merkmale fördert Transfer).
 
-8. Kisten-Metapher in 2D-Sicht
-Beschreibung: Das Array wird als geöffnete Kiste dargestellt, in der Kugeln liegen.
+#v(5em)
+7. Socken-Adventskalender in 2D-Sicht
+Beschreibung: Das Array wird als Weihanhctssocken am Kamin dargestellt, auf denen Zahlen stehen. 
 Begründung: Konkrete, vertraute Metapher für abstrakte Speicherplätze. Die 2D-Sicht hält die Darstellung übersichtlich und die Bedienung einfach.
 
 == Übersicht über die Verteilung der Inhalte
@@ -313,14 +291,19 @@ Die Nutzerinnen und Nutzer können die Heap-Operationen außerdem selbst ausfüh
 Falls ausreichend Zeit zur Verfügung steht, kann ergänzend ein Levelmodus mit vorbereiteten Aufgaben umgesetzt werden. Die Level könnten schrittweise schwieriger werden, zum Beispiel durch größere Arrays oder zusätzliche Bedingungen. Denkbar wären auch verschiedenfarbige Kugeln oder andere Formen, deren Eigenschaften sich auf die Sortieraufgabe auswirken. Dieser Modus ist bislang nicht konkret ausgearbeitet und hat gegenüber dem Universalmodus keine Priorität.
 
 
-]
-
 = Audio-Visuelles Konzept
-#platzhalter[Hier folgt die Konzeption der audio-visuellen Darstellung. Bevor Sie mit der eigentlichen Umsetzung beginnen, entwickeln Sie zunächst ein klares Gestaltungskonzept. Da Ihre Projektarbeit nicht nur inhaltlich, sondern auch visuell und akustisch überzeugen soll, ist es wichtig, dass Farben, Formen, Stimmen und Klänge, Stimmungen und vieles weitere bewusst gewählt und auf die Lehr-Lern-Ziele abgestimmt sind. So stellen Sie sicher, dass die Materialien nicht nur korrekt, sondern auch ansprechend, konsistent und lernförderlich gestaltet werden. Denken Sie daran: Das gesamte Dokument wird benotet – also auch dieser Abschnitt.]
 
 == Erste wichtige Skizzen / Visionen
-#platzhalter[Sicher haben Sie zu Beginn bereits ein erstes Set an Skizzen angefertigt, um Ihre Vision zu verdeutlichen. Ergänzen Sie diese hier und fügen Sie kurze textuelle Erläuterungen hinzu. #align(center,image("bild.png", height: 8cm))
-]
+#figure(
+  grid(columns: (5),
+    image("pictures/Socke.png", height: 3cm, width: auto),
+    image("pictures/Kamin.png", height: 3cm, width: auto),
+    image("pictures/Kugel_Rot.png", height: 3cm, width: auto),
+    image("pictures/Skizze_Christmastree_Heapsort_Game.png", height: 3cm, width: auto),
+    image("pictures/Tree_mit_Kugeln.png", height: 3cm, width: auto),
+  ), caption: "Skizzen und erste Ideen für die Visualisierung des Spiels in Form eines Weihnachtsbaums mit Kugeln und Socken"
+)
+
 
 == Designentscheidungen
 
@@ -341,11 +324,12 @@ Entscheidung 2: Der Baum als Tannenbaum mit Kugeln
 
 Entscheidung 3: Das Array als Weihnachtssocken am Kamin
 
-*Beschreibung:* Das Array wird als Reihe von Weihnachtssocken am Kamin abgebildet. Jede Socke entspricht einem Arrayfeld und enthält die zugehörige Kugel. Wird die größte Kugel aussortiert, ändert sich die Darstellung der Socken entsprechend. Die Socken fungieren als UI-Element und erinnern an einen Adventskalender, dessen Fächer nacheinander „geleert“ werden.
+*Beschreibung:* Das Array wird als Reihe von Weihnachtssocken am Kamin abgebildet. Jede Socke entspricht einem Arrayfeld der dazugehörigen Kugel. Wird die größte Kugel "aussortiert", ändert sich die Darstellung der Socken entsprechend. Die Socken fungieren als UI-Element und erinnern an einen Adventskalender, dessen Zahlen der "korrekten" Reihenfolge nach sortiert werden.
 
 *Begründung:* Zentrales Lernziel ist, dass das, was im Baum passiert, zugleich im Array passiert. Beide Darstellungen sind deshalb gleichzeitig sichtbar. Die Socken passen zum Setting, und die Adventskalender-Metapher ähnelt dem schrittweisen Vorgehen des Sortierverfahrens: Mit jedem Schritt wird ein Element aus dem Heap entnommen und an die richtige Stelle gesetzt.
 
 // Bild: Skizze Kamin mit Socken-Array
+#v(2em)
 
 Entscheidung 4: Kugeln mit Farbe, Größe und Zahl als Wertung
 
@@ -361,7 +345,7 @@ Entscheidung 5: Lichterketten als visuelles Feedback
 
 Entscheidung 6: Weihnachtsstern als Erfolgsrückmeldung
 
-*Beschreibung:* Sind die Kugeln korrekt sortiert, erscheint der Weihnachtsstern als Abschlussfeedback. Optional kann Grundwald als Wichtel im Spiel auftreten, etwa als Begleiter oder Kommentator.
+*Beschreibung:* Sind die Kugeln korrekt sortiert, erscheint der Weihnachtsstern als Abschlussfeedback. Optional kann Prof. Grundwald als Wichtel im Spiel auftreten, beispielsweise als Begleiter oder Kommentator.
 
 *Begründung:* Der Stern ist der klassische Abschluss beim Schmücken eines Baumes und bildet damit einen natürlichen Höhepunkt. Er belohnt den Lernerfolg, ohne dass ein zusätzlicher Text nötig ist. Die Wichtel-Figur könnte die Identifikation erhöhen, ist aber noch optional.
 
@@ -377,6 +361,7 @@ Entscheidung 8: Simulationssteuerung als abgebissene Kekse
 
 *Begründung:* Die Bedienelemente fügen sich in das Weihnachtssetting ein und bleiben dennoch als Standardsymbole erkennbar. Die Simulation, die den Heapsort selbstständig durchläuft, kann so jederzeit angehalten oder Schritt für Schritt nachvollzogen werden.
 
+#v(2em)
 Entscheidung 9: Hintergrund und Fokus
 
 *Beschreibung:* Als Hintergrund dient ein Bild in 2K-Auflösung. Rückt der Baum in den Fokus, wird der Hintergrund unscharf dargestellt (Blur).
@@ -403,8 +388,10 @@ Entscheidung 12: Hintergrundmusik
 
 Entscheidung 13: Soundeffekte (offen)
 
-*Beschreibung:* Soundeffekte für richtige und falsche Platzierungen sowie für den Abschluss sind noch nicht festgelegt. Denkbar sind etwa ein Glöckchenklang bei Erfolg und ein sanfter, nicht abwertender Ton bei Fehlern. Quellen und Lizenzen der Audio-Assets sind noch zu klären.
+*Beschreibung:* Soundeffekte für richtige und falsche Platzierungen sowie für den Abschluss sind noch nicht festgelegt. Denkbar sind ein Glöckchenklang bei Erfolg und ein sanfter, nicht abwertender Ton bei Fehlern. Quellen und Lizenzen der Audio-Assets sind noch zu klären.
 
-*Begründung:* Akustisches Feedback ergänzt das visuelle Feedback und verstärkt den Lerneffekt. Da Sortierfehler im Spiel erlaubt sind, sollten Fehlertöne ermutigend statt bestrafend wirken.
+*Begründung:* Akustisches Feedback ergänzt das visuelle Feedback und verstärkt den Lerneffekt. Da Sortierfehler von uns aus im Spiel erlaubt sind, sollten Fehlertöne ermutigend statt bestrafend wirken.
 
 = Weitere Ergänzungen, die Sie für sinnvoll halten.
+
+Bisher sind noch keine sinnvollen Ergänzungen in Frage gekommen, bzw. durchdacht worden. Allerdings wird die Erweiterung des Dokuments auf eine Teststrategie, Evaluation und Feedback-Visualisierung in Zukunft sicherlich sinnvoll.
