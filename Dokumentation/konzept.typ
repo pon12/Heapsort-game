@@ -296,11 +296,11 @@ Falls ausreichend Zeit zur Verfügung steht, kann ergänzend ein Levelmodus mit 
 == Erste wichtige Skizzen / Visionen
 #figure(
   grid(columns: (5),
-    image("Heapsort/Assets/Socke.png", height: 3cm, width: auto),
-    image("Heapsort/Assets/Kamin.png", height: 3cm, width: auto),
-    image("Heapsort/Assets/Kugel_Rot.png", height: 3cm, width: auto),
-    image("Heapsort/Assets/Skizze_Christmastree_Heapsort_Game.png", height: 3cm, width: auto),
-    image("Heapsort/Assets/Tree_mit_Kugeln.png", height: 3cm, width: auto),
+    image("pictures/Socke.png", height: 3cm, width: auto),
+    image("pictures/Kamin.png", height: 3cm, width: auto),
+    image("pictures/Kugel_Rot.png", height: 3cm, width: auto),
+    image("pictures/Skizze_Christmastree_Heapsort_Game.png", height: 3cm, width: auto),
+    image("pictures/Tree_mit_Kugeln.png", height: 3cm, width: auto),
   ), caption: "Skizzen und erste Ideen für die Visualisierung des Spiels in Form eines Weihnachtsbaums mit Kugeln und Socken"
 )
 
