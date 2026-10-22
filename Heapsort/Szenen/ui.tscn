@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dopl8iiscb0fe" path="res://Scripte/ui.gd" id="1_4j48y"]
 
+[sub_resource type="Theme" id="Theme_yux83"]
+default_font_size = 48
+
 [sub_resource type="Theme" id="Theme_4j48y"]
 default_font_size = 48
 
@@ -25,7 +28,12 @@ offset_bottom = 80.0
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=814151309]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=2023089552]
+[node name="Back" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=252816836]
+layout_mode = 2
+theme = SubResource("Theme_yux83")
+text = "Zurück"
+
+[node name="Forward" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=2023089552]
 layout_mode = 2
 theme = SubResource("Theme_4j48y")
 text = "Weiter"
@@ -35,4 +43,5 @@ layout_mode = 2
 theme = SubResource("Theme_qxx62")
 text = "Nicht Sortiert"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Back" to="." method="Back_button_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Forward" to="." method="_on_button_pressed"]
