@@ -43,6 +43,7 @@ func swap(node: TreeNode) -> void:
 
 	rest_position = global_position
 	node.rest_position = node.global_position
+	
 	var new_action: Action = Action.new(self, node)
 	new_action.debug_print_action()
 	ActionStack.push_action(new_action)
@@ -60,7 +61,7 @@ func swap_back(node: TreeNode) -> void:
 	rest_position = global_position
 	node.rest_position = node.global_position
 
-
+##Prüft ob Maus anfängt die Node zu draggen
 func _on_area_2d_input_event(
 	_viewport: Node,
 	event: InputEvent,
@@ -100,14 +101,12 @@ func _snap_to_slot() -> void:
 	var closest_distance: float = target_distance
 
 	for node in get_tree().get_nodes_in_group("tree_balls"):
-		var ball := node as TreeNode
+		var ball: TreeNode = node
 
 		if ball == null or ball == self:
 			continue
 
-		var distance: float = mouse_position.distance_to(
-			ball.global_position
-		)
+		var distance: float = mouse_position.distance_to(ball.global_position)
 
 		if distance < closest_distance:
 			closest_distance = distance
@@ -124,6 +123,9 @@ func _snap_to_slot() -> void:
 
 		rest_position = global_position
 		target_ball.rest_position = target_ball.global_position
+		
+		var new_action: Action = Action.new(self, target_ball)
+		ActionStack.push_action(new_action)
 
 		print(
 			"Getauscht: ", number,
@@ -132,6 +134,9 @@ func _snap_to_slot() -> void:
 
 		_notify_tree()
 		return
+		
+	#toter code ? Ka mir egal ich lass ihn jetzt mal hier
+	print("tree_node.gd: Kann dieser Code überhaupt eintreten ?")
 
 	# Sonst den naechsten Marker suchen
 	var nearest_slot: TreeNode = null
@@ -155,12 +160,11 @@ func _snap_to_slot() -> void:
 		global_position = drag_start_position
 		rest_position = global_position
 		return
-
+		
 	# Kugel auf den Marker setzen
 	#global_position = nearest_slot.global_position
 	#rest_position = global_position
 	swap(nearest_slot.get_parent())
-
 	_notify_tree()
 
 
