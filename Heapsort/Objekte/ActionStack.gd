@@ -14,8 +14,12 @@ static func push_action(action: Action) -> void:
 	
 ##Aktion rückgängig machen.
 static func pop_action() -> void:
-	print("POP")
-	action_list.pop_back()
+	if action_list.is_empty() == false:
+		print("POP 1: " , action_list.back().first_node, " 2: ", action_list.back().second_node)
+		action_list.back().first_node.swap_back(action_list.back().second_node)
+		action_list.pop_back()
+	else:
+		print("action_list is empty")
 
 static func debug_print_action_list() -> void:
 	for i in action_list:

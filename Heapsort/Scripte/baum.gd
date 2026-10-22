@@ -1,6 +1,6 @@
 extends Node2D
 
-var kugeln: Array[Node2D] = []
+var kugeln: Array[TreeNode] = []
 var slots: Array[Marker2D] = []
 var steps: Array[Dictionary] = []
 var step_index: int = 0
@@ -21,7 +21,7 @@ func _ready() -> void:
 	# Kugeln finden und registrieren
 	for node in get_children():
 		if node.has_method("swap") and node.get("number") != null:
-			var kugel := node as Node2D
+			var kugel := node as TreeNode
 			kugel.add_to_group("tree_balls")
 			kugeln.append(kugel)
 
@@ -46,10 +46,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _sync_order_from_slots() -> void:
-	var neue_reihenfolge: Array[Node2D] = []
+	var neue_reihenfolge: Array[TreeNode] = []
 
 	for slot in slots:
-		var beste_kugel: Node2D = null
+		var beste_kugel: TreeNode = null
 		var kleinster_abstand: float = INF
 
 		for kugel in kugeln:
@@ -131,7 +131,7 @@ func next_step() -> void:
 			if a >= 0 and a < kugeln.size() and b >= 0 and b < kugeln.size():
 				kugeln[a].swap(kugeln[b])
 
-				var temp: Node2D = kugeln[a]
+				var temp: TreeNode = kugeln[a]
 				kugeln[a] = kugeln[b]
 				kugeln[b] = temp
 

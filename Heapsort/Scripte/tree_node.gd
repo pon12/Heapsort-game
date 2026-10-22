@@ -1,3 +1,4 @@
+class_name TreeNode
 extends Node2D
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -6,8 +7,8 @@ extends Node2D
 @export var number: int = 1
 @export var picture: CompressedTexture2D
 @export var Scaling: Vector2 = Vector2(0.017, 0.017)
-@export var left_child: Node2D
-@export var right_child: Node2D
+@export var left_child: TreeNode
+@export var right_child: TreeNode
 
 var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
@@ -32,7 +33,7 @@ func set_highlight(enabled: bool) -> void:
 		sprite.modulate = Color.WHITE
 
 
-func swap(node: Node2D) -> void:
+func swap(node: TreeNode) -> void:
 	if node == self:
 		return
 
@@ -42,14 +43,13 @@ func swap(node: Node2D) -> void:
 
 	rest_position = global_position
 	node.rest_position = node.global_position
-	var new_action: Action = Action.new()
-	new_action.set_action(self, node)
+	var new_action: Action = Action.new(self, node)
 	new_action.debug_print_action()
 	ActionStack.push_action(new_action)
 	ActionStack.debug_print_action_list()
 	
 
-func swap_back(node: Node2D) -> void:
+func swap_back(node: TreeNode) -> void:
 	if node == self:
 		return
 
@@ -96,11 +96,11 @@ func _snap_to_slot() -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
 
 	# Andere Kugel unter dem Cursor suchen
-	var target_ball: Node2D = null
+	var target_ball: TreeNode = null
 	var closest_distance: float = target_distance
 
 	for node in get_tree().get_nodes_in_group("tree_balls"):
-		var ball := node as Node2D
+		var ball := node as TreeNode
 
 		if ball == null or ball == self:
 			continue
@@ -134,11 +134,11 @@ func _snap_to_slot() -> void:
 		return
 
 	# Sonst den naechsten Marker suchen
-	var nearest_slot: Node2D = null
+	var nearest_slot: TreeNode = null
 	var nearest_distance: float = INF
 
 	for node in get_tree().get_nodes_in_group("drop_slots"):
-		var slot := node as Node2D
+		var slot := node as TreeNode
 
 		if slot == null:
 			continue
