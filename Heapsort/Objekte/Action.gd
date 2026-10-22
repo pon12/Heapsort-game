@@ -12,4 +12,4 @@ func _init(first: TreeNode, second: TreeNode) -> void:
 
 
 func debug_print_action() -> void:
-	print("1: ", first_node, " 2: ", second_node)
+	print("1: ", first_node.number, " 2: ", second_node.number)
