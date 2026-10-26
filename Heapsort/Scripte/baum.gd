@@ -36,6 +36,7 @@ func _ready() -> void:
 		kugeln[i].global_position = slots[i].global_position
 		kugeln[i].rest_position = slots[i].global_position
 		
+	for i in range(kugeln.size()):
 		if 2 * i + 1 < kugeln.size():
 			kugeln[i].left_child = kugeln[2 * i + 1]
 			print(kugeln[i].number , " -> Linked Kind: ", kugeln[2 * i + 1].number)
@@ -44,8 +45,10 @@ func _ready() -> void:
 			lichterketten_head.add_child(temp_lichterkette)
 			kugeln[i].left_lichterkette = temp_lichterkette
 			
-			kugeln[i].left_lichterkette.position = kugeln[i].position  + Vector2(-30, 60)
-			kugeln[i].left_lichterkette.rotation_degrees = 25
+			kugeln[i].left_lichterkette.global_position = kugeln[i].global_position  
+			kugeln[i].left_lichterkette.look_at(kugeln[2 * i + 1].global_position)
+			kugeln[i].left_lichterkette.rotate(-0.9)
+			kugeln[i].left_lichterkette.rotate(-0.7)
 				
 		if 2 * i + 2 < kugeln.size():
 			kugeln[i].right_child = kugeln[2 * i + 2]
@@ -55,9 +58,10 @@ func _ready() -> void:
 			lichterketten_head.add_child(temp_lichterkette)
 			kugeln[i].right_lichterkette = temp_lichterkette
 			
-			kugeln[i].right_lichterkette.position = kugeln[i].position + Vector2(30, 60)
-			kugeln[i].right_lichterkette.rotation_degrees = -25
-			
+			kugeln[i].right_lichterkette.global_position = kugeln[i].global_position 
+			kugeln[i].right_lichterkette.look_at(kugeln[2 * i + 2].global_position)
+			kugeln[i].right_lichterkette.rotate(-0.9)
+			kugeln[i].right_lichterkette.rotate(-0.7)
 
 
 	_prepare_algorithm()

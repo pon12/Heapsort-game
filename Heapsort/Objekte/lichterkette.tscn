@@ -32,6 +32,7 @@ scale = Vector2(0.3, 0.3)
 script = ExtResource("1_i0wa4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=357606837]
+position = Vector2(0, 196.66666)
 sprite_frames = SubResource("SpriteFrames_yux83")
 animation = &"sortiert"
 frame = 1
