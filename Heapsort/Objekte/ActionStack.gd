@@ -15,9 +15,13 @@ static func push_action(action: Action) -> void:
 ##Aktion rückgängig machen.
 static func pop_action() -> void:
 	if action_list.is_empty() == false:
+		var tree = action_list.back().first_node.get_parent() #für Auto-Algo zum zurücksetzten (cursed)
 		print("POP 1: " , action_list.back().first_node.number, " 2: ", action_list.back().second_node.number)
 		action_list.back().first_node.swap_back(action_list.back().second_node)
 		action_list.pop_back()
+
+		tree.on_manual_move()
+
 	else:
 		print("action_list is empty")
 

@@ -1,4 +1,6 @@
 extends Node2D
+@onready var lichterketten_head:Node2D = get_node("LichterKetten")
+var lichterkette = preload("res://Objekte/lichterkette.tscn")
 
 var kugeln: Array[TreeNode] = []
 var slots: Array[Marker2D] = []
@@ -33,6 +35,30 @@ func _ready() -> void:
 	for i in range(kugeln.size()):
 		kugeln[i].global_position = slots[i].global_position
 		kugeln[i].rest_position = slots[i].global_position
+		
+		if 2 * i + 1 < kugeln.size():
+			kugeln[i].left_child = kugeln[2 * i + 1]
+			print(kugeln[i].number , " -> Linked Kind: ", kugeln[2 * i + 1].number)
+			
+			var temp_lichterkette = lichterkette.instantiate()
+			lichterketten_head.add_child(temp_lichterkette)
+			kugeln[i].left_lichterkette = temp_lichterkette
+			
+			kugeln[i].left_lichterkette.position = kugeln[i].position  + Vector2(-30, 60)
+			kugeln[i].left_lichterkette.rotation_degrees = 25
+				
+		if 2 * i + 2 < kugeln.size():
+			kugeln[i].right_child = kugeln[2 * i + 2]
+			print(kugeln[i].number , " -> Rechtes Kind: ", kugeln[2 * i + 2].number)
+			
+			var temp_lichterkette = lichterkette.instantiate()
+			lichterketten_head.add_child(temp_lichterkette)
+			kugeln[i].right_lichterkette = temp_lichterkette
+			
+			kugeln[i].right_lichterkette.position = kugeln[i].position + Vector2(30, 60)
+			kugeln[i].right_lichterkette.rotation_degrees = -25
+			
+
 
 	_prepare_algorithm()
 
@@ -108,7 +134,7 @@ func next_step() -> void:
 	var typ: String = str(step.get("type", ""))
 	var meldung: String = str(step.get("message", ""))
 
-	#print("Schritt %d/%d: %s" % [step_index + 1, steps.size(), meldung])
+	print("Schritt %d/%d: %s" % [step_index + 1, steps.size(), meldung])
 
 	match typ:
 		"info":

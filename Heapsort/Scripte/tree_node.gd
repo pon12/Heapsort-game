@@ -10,6 +10,9 @@ extends Node2D
 @export var left_child: TreeNode
 @export var right_child: TreeNode
 
+@export var left_lichterkette: LichterKette
+@export var right_lichterkette: LichterKette
+
 var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 var rest_position: Vector2 = Vector2.ZERO
@@ -44,6 +47,9 @@ func swap(node: TreeNode) -> void:
 	rest_position = global_position
 	node.rest_position = node.global_position
 	
+	swap_child_and_lichterketten_ownership(node)
+	
+	
 	var new_action: Action = Action.new(self, node)
 	new_action.debug_print_action()
 	ActionStack.push_action(new_action)
@@ -57,6 +63,8 @@ func swap_back(node: TreeNode) -> void:
 	var my_position: Vector2 = global_position
 	global_position = node.global_position
 	node.global_position = my_position
+	
+	swap_child_and_lichterketten_ownership(node)
 
 	rest_position = global_position
 	node.rest_position = node.global_position
@@ -126,6 +134,8 @@ func _snap_to_slot() -> void:
 		
 		var new_action: Action = Action.new(self, target_ball)
 		ActionStack.push_action(new_action)
+		
+		swap_child_and_lichterketten_ownership(target_ball)
 
 		print(
 			"Getauscht: ", number,
@@ -175,3 +185,20 @@ func _notify_tree() -> void:
 
 	if baum != null and baum.has_method("on_manual_move"):
 		baum.on_manual_move()
+		
+		
+		
+func swap_child_and_lichterketten_ownership(node: TreeNode) -> void:
+	var temp_left_lichterkette: LichterKette = left_lichterkette 
+	var temp_right_lichterkette: LichterKette = right_lichterkette 
+	self.left_lichterkette = node.left_lichterkette
+	node.left_lichterkette = temp_left_lichterkette
+	self.right_lichterkette = node.right_lichterkette
+	node.right_lichterkette = temp_right_lichterkette
+	
+	var temp_left_child: TreeNode = left_child
+	var temp_right_child: TreeNode = right_child
+	self.left_child = node.left_child
+	node.left_child = temp_left_child
+	self.right_child = node.right_child
+	node.right_child = temp_right_child
