@@ -2,11 +2,24 @@
 
 [ext_resource type="Script" uid="uid://cwcmkxb2wlg86" path="res://Scripte/lichterkette.gd" id="1_i0wa4"]
 [ext_resource type="Texture2D" uid="uid://j2n21bmpgh0y" path="res://Assets/Lichterkette/nicht_Sortiert_1.png" id="2_0swr6"]
+[ext_resource type="Texture2D" uid="uid://cx04esa4yhl32" path="res://Assets/Lichterkette/done_Sortiert_1.png" id="2_cd74e"]
 [ext_resource type="Texture2D" uid="uid://b0rao3r13othe" path="res://Assets/Lichterkette/Sortiert_2.png" id="3_8fac5"]
+[ext_resource type="Texture2D" uid="uid://bs7mx0ojliupb" path="res://Assets/Lichterkette/done_Sortiert_2.png" id="3_db0kr"]
 [ext_resource type="Texture2D" uid="uid://bk7am2g3u8b3q" path="res://Assets/Lichterkette/Sortiert_3.png" id="4_a1aja"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yux83"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cd74e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_db0kr")
+}],
+"loop": 1,
+"name": &"fertig",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_0swr6")
@@ -34,6 +47,4 @@ script = ExtResource("1_i0wa4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=357606837]
 position = Vector2(0, 196.66666)
 sprite_frames = SubResource("SpriteFrames_yux83")
-animation = &"sortiert"
-frame = 1
-frame_progress = 0.26381302
+animation = &"fertig"

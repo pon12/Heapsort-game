@@ -10,3 +10,6 @@ func set_sorted() -> void:
 	
 func set_unsorted() -> void:
 	sprite.play("nicht_sortiert")
+	
+func set_done() -> void:
+	sprite.play("fertig")

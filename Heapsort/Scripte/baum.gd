@@ -39,9 +39,10 @@ func _ready() -> void:
 	for i in range(kugeln.size()):
 		if 2 * i + 1 < kugeln.size():
 			kugeln[i].left_child = kugeln[2 * i + 1]
-			print(kugeln[i].number , " -> Linked Kind: ", kugeln[2 * i + 1].number)
+			print(kugeln[i].number , " -> Linkes Kind: ", kugeln[2 * i + 1].number)
+			kugeln[2 * i + 1].parent_treenode = kugeln[i]
 			
-			var temp_lichterkette = lichterkette.instantiate()
+			var temp_lichterkette: LichterKette = lichterkette.instantiate()
 			lichterketten_head.add_child(temp_lichterkette)
 			kugeln[i].left_lichterkette = temp_lichterkette
 			
@@ -53,8 +54,9 @@ func _ready() -> void:
 		if 2 * i + 2 < kugeln.size():
 			kugeln[i].right_child = kugeln[2 * i + 2]
 			print(kugeln[i].number , " -> Rechtes Kind: ", kugeln[2 * i + 2].number)
+			kugeln[2 * i + 2].parent_treenode = kugeln[i]
 			
-			var temp_lichterkette = lichterkette.instantiate()
+			var temp_lichterkette: LichterKette = lichterkette.instantiate()
 			lichterketten_head.add_child(temp_lichterkette)
 			kugeln[i].right_lichterkette = temp_lichterkette
 			
@@ -66,6 +68,9 @@ func _ready() -> void:
 
 	_prepare_algorithm()
 
+func _process(delta: float) -> void:
+	for i in range(kugeln.size()):
+		kugeln[i].check_heapsort_condition()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
