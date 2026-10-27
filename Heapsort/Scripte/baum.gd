@@ -4,6 +4,8 @@ var kugeln: Array[TreeNode] = []
 var slots: Array[Marker2D] = []
 var steps: Array[Dictionary] = []
 var step_index: int = 0
+var sorted_target_werte: Array = []
+@onready var sock_array_ui: HBoxContainer = $"../SockArrayUI"
 
 
 func _ready() -> void:
@@ -33,9 +35,16 @@ func _ready() -> void:
 	for i in range(kugeln.size()):
 		kugeln[i].global_position = slots[i].global_position
 		kugeln[i].rest_position = slots[i].global_position
-
+		
+	# Socken beim Start füllen
+	print("DEBUG: sock_array_ui ist: ", sock_array_ui)
+	if sock_array_ui:
+		var start_werte: Array = []
+		for kugel in kugeln:
+			start_werte.append(int(kugel.get("number")))
+		sock_array_ui.call_deferred("initialize", start_werte)
+	
 	_prepare_algorithm()
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -90,11 +99,22 @@ func _prepare_algorithm() -> void:
 	#print("N = naechster Simulationsschritt")
 	#print("P = manuelle Sortierung pruefen")
 	#print("================================")
+	
+	sorted_target_werte = werte.duplicate()
+	sorted_target_werte.sort()
+	
+	if sock_array_ui:
+		sock_array_ui.update_values(werte)
 
 
 func on_manual_move() -> void:
 	_prepare_algorithm()
 	#print("Manuelle Aenderung erkannt. Simulation zurueckgesetzt.")
+	if sock_array_ui:
+		var aktuelle_werte: Array = []
+		for kugel in kugeln:
+			aktuelle_werte.append(int(kugel.get("number")))
+		sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
 
 
 func next_step() -> void:
@@ -137,6 +157,13 @@ func next_step() -> void:
 
 				kugeln[a].set_highlight(true)
 				kugeln[b].set_highlight(true)
+				
+				if sock_array_ui:
+					var aktuelle_werte: Array = []
+					for kug in kugeln:
+						aktuelle_werte.append(int(kug.get("number")))
+					sock_array_ui.update_values(aktuelle_werte)
+					sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
 
 		"done":
 			#print("--- Simulation beendet ---")
@@ -167,7 +194,21 @@ func pruefe_sortierung() -> bool:
 
 	if korrekt:
 		#print("RICHTIG! Die Zahlen sind aufsteigend sortiert.")
+		if sock_array_ui:
+			for i in range(kugeln.size()):
+				sock_array_ui.set_sorted_state(i)
 		return true
 	else:
 		#print("NOCH NICHT RICHTIG. Die Zahlen sind nicht aufsteigend sortiert.")
 		return false
+
+# Aktualisiert Werte und Socken-Zustand nach außen hin (z.B. für den Zurück-Button)
+func aktualisiere_nach_aktion() -> void:
+	_sync_order_from_slots()
+	var aktuelle_werte: Array = []
+	for kugel in kugeln:
+		aktuelle_werte.append(int(kugel.get("number")))
+	
+	if sock_array_ui:
+		sock_array_ui.update_values(aktuelle_werte)
+		sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
