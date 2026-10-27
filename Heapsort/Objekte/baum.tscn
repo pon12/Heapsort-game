@@ -67,3 +67,5 @@ position = Vector2(99.644135, 56.255127)
 
 [node name="Slot7" type="Marker2D" parent="Sprite2D" unique_id=371594720]
 position = Vector2(206.40573, 65.41292)
+
+[node name="LichterKetten" type="Node2D" parent="." unique_id=1763412770]

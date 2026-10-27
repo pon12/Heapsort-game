@@ -1,4 +1,6 @@
 extends Node2D
+@onready var lichterketten_head:Node2D = get_node("LichterKetten")
+var lichterkette = preload("res://Objekte/lichterkette.tscn")
 
 var kugeln: Array[TreeNode] = []
 var slots: Array[Marker2D] = []
@@ -35,16 +37,9 @@ func _ready() -> void:
 	for i in range(kugeln.size()):
 		kugeln[i].global_position = slots[i].global_position
 		kugeln[i].rest_position = slots[i].global_position
-		
-	# Socken beim Start füllen
-	print("DEBUG: sock_array_ui ist: ", sock_array_ui)
-	if sock_array_ui:
-		var start_werte: Array = []
-		for kugel in kugeln:
-			start_werte.append(int(kugel.get("number")))
-		sock_array_ui.call_deferred("initialize", start_werte)
-	
+
 	_prepare_algorithm()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -128,7 +123,7 @@ func next_step() -> void:
 	var typ: String = str(step.get("type", ""))
 	var meldung: String = str(step.get("message", ""))
 
-	#print("Schritt %d/%d: %s" % [step_index + 1, steps.size(), meldung])
+	print("Schritt %d/%d: %s" % [step_index + 1, steps.size(), meldung])
 
 	match typ:
 		"info":

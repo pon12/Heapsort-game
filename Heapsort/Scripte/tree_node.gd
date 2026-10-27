@@ -9,6 +9,10 @@ extends Node2D
 @export var Scaling: Vector2 = Vector2(0.017, 0.017)
 @export var left_child: TreeNode
 @export var right_child: TreeNode
+@export var parent_treenode: TreeNode
+
+@export var left_lichterkette: LichterKette
+@export var right_lichterkette: LichterKette
 
 var dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
@@ -44,7 +48,7 @@ func swap(node: TreeNode) -> void:
 	rest_position = global_position
 	node.rest_position = node.global_position
 	
-	
+	swap_child_and_lichterketten_ownership(node)	
 	
 	var new_action: Action = Action.new(self, node)
 	new_action.debug_print_action()
@@ -59,6 +63,8 @@ func swap_back(node: TreeNode) -> void:
 	var my_position: Vector2 = global_position
 	global_position = node.global_position
 	node.global_position = my_position
+	
+	swap_child_and_lichterketten_ownership(node)
 
 	rest_position = global_position
 	node.rest_position = node.global_position
@@ -128,6 +134,8 @@ func _snap_to_slot() -> void:
 		
 		var new_action: Action = Action.new(self, target_ball)
 		ActionStack.push_action(new_action)
+		
+		swap_child_and_lichterketten_ownership(target_ball)
 
 		print(
 			"Getauscht: ", number,
@@ -177,3 +185,157 @@ func _notify_tree() -> void:
 
 	if baum != null and baum.has_method("on_manual_move"):
 		baum.on_manual_move()
+		
+func check_heapsort_condition() -> void:
+	if left_child != null and left_lichterkette !=null:
+		if left_child.number > self.number:
+			left_lichterkette.set_unsorted()
+		else:
+			left_lichterkette.set_sorted()
+	if right_child != null and right_lichterkette !=null:
+		if right_child.number > self.number:
+			right_lichterkette.set_unsorted()
+		else:
+			right_lichterkette.set_sorted()
+		
+		
+func swap_child_and_lichterketten_ownership(node: TreeNode) -> TreeNode:
+	if node == null or node == self:
+		return find_root(self)
+
+	var old_root: TreeNode = find_root(self)
+
+	var path: Array = ancestor_path(self, node)
+	if not path.is_empty():
+		swap_ancestor_positions(path)
+	elif not ancestor_path(node, self).is_empty():
+		path = ancestor_path(node, self)
+		swap_ancestor_positions(path)
+	else:
+		swap_unrelated_positions(node)
+
+	if old_root == self:
+		return node
+	if old_root == node:
+		return self
+	return old_root
+
+
+func swap_unrelated_positions(node: TreeNode) -> void:
+	var self_parent: TreeNode = parent_treenode
+	var node_parent: TreeNode = node.parent_treenode
+
+	if self_parent != null:
+		replace_child_references(self_parent, self, node)
+	if node_parent != null and node_parent != self_parent:
+		replace_child_references(node_parent, self, node)
+
+	parent_treenode = node_parent
+	node.parent_treenode = self_parent
+
+	var temp_left_child: TreeNode = left_child
+	left_child = node.left_child
+	node.left_child = temp_left_child
+
+	var temp_right_child: TreeNode = right_child
+	right_child = node.right_child
+	node.right_child = temp_right_child
+
+	var temp_left_chain: LichterKette = left_lichterkette
+	left_lichterkette = node.left_lichterkette
+	node.left_lichterkette = temp_left_chain
+
+	var temp_right_chain: LichterKette = right_lichterkette
+	right_lichterkette = node.right_lichterkette
+	node.right_lichterkette = temp_right_chain
+
+	update_child_parent_references(self)
+	update_child_parent_references(node)
+
+
+func swap_ancestor_positions(path: Array) -> void:
+	var last_index: int = path.size() - 1
+	var outside_parent: TreeNode = path[0].parent_treenode
+
+	var left_children: Array = []
+	var right_children: Array = []
+	var left_chains: Array = []
+	var right_chains: Array = []
+
+	for path_node in path:
+		left_children.append(path_node.left_child)
+		right_children.append(path_node.right_child)
+		left_chains.append(path_node.left_lichterkette)
+		right_chains.append(path_node.right_lichterkette)
+
+	var occupants: Array = path.duplicate()
+	occupants[0] = path[last_index]
+	occupants[last_index] = path[0]
+
+	for i in range(last_index):
+		var old_next: TreeNode = path[i + 1]
+		var new_next: TreeNode = occupants[i + 1]
+
+		if left_children[i] == old_next:
+			left_children[i] = new_next
+		if right_children[i] == old_next:
+			right_children[i] = new_next
+
+	if outside_parent != null:
+		replace_child_references(outside_parent, path[0], path[last_index])
+
+	for i in range(path.size()):
+		var occupant: TreeNode = occupants[i]
+		occupant.left_child = left_children[i]
+		occupant.right_child = right_children[i]
+		occupant.left_lichterkette = left_chains[i]
+		occupant.right_lichterkette = right_chains[i]
+
+		if i == 0:
+			occupant.parent_treenode = outside_parent
+		else:
+			occupant.parent_treenode = occupants[i - 1]
+
+		update_child_parent_references(occupant)
+
+
+func ancestor_path(ancestor: TreeNode, descendant: TreeNode) -> Array:
+	var reversed_path: Array = []
+	var current: TreeNode = descendant
+
+	while current != null:
+		reversed_path.append(current)
+		if current == ancestor:
+			reversed_path.reverse()
+			return reversed_path
+		current = current.parent_treenode
+
+	return []
+
+
+func replace_child_references(parent: TreeNode,old_a: TreeNode,old_b: TreeNode) -> void:
+	if parent.left_child == old_a:
+		parent.left_child = old_b
+	elif parent.left_child == old_b:
+		parent.left_child = old_a
+
+	if parent.right_child == old_a:
+		parent.right_child = old_b
+	elif parent.right_child == old_b:
+		parent.right_child = old_a
+
+
+func update_child_parent_references(parent: TreeNode) -> void:
+	if parent.left_child != null:
+		parent.left_child.parent_treenode = parent
+	if parent.right_child != null:
+		parent.right_child.parent_treenode = parent
+
+
+func find_root(node: TreeNode) -> TreeNode:
+	var current: TreeNode = node
+
+	while current != null and current.parent_treenode != null:
+		current = current.parent_treenode
+
+	return current
