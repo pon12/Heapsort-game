@@ -39,7 +39,5 @@ vertical_alignment = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=558985479]
 shape = SubResource("RectangleShape2D_yux83")
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=1288868495 groups=["drop_slots"]]
-
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
