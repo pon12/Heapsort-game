@@ -44,8 +44,6 @@ func swap(node: TreeNode) -> void:
 	rest_position = global_position
 	node.rest_position = node.global_position
 	
-	
-	
 	var new_action: Action = Action.new(self, node)
 	new_action.debug_print_action()
 	ActionStack.push_action(new_action)
