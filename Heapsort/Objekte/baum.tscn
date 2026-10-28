@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cjmefb58jcby8" path="res://Objekte/tree_node.tscn" id="1_ockag"]
 [ext_resource type="Script" uid="uid://7rm2dqhgcuh1" path="res://Scripte/baum.gd" id="1_s6xw5"]
-[ext_resource type="Texture2D" uid="uid://chosqb3ohq4li" path="res://Assets/Skizze_Christmastree_Heapsort_Game.png" id="3_4p7yv"]
 [ext_resource type="Texture2D" uid="uid://dgkdwaql584bm" path="res://Assets/Kugel_Rot.png" id="3_pnr6q"]
 [ext_resource type="Texture2D" uid="uid://bmh7qter5axtq" path="res://Assets/Kugel_Gelb.png" id="4_pnr6q"]
+[ext_resource type="Texture2D" uid="uid://cbtsn2yp6hwa0" path="res://Assets/Baum_2.png" id="5_pnr6q"]
 
 [node name="Baum" type="Node2D" unique_id=1351460824]
 position = Vector2(518, 269)
@@ -43,29 +43,36 @@ number = 7
 picture = ExtResource("3_pnr6q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1754006987]
-position = Vector2(220, 95.000015)
-scale = Vector2(0.7025, 0.764375)
-texture = ExtResource("3_4p7yv")
+position = Vector2(226, 64)
+scale = Vector2(0.34725586, 0.34636718)
+texture = ExtResource("5_pnr6q")
 
 [node name="Slot1" type="Marker2D" parent="Sprite2D" unique_id=866485972]
-position = Vector2(11.3878765, -245.95259)
+position = Vector2(23.03785, -586.0832)
+scale = Vector2(2.023004, 2.2068346)
 
 [node name="Slot2" type="Marker2D" parent="Sprite2D" unique_id=831233136]
-position = Vector2(-88.256226, -95.50287)
+position = Vector2(-135.34695, -340.67892)
+scale = Vector2(2.023004, 2.2068346)
 
 [node name="Slot3" type="Marker2D" parent="Sprite2D" unique_id=1034434596]
-position = Vector2(86.83274, -98.11938)
+position = Vector2(201.58041, -329.1305)
+scale = Vector2(2.023004, 2.2068346)
 
 [node name="Slot4" type="Marker2D" parent="Sprite2D" unique_id=1223803014]
-position = Vector2(-193.5943, 47.0973)
+position = Vector2(-311.00977, -46.193756)
+scale = Vector2(2.023004, 2.2068346)
 
 [node name="Slot5" type="Marker2D" parent="Sprite2D" unique_id=1885357802]
-position = Vector2(-42.704636, 52.330338)
+position = Vector2(-69.113266, -20.209747)
+scale = Vector2(2.023004, 2.2068346)
 
 [node name="Slot6" type="Marker2D" parent="Sprite2D" unique_id=1633892858]
-position = Vector2(99.644135, 56.255127)
+position = Vector2(138.2267, -8.661346)
+scale = Vector2(2.023004, 2.2068346)
 
 [node name="Slot7" type="Marker2D" parent="Sprite2D" unique_id=371594720]
-position = Vector2(206.40573, 65.41292)
+position = Vector2(380.1232, -14.435516)
+scale = Vector2(2.023004, 2.2068346)
 
 [node name="LichterKetten" type="Node2D" parent="." unique_id=1763412770]
