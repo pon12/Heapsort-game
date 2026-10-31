@@ -7,8 +7,8 @@ var slots: Array[Marker2D] = []
 var steps: Array[Dictionary] = []
 var step_index: int = 0
 var sorted_target_werte: Array = []
+var sorted_indices: Array[int] = []
 @onready var sock_array_ui: HBoxContainer = $"../SockArrayUI"
-
 
 func _ready() -> void:
 	# Slots finden und registrieren
@@ -121,12 +121,13 @@ func _sync_order_from_slots() -> void:
 func _prepare_algorithm() -> void:
 	_sync_order_from_slots()
 	_clear_highlights()
+	
 
 	var werte: Array = []
 	for kugel in kugeln:
 		werte.append(int(kugel.get("number")))
 
-	steps = HeapSort.create_steps(werte)
+	steps = HeapSort.create_steps(werte, sorted_indices.size())
 	step_index = 0
 
 	#print("")
@@ -140,19 +141,29 @@ func _prepare_algorithm() -> void:
 	sorted_target_werte = werte.duplicate()
 	sorted_target_werte.sort()
 	
-	if sock_array_ui:
-		sock_array_ui.update_values(werte)
+	_refresh_socks()
 
 
-func on_manual_move() -> void:
+func on_manual_move(ball_a: TreeNode = null, ball_b: TreeNode = null) -> void:
+	# kugeln hat hier noch die Reihenfolge VOR dem Tausch.
+	var ia: int = kugeln.find(ball_a)
+	var ib: int = kugeln.find(ball_b)
+	
+	# Aufruf ohne Kugeln (z.B. aus ActionStack.pop_action): neu aufsetzen
+	if ia == -1 or ib == -1:
+		_prepare_algorithm()
+		return
+		
+	var j: int = _find_next_swap_step()
+	if j != -1 and _step_matches(steps[j], ia, ib):
+		_consume_manual_step(j)
+		return
+
+	# Falscher Schritt
+	_zeige_meldung("Das war nicht der richtige Schritt.")
+	if sorted_indices.has(ia) or sorted_indices.has(ib):
+		sorted_indices.clear()   # ein sortierter Wert wurde bewegt
 	_prepare_algorithm()
-	#print("Manuelle Aenderung erkannt. Simulation zurueckgesetzt.")
-	if sock_array_ui:
-		var aktuelle_werte: Array = []
-		for kugel in kugeln:
-			aktuelle_werte.append(int(kugel.get("number")))
-		sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
-
 
 func next_step() -> void:
 	if step_index >= steps.size():
@@ -188,19 +199,18 @@ func next_step() -> void:
 			if a >= 0 and a < kugeln.size() and b >= 0 and b < kugeln.size():
 				kugeln[a].swap(kugeln[b])
 
-				var temp: TreeNode = kugeln[a]
-				kugeln[a] = kugeln[b]
-				kugeln[b] = temp
+			var temp: TreeNode = kugeln[a]
+			kugeln[a] = kugeln[b]
+			kugeln[b] = temp
 
-				kugeln[a].set_highlight(true)
-				kugeln[b].set_highlight(true)
-				
-				if sock_array_ui:
-					var aktuelle_werte: Array = []
-					for kug in kugeln:
-						aktuelle_werte.append(int(kug.get("number")))
-					sock_array_ui.update_values(aktuelle_werte)
-					sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
+			kugeln[a].set_highlight(true)
+			kugeln[b].set_highlight(true)
+
+			var neu: Array[int] = []
+			for idx in step.get("sorted", []):
+				neu.append(int(idx))
+			_mark_sorted(neu)
+			_refresh_socks()
 
 		"done":
 			#print("--- Simulation beendet ---")
@@ -208,6 +218,34 @@ func next_step() -> void:
 
 	step_index += 1
 
+func step_back() -> void:
+	_clear_highlights()
+
+	var war_sim_schritt: bool = false
+	if step_index > 0:
+		step_index -= 1
+		# compare/info/done haben keinen Tausch, es gibt nichts rueckgaengig zu machen
+		if str(steps[step_index].get("type", "")) != "swap":
+			return
+		war_sim_schritt = true
+
+	var action: Action = ActionStack.pop_action(false)
+	if action == null:
+		if war_sim_schritt:
+			step_index += 1
+		return
+
+	for idx in action.marked_sorted:
+		sorted_indices.erase(idx)
+
+	if war_sim_schritt:
+		# Die Schrittliste passt weiterhin, nur Anordnung und Socken angleichen.
+		_sync_order_from_slots()
+		_refresh_socks()
+	else:
+		# Kein Simulationsschritt mehr uebrig: aeltere Aktion zurueckgenommen,
+		# daher Schritte aus der neuen Anordnung neu erzeugen.
+		_prepare_algorithm()
 
 func _clear_highlights() -> void:
 	for kugel in kugeln:
@@ -231,21 +269,61 @@ func pruefe_sortierung() -> bool:
 
 	if korrekt:
 		#print("RICHTIG! Die Zahlen sind aufsteigend sortiert.")
-		if sock_array_ui:
-			for i in range(kugeln.size()):
-				sock_array_ui.set_sorted_state(i)
 		return true
 	else:
 		#print("NOCH NICHT RICHTIG. Die Zahlen sind nicht aufsteigend sortiert.")
 		return false
 
-# Aktualisiert Werte und Socken-Zustand nach außen hin (z.B. für den Zurück-Button)
-func aktualisiere_nach_aktion() -> void:
-	_sync_order_from_slots()
-	var aktuelle_werte: Array = []
+func _mark_sorted(indices: Array[int]) -> void:
+	if indices.is_empty():
+		return
+	for idx in indices:
+		sorted_indices.append(idx)
+	# Merken, welche Action diese Markierungen erzeugt hat (fuer Zurueck)
+	if not ActionStack.action_list.is_empty():
+		ActionStack.action_list.back().marked_sorted = indices
+
+
+# Baut die Socken komplett aus den Daten auf: Werte + sorted_indices.
+func _refresh_socks() -> void:
+	if sock_array_ui == null:
+		return
+	var werte: Array = []
 	for kugel in kugeln:
-		aktuelle_werte.append(int(kugel.get("number")))
-	
-	if sock_array_ui:
-		sock_array_ui.update_values(aktuelle_werte)
-		sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
+		werte.append(int(kugel.get("number")))
+	sock_array_ui.update_values(werte)
+	sock_array_ui.reset_sorted()
+	for i in sorted_indices:
+		sock_array_ui.set_sorted_state(i)
+
+# Naechster Tausch-Schritt ab step_index (compare/info werden uebersprungen).
+func _find_next_swap_step() -> int:
+	for j in range(step_index, steps.size()):
+		if str(steps[j].get("type", "")) == "swap":
+			return j
+	return -1
+
+
+func _step_matches(step: Dictionary, ia: int, ib: int) -> bool:
+	var a: int = int(step["a"])
+	var b: int = int(step["b"])
+	return (a == ia and b == ib) or (a == ib and b == ia)
+
+
+func _consume_manual_step(j: int) -> void:
+	var step: Dictionary = steps[j]
+	step_index = j + 1
+
+	_sync_order_from_slots()
+	_clear_highlights()
+	kugeln[int(step["a"])].set_highlight(true)
+	kugeln[int(step["b"])].set_highlight(true)
+
+	var neu: Array[int] = []
+	for idx in step.get("sorted", []):
+		neu.append(int(idx))
+	_mark_sorted(neu)
+	_refresh_socks()
+
+func _zeige_meldung(text: String) -> void:
+	print(text)

@@ -143,7 +143,7 @@ func _snap_to_slot() -> void:
 			" mit ", target_ball.get("number")
 		)
 
-		_notify_tree()
+		_notify_tree(target_ball)
 		return
 		
 	#toter code ? Ka mir egal ich lass ihn jetzt mal hier
@@ -179,13 +179,12 @@ func _snap_to_slot() -> void:
 	_notify_tree()
 
 
-func _notify_tree() -> void:
+func _notify_tree(other: TreeNode = null) -> void:
 	rest_position = global_position
 
 	var baum := get_parent()
-
 	if baum != null and baum.has_method("on_manual_move"):
-		baum.on_manual_move()
+		baum.on_manual_move(self, other)
 		
 func check_heapsort_condition() -> void:
 	if left_child != null and left_lichterkette !=null:

@@ -13,17 +13,21 @@ static func push_action(action: Action) -> void:
 	print("PUSH")
 	
 ##Aktion rückgängig machen.
-static func pop_action() -> void:
-	if action_list.is_empty() == false:
-		var tree = action_list.back().first_node.get_parent() #für Auto-Algo zum zurücksetzten (cursed)
-		print("POP 1: " , action_list.back().first_node.number, " 2: ", action_list.back().second_node.number)
-		action_list.back().first_node.swap_back(action_list.back().second_node)
-		action_list.pop_back()
-
-		tree.on_manual_move()
-
-	else:
+static func pop_action(notify_tree: bool = true) -> Action:
+	if action_list.is_empty():
 		print("action_list is empty")
+		return null
+
+	var action: Action = action_list.back()
+	var tree = action.first_node.get_parent()
+	print("POP 1: ", action.first_node.number, " 2: ", action.second_node.number)
+
+	action.first_node.swap_back(action.second_node)
+	action_list.pop_back()
+
+	if notify_tree:
+		tree.on_manual_move()
+	return action
 
 static func debug_print_action_list() -> void:
 	for i in action_list:

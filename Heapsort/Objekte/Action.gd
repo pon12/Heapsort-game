@@ -6,6 +6,8 @@ extends Object
 var first_node: TreeNode ##Das erste tree_node element einer [Action]
 var second_node: TreeNode ##Das zweite tree_node elemnt einer [Action]
 
+var marked_sorted: Array[int] = []
+
 func _init(first: TreeNode, second: TreeNode) -> void:
 	first_node = first
 	second_node = second

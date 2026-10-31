@@ -69,3 +69,7 @@ position = Vector2(99.644135, 56.255127)
 position = Vector2(206.40573, 65.41292)
 
 [node name="LichterKetten" type="Node2D" parent="." unique_id=1763412770]
+
+[node name="Label" type="Label" parent="." unique_id=2108081266]
+offset_right = 40.0
+offset_bottom = 23.0

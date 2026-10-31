@@ -16,6 +16,5 @@ func _on_button_pressed() -> void:
 
 
 func Back_button_on_pressed() -> void:
-	ActionStack.pop_action()
-	if tree and tree.has_method("aktualisiere_nach_aktion"):
-		tree.aktualisiere_nach_aktion()
+	if tree and tree.has_method("step_back"):
+		tree.step_back()

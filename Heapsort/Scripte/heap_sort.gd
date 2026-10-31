@@ -18,10 +18,10 @@ static func sort(input: Array) -> Array:
 	return values
 
 
-static func create_steps(input: Array) -> Array[Dictionary]:
+static func create_steps(input: Array, sorted_count: int = 0) -> Array[Dictionary]:
 	var values: Array = input.duplicate()
 	var steps: Array[Dictionary] = []
-	var n: int = values.size()
+	var n: int = values.size() - sorted_count
 
 	steps.append({
 		"type": "info",
@@ -47,6 +47,7 @@ static func create_steps(input: Array) -> Array[Dictionary]:
 			"type": "swap",
 			"a": 0,
 			"b": end,
+			"sorted": [end, 0] if end == 1 else [end],
 			"message": "Tausche groesstes Element %d an Index %d."
 				% [values[0], end]
 		})
