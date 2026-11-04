@@ -11,7 +11,7 @@ default_font_size = 48
 [sub_resource type="Theme" id="Theme_qxx62"]
 default_font_size = 35
 
-[node name="UI" type="Control" unique_id=2099053967]
+[node name="UI" type="Control" unique_id=2099053967 node_paths=PackedStringArray("zahlen_eingabe")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4j48y")
+zahlen_eingabe = NodePath("VBoxContainer/Zahleneingabe")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=544413315]
 layout_mode = 0
@@ -43,5 +44,26 @@ layout_mode = 2
 theme = SubResource("Theme_qxx62")
 text = "Nicht Sortiert"
 
+[node name="Zahleneingabe" type="LineEdit" parent="VBoxContainer" unique_id=261998918]
+layout_mode = 2
+placeholder_text = "z.B: 5, 2, 8, 1, 9"
+
+[node name="EingabeButton" type="Button" parent="VBoxContainer" unique_id=1291778468]
+layout_mode = 2
+text = "Zahlen übernehmen"
+
+[node name="KugelAnzahl" type="SpinBox" parent="VBoxContainer" unique_id=50009404]
+layout_mode = 2
+min_value = 3.0
+max_value = 15.0
+value = 7.0
+
+[node name="Zufallsbutton" type="Button" parent="VBoxContainer" unique_id=515222959]
+layout_mode = 2
+text = "Zufallszahlen generieren
+"
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Back" to="." method="Back_button_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Forward" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/EingabeButton" to="." method="_on_eingabe_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Zufallsbutton" to="." method="_on_zufallsbutton_pressed"]

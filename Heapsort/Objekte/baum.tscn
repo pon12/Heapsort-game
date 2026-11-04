@@ -7,25 +7,25 @@
 [ext_resource type="Texture2D" uid="uid://bmh7qter5axtq" path="res://Assets/Kugel_Gelb.png" id="4_pnr6q"]
 
 [node name="Baum" type="Node2D" unique_id=1351460824]
-position = Vector2(518, 269)
+position = Vector2(495, 303)
 script = ExtResource("1_s6xw5")
-
-[node name="TreeNode4" parent="." unique_id=1373877517 instance=ExtResource("1_ockag")]
-position = Vector2(-336, -74)
-number = 4
-
-[node name="TreeNode2" parent="." unique_id=2017047121 instance=ExtResource("1_ockag")]
-position = Vector2(-319, 186)
-number = 2
 
 [node name="TreeNode" parent="." unique_id=638626216 instance=ExtResource("1_ockag")]
 position = Vector2(-338, 287)
 picture = ExtResource("3_pnr6q")
 
+[node name="TreeNode2" parent="." unique_id=2017047121 instance=ExtResource("1_ockag")]
+position = Vector2(-319, 186)
+number = 2
+
 [node name="TreeNode3" parent="." unique_id=818584138 instance=ExtResource("1_ockag")]
 position = Vector2(-228, 334)
 number = 3
 picture = ExtResource("3_pnr6q")
+
+[node name="TreeNode4" parent="." unique_id=1373877517 instance=ExtResource("1_ockag")]
+position = Vector2(-336, -74)
+number = 4
 
 [node name="TreeNode5" parent="." unique_id=1525558895 instance=ExtResource("1_ockag")]
 position = Vector2(-333, 58)
@@ -43,32 +43,57 @@ number = 7
 picture = ExtResource("3_pnr6q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1754006987]
-position = Vector2(220, 95.000015)
-scale = Vector2(0.7025, 0.764375)
+position = Vector2(194.9, 23.499989)
+scale = Vector2(0.69775, 0.8187501)
 texture = ExtResource("3_4p7yv")
 
 [node name="Slot1" type="Marker2D" parent="Sprite2D" unique_id=866485972]
-position = Vector2(11.3878765, -245.95259)
+position = Vector2(1.4234638, -310.05725)
 
 [node name="Slot2" type="Marker2D" parent="Sprite2D" unique_id=831233136]
-position = Vector2(-88.256226, -95.50287)
+position = Vector2(-74.38202, -152.06107)
 
 [node name="Slot3" type="Marker2D" parent="Sprite2D" unique_id=1034434596]
-position = Vector2(86.83274, -98.11938)
+position = Vector2(99.03254, -143.51143)
 
 [node name="Slot4" type="Marker2D" parent="Sprite2D" unique_id=1223803014]
-position = Vector2(-193.5943, 47.0973)
+position = Vector2(-154.64, -10.38166)
 
 [node name="Slot5" type="Marker2D" parent="Sprite2D" unique_id=1885357802]
-position = Vector2(-42.704636, 52.330338)
+position = Vector2(-24.220785, -5.4961624)
 
 [node name="Slot6" type="Marker2D" parent="Sprite2D" unique_id=1633892858]
-position = Vector2(99.644135, 56.255127)
+position = Vector2(97.59935, 1.8320618)
 
 [node name="Slot7" type="Marker2D" parent="Sprite2D" unique_id=371594720]
-position = Vector2(206.40573, 65.41292)
+position = Vector2(199.35507, 3.0534363)
+
+[node name="Slot8" type="Marker2D" parent="Sprite2D" unique_id=1155225755]
+position = Vector2(-222.06409, 74.57074)
+
+[node name="Slot9" type="Marker2D" parent="Sprite2D" unique_id=705418131]
+position = Vector2(-149.46616, 87.65332)
+
+[node name="Slot10" type="Marker2D" parent="Sprite2D" unique_id=2015427791]
+position = Vector2(-86.83271, 27.473434)
+
+[node name="Slot11" type="Marker2D" parent="Sprite2D" unique_id=1638505093]
+position = Vector2(-47.151596, 92.213715)
+
+[node name="Slot12" type="Marker2D" parent="Sprite2D" unique_id=1710923160]
+position = Vector2(44.128075, 86.345055)
+
+[node name="Slot13" type="Marker2D" parent="Sprite2D" unique_id=1381217086]
+position = Vector2(100.465706, 87.328224)
+
+[node name="Slot14" type="Marker2D" parent="Sprite2D" unique_id=1054031211]
+position = Vector2(185.02324, 86.10688)
+
+[node name="Slot15" type="Marker2D" parent="Sprite2D" unique_id=627818468]
+position = Vector2(235.18451, 90.99238)
 
 [node name="LichterKetten" type="Node2D" parent="." unique_id=1763412770]
+position = Vector2(-41, 67)
 
 [node name="Label" type="Label" parent="." unique_id=2108081266]
 offset_right = 40.0

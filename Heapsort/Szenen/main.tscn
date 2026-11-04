@@ -8,7 +8,7 @@
 [node name="Main" type="Node2D" unique_id=1885438329]
 
 [node name="Baum" parent="." unique_id=1351460824 instance=ExtResource("2_ekuxy")]
-position = Vector2(354, 255)
+position = Vector2(393, 289)
 
 [node name="SockArrayUI" type="HBoxContainer" parent="." unique_id=769964590]
 offset_left = 636.0

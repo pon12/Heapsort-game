@@ -197,7 +197,8 @@ func check_heapsort_condition() -> void:
 			right_lichterkette.set_unsorted()
 		else:
 			right_lichterkette.set_sorted()
-		
+	if get_parent().sortierung_abgeschlossen:
+		return
 		
 func swap_child_and_lichterketten_ownership(node: TreeNode) -> TreeNode:
 	if node == null or node == self:
