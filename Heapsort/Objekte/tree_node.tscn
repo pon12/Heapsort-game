@@ -21,7 +21,7 @@ Scaling = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1471684995]
 position = Vector2(-8.073428e-06, -6.3180923e-06)
-scale = Vector2(0.016534386, 0.01653439)
+scale = Vector2(0.015, 0.015)
 texture = ExtResource("2_n3plf")
 
 [node name="Label" type="Label" parent="." unique_id=1208299577]

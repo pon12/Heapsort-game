@@ -16,15 +16,17 @@ var auto_is_active: bool = false
 @export var stufe3 = 0.4
 @export var stufe4 = 0.2
 @export var stufe5 = 0.1
+@export var zahlen_eingabe: LineEdit
+@onready var kugel_anzahl: SpinBox = $VBoxContainer/KugelAnzahl
 
 func _ready() -> void:
 	if tree == null:
 		print("UI has no Tree assigned")
 
 func _on_button_pressed() -> void:
-	if tree.pruefe_sortierung() == true:
-		#sorted_label.text = "Sortiert"
-		return
+	if tree.pruefe_sortierung():
+		sorted_label.text = "Sortiert"
+		tree._aktualisiere_lichterketten()
 	else:
 		#sorted_label.text = "Nicht Sortiert"
 		tree.next_step()
@@ -76,3 +78,42 @@ func on_auto_algo_button_toggled(toggled_on: bool) -> void:
 	auto_is_active = toggled_on
 	auto_timer = 0.0
 	print("Auto Sort toggled: ", auto_is_active)
+	if tree != null and tree.has_method("step_back"):
+		tree.step_back()
+
+func pruefe_eingabe(text: String) -> Array[int]:
+	var zahlen: Array[int] = []
+	var teile := text.split(",")
+
+	if teile.size() < 3 or teile.size() > 15:
+		sorted_label.text = "Bitte 3 bis 15 Zahlen eingeben!"
+		return zahlen
+
+	for teil in teile:
+		var wert := teil.strip_edges()
+
+		if not wert.is_valid_int():
+			sorted_label.text = "Ungueltige Eingabe: " + wert
+			return []
+
+		zahlen.append(int(wert))
+
+	return zahlen
+	
+func _on_eingabe_button_pressed() -> void:
+	var zahlen := pruefe_eingabe(zahlen_eingabe.text)
+
+	if zahlen.is_empty():
+		return
+
+	tree.setze_zahlen(zahlen)
+	sorted_label.text = "Zahlen uebernommen!"
+
+func _on_zufallsbutton_pressed() -> void:
+	var anzahl: int = int(kugel_anzahl.value)
+
+	var zahlen: Array[int] = tree.generiere_zufallszahlen(anzahl)
+
+	tree.setze_zahlen(zahlen)
+
+	sorted_label.text = "Nicht Sortiert"
