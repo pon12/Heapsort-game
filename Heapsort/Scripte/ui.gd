@@ -8,6 +8,14 @@ extends Control
 var auto_speed: float = 1.0
 var auto_timer: float = 0.0
 var auto_is_active: bool = false
+@export_category("Geschwindigkeit Auto-Algo")
+##0.1 ~ 10 moves per second 1.0 ~ 1 move per second
+@export var stufe0 = 1.0
+@export var stufe1 = 0.8
+@export var stufe2 = 0.5
+@export var stufe3 = 0.4
+@export var stufe4 = 0.2
+@export var stufe5 = 0.1
 
 func _ready() -> void:
 	if tree == null:
@@ -31,23 +39,21 @@ func on_speed_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed == false:
 		return
 	else:
+		# 0.1 ~ 10 moves per second 1.0 ~ 1 move per second
 		match speed_slider.value:
 			0.0:
-				auto_speed = 1.0
+				auto_speed = stufe0
 			1.0:
-				auto_speed = 0.8
+				auto_speed = stufe1
 			2.0:
-				auto_speed = 0.5
+				auto_speed = stufe2
 			3.0:
-				auto_speed = 0.4
+				auto_speed = stufe3
 			4.0:
-				auto_speed = 0.2
+				auto_speed = stufe4
 			5.0:
-				auto_speed = 0.1
+				auto_speed = stufe5
 		print("New Speed: ", auto_speed)
-
-func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
 	
 func _process(delta: float) -> void:
 	if not auto_is_active or tree == null:

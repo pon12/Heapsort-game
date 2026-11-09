@@ -1,24 +1,17 @@
-extends RefCounted
+extends Node
 class_name HeapSort
 
-
-static func sort(input: Array) -> Array:
-	var values: Array = input.duplicate()
-	var n: int = values.size()
-
-	# Phase 1: Max-Heap von unten nach oben aufbauen.
-	for start in range(n / 2 - 1, -1, -1):
-		_sift_down(values, start, n)
-
-	# Phase 2: Groesstes Element ans Ende verschieben.
-	for end in range(n - 1, 0, -1):
-		_swap(values, 0, end)
-		_sift_down(values, 0, end)
-
-	return values
+signal sort_started(input: Array) ##Emitted when sorting begins. input is a copy of the input array.
+signal sift_down_started(root: int, end_exclusive: int) ##Emitted when the heap-restoration step begins. Only elements before end_exclusive are included in the heap.
+signal comparison_made(index_a: int, index_b: int, value_a: Variant, value_b: Variant) ##Emitted when two elements are compared. Includes their indices and values.
+signal values_swapped(index_a: int, index_b: int, value_a: Variant, value_b: Variant, values: Array) ##Emitted after two elements are swapped. Includes their indices, the values now at those indices, and a snapshot of the array.
+signal sift_down_finished(root: int, end_exclusive: int, values: Array) ##Emitted when heap restoration is complete. Includes the heap range and a snapshot of the array.
+signal max_heap_created(heap: Array) ##Emitted after the max-heap has been built. heap is a snapshot of the array at that point.
+signal element_sorted(value: Variant, index: int, values: Array) ##Emitted when an element reaches its final sorted position. Includes the element, its index, and an array snapshot.
+signal sort_finished(sorted_values: Array) ##Emitted when sorting is complete. sorted_values is a snapshot of the final sorted array.
 
 
-static func create_steps(input: Array) -> Array[Dictionary]:
+func create_steps(input: Array) -> Array[Dictionary]:
 	var values: Array = input.duplicate()
 	var steps: Array[Dictionary] = []
 	var n: int = values.size()
@@ -68,11 +61,36 @@ static func create_steps(input: Array) -> Array[Dictionary]:
 	return steps
 
 
-static func _sift_down(
-	values: Array,
-	root: int,
-	end_exclusive: int
-) -> void:
+func sort(input: Array) -> Array:
+	var values: Array = input.duplicate()
+	var n: int = values.size()
+
+	sort_started.emit(input.duplicate())
+
+	# Build the max-heap.
+	for start in range(n / 2 - 1, -1, -1):
+		_sift_down(values, start, n)
+
+	max_heap_created.emit(values.duplicate())
+
+	# Move the largest remaining value to the end of the unsorted section.
+	for end in range(n - 1, 0, -1):
+		_swap(values, 0, end)
+		_sift_down(values, 0, end)
+		element_sorted.emit(values[end], end, values.duplicate())
+
+	# The remaining root, if there is one, is also in its final position.
+	if n > 0:
+		element_sorted.emit(values[0], 0, values.duplicate())
+
+	sort_finished.emit(values.duplicate())
+	return values
+
+
+func _sift_down(values: Array, root: int, end_exclusive: int) -> void:
+	var original_root: int = root
+	sift_down_started.emit(root, end_exclusive)
+
 	var parent: int = root
 
 	while true:
@@ -80,20 +98,30 @@ static func _sift_down(
 		var right: int = 2 * parent + 2
 		var largest: int = parent
 
-		if left < end_exclusive and values[left] > values[largest]:
-			largest = left
+		if left < end_exclusive:
+			comparison_made.emit(parent, left, values[parent], values[left])
+			if values[left] > values[largest]:
+				largest = left
 
-		if right < end_exclusive and values[right] > values[largest]:
-			largest = right
+		if right < end_exclusive:
+			comparison_made.emit(largest, right, values[largest], values[right])
+			if values[right] > values[largest]:
+				largest = right
 
 		if largest == parent:
 			break
 
 		_swap(values, parent, largest)
+		values_swapped.emit(
+			parent, largest,
+			values[largest], values[parent],
+			values.duplicate()
+		)
 		parent = largest
 
+	sift_down_finished.emit(original_root, end_exclusive, values.duplicate())
 
-static func _sift_down_steps(
+func _sift_down_steps(
 	values: Array,
 	root: int,
 	end_exclusive: int,
@@ -157,7 +185,7 @@ static func _sift_down_steps(
 		parent = largest
 
 
-static func _swap(values: Array, a: int, b: int) -> void:
+func _swap(values: Array, a: int, b: int) -> void:
 	var temp = values[a]
 	values[a] = values[b]
 	values[b] = temp

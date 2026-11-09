@@ -1,6 +1,8 @@
 extends Node2D
 @onready var lichterketten_head:Node2D = get_node("LichterKetten")
 @onready var sock_array_ui: HBoxContainer = $"../SockArrayUI"
+@export var heap_sort: HeapSort
+
 var lichterkette = preload("res://Objekte/lichterkette.tscn")
 
 var kugeln: Array[TreeNode] = []
@@ -11,6 +13,7 @@ var sorted_target_werte: Array = []
 
 
 var sortierung_abgeschlossen: bool = false
+
 
 func _ready() -> void:
 	# Slots finden und registrieren
@@ -145,7 +148,7 @@ func _prepare_algorithm() -> void:
 	for kugel in kugeln:
 		werte.append(int(kugel.get("number")))
 
-	steps = HeapSort.create_steps(werte)
+	steps = heap_sort.create_steps(werte)
 	step_index = 0
 
 	#print("")
