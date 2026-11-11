@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cbkmiyvkcnnib"]
+
+[ext_resource type="Script" uid="uid://cw5avt845xtca" path="res://Scripte/main_menu.gd" id="1_0mtuo"]
+[ext_resource type="PackedScene" uid="uid://ciu1bp2sicbv4" path="res://Szenen/settings.tscn" id="2_d4h0r"]
+
+[node name="MainMenu" type="Control" unique_id=548772848 node_paths=PackedStringArray("settings")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0mtuo")
+settings = NodePath("Settings")
+
+[node name="Settings" parent="." unique_id=253413779 instance=ExtResource("2_d4h0r")]
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1730653232]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1267032344]
+layout_mode = 2
+
+[node name="label_titel" type="RichTextLabel" parent="CenterContainer/VBoxContainer" unique_id=155478383]
+layout_mode = 2
+text = "Heapsort-Spiel"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer" unique_id=377069545]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="button_play_yourself" type="Button" parent="CenterContainer/VBoxContainer" unique_id=989363528]
+layout_mode = 2
+text = "Spielen"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer" unique_id=1661526741]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="button_settings" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2050143673]
+layout_mode = 2
+text = "Einstellungen"
+
+[node name="button_credits" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1627469594]
+layout_mode = 2
+text = "Credits"
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer" unique_id=1543921770]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="button_end_game" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1502555276]
+layout_mode = 2
+text = "Spiel Beenden"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/button_play_yourself" to="." method="on_button_play_yourself_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/button_settings" to="." method="on_button_settings_pressed"]
