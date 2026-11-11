@@ -1,5 +1,8 @@
 extends Node2D
 @onready var lichterketten_head:Node2D = get_node("LichterKetten")
+@onready var sock_array_ui: HBoxContainer = $"../SockArrayUI"
+@export var heap_sort: HeapSort
+
 var lichterkette = preload("res://Objekte/lichterkette.tscn")
 
 var kugeln: Array[TreeNode] = []
@@ -8,7 +11,7 @@ var steps: Array[Dictionary] = []
 var step_index: int = 0
 var sorted_target_werte: Array = []
 var sorted_indices: Array[int] = []
-@onready var sock_array_ui: HBoxContainer = $"../SockArrayUI"
+var sortierung_abgeschlossen: bool = false
 
 func _ready() -> void:
 	# Slots finden und registrieren
@@ -79,10 +82,27 @@ func _ready() -> void:
 	_prepare_algorithm()
 
 func _process(delta: float) -> void:
-	for i in range(kugeln.size()):
-		kugeln[i].check_heapsort_condition()
+	if sortierung_abgeschlossen:
+		return
+		
+	for kugel in kugeln:
+		kugel.check_heapsort_condition()
+	
+func _aktualisiere_lichterketten() -> void:
+	if not pruefe_sortierung():
+		return
+	sortierung_abgeschlossen = true
+		
+	for kugel in kugeln:
+		var x = kugel.left_lichterkette
+		if is_instance_valid(x):
+			x.set_done()
 
 
+		x = kugel.right_lichterkette
+		if is_instance_valid(x):
+			x.set_done()
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_N:
@@ -127,7 +147,7 @@ func _prepare_algorithm() -> void:
 	for kugel in kugeln:
 		werte.append(int(kugel.get("number")))
 
-	steps = HeapSort.create_steps(werte, sorted_indices.size())
+	steps = heap_sort.create_steps(werte, sorted_indices.size())
 	step_index = 0
 
 	#print("")
@@ -145,6 +165,7 @@ func _prepare_algorithm() -> void:
 
 
 func on_manual_move(ball_a: TreeNode = null, ball_b: TreeNode = null) -> void:
+	sortierung_abgeschlossen = false
 	# kugeln hat hier noch die Reihenfolge VOR dem Tausch.
 	var ia: int = kugeln.find(ball_a)
 	var ib: int = kugeln.find(ball_b)
@@ -164,6 +185,14 @@ func on_manual_move(ball_a: TreeNode = null, ball_b: TreeNode = null) -> void:
 	if sorted_indices.has(ia) or sorted_indices.has(ib):
 		sorted_indices.clear()   # ein sortierter Wert wurde bewegt
 	_prepare_algorithm()
+
+	if sock_array_ui:
+		var aktuelle_werte: Array = []
+		for kugel in kugeln:
+			aktuelle_werte.append(int(kugel.get("number")))
+		sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
+		
+	_aktualisiere_lichterketten()
 
 func next_step() -> void:
 	if step_index >= steps.size():
@@ -216,6 +245,7 @@ func next_step() -> void:
 			#print("--- Simulation beendet ---")
 			pruefe_sortierung()
 
+	_aktualisiere_lichterketten()
 	step_index += 1
 
 func step_back() -> void:

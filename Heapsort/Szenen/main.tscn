@@ -4,11 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://pgn1h54fol1a" path="res://Szenen/ui.tscn" id="2_ldghw"]
 [ext_resource type="PackedScene" uid="uid://dk7ylwj4cf624" path="res://Szenen/Sock.tscn" id="3_ldghw"]
 [ext_resource type="Script" uid="uid://dch6407org50n" path="res://Scripte/SockArrayUI.gd" id="3_pw8tf"]
+[ext_resource type="PackedScene" uid="uid://be7r7gs5ocdp3" path="res://Objekte/heap_sort.tscn" id="5_evpwq"]
 
 [node name="Main" type="Node2D" unique_id=1885438329]
 
-[node name="Baum" parent="." unique_id=1351460824 instance=ExtResource("2_ekuxy")]
+[node name="Baum" parent="." unique_id=1351460824 node_paths=PackedStringArray("heap_sort") instance=ExtResource("2_ekuxy")]
 position = Vector2(354, 255)
+heap_sort = NodePath("../HeapSort")
 
 [node name="SockArrayUI" type="HBoxContainer" parent="." unique_id=769964590]
 offset_left = 636.0
@@ -28,3 +30,5 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 tree = NodePath("../Baum")
+
+[node name="HeapSort" parent="." unique_id=856378362 instance=ExtResource("5_evpwq")]

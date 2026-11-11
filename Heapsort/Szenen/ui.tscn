@@ -8,6 +8,9 @@ default_font_size = 48
 [sub_resource type="Theme" id="Theme_4j48y"]
 default_font_size = 48
 
+[sub_resource type="Theme" id="Theme_a7e8p"]
+default_font_size = 26
+
 [sub_resource type="Theme" id="Theme_qxx62"]
 default_font_size = 35
 
@@ -38,6 +41,18 @@ layout_mode = 2
 theme = SubResource("Theme_4j48y")
 text = "Weiter"
 
+[node name="speed_slider" type="HSlider" parent="VBoxContainer" unique_id=462914027]
+layout_mode = 2
+max_value = 5.0
+tick_count = 6
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="auto_algo_button" type="CheckButton" parent="VBoxContainer" unique_id=160552631]
+layout_mode = 2
+theme = SubResource("Theme_a7e8p")
+text = "Automatic Algorithm"
+
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1823870113]
 layout_mode = 2
 theme = SubResource("Theme_qxx62")
@@ -45,3 +60,5 @@ text = "Nicht Sortiert"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Back" to="." method="Back_button_on_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Forward" to="." method="_on_button_pressed"]
+[connection signal="drag_ended" from="VBoxContainer/speed_slider" to="." method="on_speed_slider_drag_ended"]
+[connection signal="toggled" from="VBoxContainer/auto_algo_button" to="." method="on_auto_algo_button_toggled"]
