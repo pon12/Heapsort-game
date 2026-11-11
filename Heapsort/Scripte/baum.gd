@@ -306,7 +306,7 @@ func aktualisiere_socken_array() -> void:
 	for kugel in kugeln:
 		socken_array.append(kugel.number)
 
-	print("Socken-Array: ", socken_array)    
+	#print("Socken-Array: ", socken_array)    
 	
 func generiere_zufallszahlen(anzahl: int) -> Array[int]:
 	var zahlen: Array[int] = []
@@ -347,13 +347,11 @@ func setze_zahlen(werte: Array[int]) -> void:
 	aktualisiere_socken_array()
 	_prepare_algorithm()
 
+
+##DEFINITIV NOCH NICHT FERTIG
 func _aktualisiere_lichterketten() -> void:
 	if sortierung_abgeschlossen:
 		return
-
-	print("FERTIG-EFFEKT WIRD GESTARTET!")
-
-	sortierung_abgeschlossen = true
 
 	for kugel in kugeln:
 		if is_instance_valid(kugel.left_lichterkette):
