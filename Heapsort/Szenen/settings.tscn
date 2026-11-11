@@ -1,34 +1,157 @@
 [gd_scene format=3 uid="uid://ciu1bp2sicbv4"]
 
+[ext_resource type="Script" uid="uid://0do7d8omt8lh" path="res://Scripte/settings.gd" id="1_gb0th"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0h2ro"]
+font_size = 30
+
 [sub_resource type="LabelSettings" id="LabelSettings_yux83"]
-font_color = Color(0, 0, 0, 1)
 
 [node name="Settings" type="Window" unique_id=253413779]
 oversampling_override = 1.0
 title = "Einstellungen"
 initial_position = 4
-size = Vector2i(700, 400)
-visible = false
-popup_window = true
+size = Vector2i(1000, 600)
+transient = true
+unresizable = true
+borderless = true
 content_scale_mode = 1
+content_scale_aspect = 4
 accessibility_name = "Einstellungen"
+script = ExtResource("1_gb0th")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=104643345]
-offset_right = 700.0
+[node name="Control" type="Panel" parent="." unique_id=909851582]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=2060583347]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=997455665]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control/VBoxContainer" unique_id=1467519091]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/Panel" unique_id=1528509172]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Einstellungen"
+label_settings = SubResource("LabelSettings_0h2ro")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/VBoxContainer" unique_id=104643345]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/ScrollContainer" unique_id=2060583347]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer" unique_id=1521816836]
+[node name="ScreenMode" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1521816836]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=532438274]
+[node name="Label" type="Label" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/ScreenMode" unique_id=532438274]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Test"
+text = "Bildschirm Modus"
 label_settings = SubResource("LabelSettings_yux83")
+horizontal_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1786590615]
+[node name="OptionButton" type="OptionButton" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/ScreenMode" unique_id=1786590615]
 layout_mode = 2
 size_flags_horizontal = 3
+selected = 0
+item_count = 2
+popup/item_0/text = "Fenster"
+popup/item_0/id = 0
+popup/item_1/text = "Full-Screen"
+popup/item_1/id = 1
+
+[node name="Background_Music" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1833615194]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Background_Music" unique_id=1770573810]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hintergrundmusik"
+label_settings = SubResource("LabelSettings_yux83")
+horizontal_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Background_Music" unique_id=1523860412]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 2
+popup/item_0/text = "Platzhalter 1"
+popup/item_0/id = 0
+popup/item_1/text = "Platzhalter 2"
+popup/item_1/id = 1
+
+[node name="Music_Strength" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=999378754]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength" unique_id=1211311571]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Musik-Lautstärke"
+label_settings = SubResource("LabelSettings_yux83")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength" unique_id=890645617]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength/HBoxContainer" unique_id=1801596049]
+layout_mode = 2
+value = 50.0
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength/HBoxContainer" unique_id=748725152]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+
+[node name="Effect_Strength" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1331074218]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength" unique_id=1286639610]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Soundeffekt-Lautstärke"
+label_settings = SubResource("LabelSettings_yux83")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength" unique_id=88446024]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpinBox" type="SpinBox" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer" unique_id=1780604771]
+layout_mode = 2
+value = 50.0
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer" unique_id=1305865905]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 50.0
+
+[node name="button_save_exit" type="Button" parent="Control/VBoxContainer" unique_id=2077763920]
+layout_mode = 2
+text = "Speichern und Verlassen"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="item_selected" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/ScreenMode/OptionButton" to="." method="on_window_screen_setting"]
+[connection signal="pressed" from="Control/VBoxContainer/button_save_exit" to="." method="on_button_save_exit_pressed"]

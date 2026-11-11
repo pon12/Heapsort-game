@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://8okqc77v67a0"]
+
+[ext_resource type="Script" uid="uid://d0fllr4wl0fu6" path="res://Scripte/credits.gd" id="1_gcfnt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0h2ro"]
+font_size = 30
+
+[node name="Credits" type="Window" unique_id=253413779]
+oversampling_override = 1.0
+title = "Einstellungen"
+initial_position = 4
+size = Vector2i(1000, 600)
+transient = true
+unresizable = true
+borderless = true
+content_scale_mode = 1
+content_scale_aspect = 4
+accessibility_name = "Einstellungen"
+script = ExtResource("1_gcfnt")
+
+[node name="Control" type="Panel" parent="." unique_id=909851582]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 298.0
+offset_top = 78.0
+offset_right = -248.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=997455665]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control/VBoxContainer" unique_id=1467519091]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/Panel" unique_id=1528509172]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_0h2ro")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/VBoxContainer" unique_id=104643345]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/ScrollContainer" unique_id=2060583347]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=1107509347]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Alina Felber
+Felix Kühn
+Janic Hebenstreit
+Josef Peinelt
+Maxim Söhnel
+Pontus Wild
+Noah Schubart"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="button_save_exit" type="Button" parent="Control/VBoxContainer" unique_id=726158560]
+layout_mode = 2
+text = "Zurück zum Hauptmenü"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="Control/VBoxContainer/button_save_exit" to="." method="on_button_save_exit_pressed"]

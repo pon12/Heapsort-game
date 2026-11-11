@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cw5avt845xtca" path="res://Scripte/main_menu.gd" id="1_0mtuo"]
 [ext_resource type="PackedScene" uid="uid://ciu1bp2sicbv4" path="res://Szenen/settings.tscn" id="2_d4h0r"]
+[ext_resource type="PackedScene" uid="uid://8okqc77v67a0" path="res://Szenen/credits.tscn" id="3_80hhx"]
 
-[node name="MainMenu" type="Control" unique_id=548772848 node_paths=PackedStringArray("settings")]
+[node name="MainMenu" type="Control" unique_id=548772848 node_paths=PackedStringArray("settings", "credits")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,8 +13,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0mtuo")
 settings = NodePath("Settings")
+credits = NodePath("Credits")
 
 [node name="Settings" parent="." unique_id=253413779 instance=ExtResource("2_d4h0r")]
+visible = false
+
+[node name="Credits" parent="." unique_id=1763622065 instance=ExtResource("3_80hhx")]
+visible = false
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1730653232]
 layout_mode = 1
@@ -63,3 +69,5 @@ text = "Spiel Beenden"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/button_play_yourself" to="." method="on_button_play_yourself_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/button_settings" to="." method="on_button_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/button_credits" to="." method="on_button_credits_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/button_end_game" to="." method="on_button_end_game_pressed"]
