@@ -12,13 +12,12 @@ var steps: Array[Dictionary] = []
 var step_index: int = 0
 var sorted_target_werte: Array = []
 
-
 var sortierung_abgeschlossen: bool = false
 
-
-var sortierung_abgeschlossen: bool = false
 var socken_array: Array[int] = []
 var zufallsgenerator := RandomNumberGenerator.new()
+
+var sorted_indices: Array[int] = []
 func _ready() -> void:
 	# Slots finden und registrieren
 	for i in range(1, 16):
@@ -37,10 +36,6 @@ func _ready() -> void:
 			var kugel := node as TreeNode
 			kugel.add_to_group("tree_balls")
 			kugeln.append(kugel)
-
-	if kugeln.size() != 7:
-		push_error("Es wurden 7 Kugeln erwartet, aber %d gefunden." % kugeln.size())
-		return
 
 	# Slots passend zur Kugelanzahl anordnen
 	ordne_slots_an(kugeln.size())
@@ -73,10 +68,6 @@ func _process(_delta: float) -> void:
 	for kugel in kugeln:
 		kugel.check_heapsort_condition()
 
-
-		x = kugel.right_lichterkette
-		if is_instance_valid(x):
-			x.set_done()
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
