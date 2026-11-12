@@ -21,7 +21,7 @@ var zufallsgenerator := RandomNumberGenerator.new()
 
 var sorted_indices: Array[int] = []
 func _ready() -> void:
-	zustand_geaendert.connect(socken.aktualisieren)
+	#zustand_geaendert.connect(socken.aktualisieren)
 	# Slots finden und registrieren
 	for i in range(1, 16):
 		var slot := get_node_or_null("Sprite2D/Slot" + str(i)) as Marker2D
@@ -127,7 +127,7 @@ func on_manual_move() -> void:
 	sortierung_abgeschlossen = false
 	_prepare_algorithm()
 	#print("Manuelle Aenderung erkannt. Simulation zurueckgesetzt.")
-
+	melde_zustand()
 	_aktualisiere_lichterketten()
 
 func next_step() -> void:
@@ -177,6 +177,7 @@ func next_step() -> void:
 			pruefe_sortierung()
 
 	_aktualisiere_lichterketten()
+	melde_zustand()
 	step_index += 1
 
 
@@ -454,4 +455,6 @@ func melde_zustand() -> void:
 	for kugel: TreeNode in kugeln:
 		werte.append(kugel.number)
 	print("melde: ", werte, " sortiert: ", sorted_indices)
+	socken.aktualisieren(werte, sorted_indices)
+	print("TEST DU HS")
 	zustand_geaendert.emit(werte, sorted_indices)
