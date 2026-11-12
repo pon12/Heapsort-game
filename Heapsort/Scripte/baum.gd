@@ -4,8 +4,6 @@ extends Node2D
 ## Container, in dem die Socken erzeugt werden.
 @export var socken: SockArray
 
-signal zustand_geaendert(werte: Array[int], sortiert: Array[int])
-
 var lichterkette = preload("res://Objekte/lichterkette.tscn")
 var kugel_szene: PackedScene = preload("res://Objekte/tree_node.tscn")
 
@@ -19,9 +17,7 @@ var sortierung_abgeschlossen: bool = false
 
 var zufallsgenerator := RandomNumberGenerator.new()
 
-var sorted_indices: Array[int] = []
 func _ready() -> void:
-	#zustand_geaendert.connect(socken.aktualisieren)
 	# Slots finden und registrieren
 	for i in range(1, 16):
 		var slot := get_node_or_null("Sprite2D/Slot" + str(i)) as Marker2D
@@ -52,7 +48,6 @@ func _ready() -> void:
 	baue_verbindungen_neu()
 	# Heapsort vorbereiten
 	_prepare_algorithm()
-	melde_zustand()
 
 func _process(_delta: float) -> void:
 	if sortierung_abgeschlossen:
@@ -121,13 +116,14 @@ func _prepare_algorithm() -> void:
 	
 	sorted_target_werte = werte.duplicate()
 	sorted_target_werte.sort()
+	
+	socken.aufbauen(werte.size())
 
 
 func on_manual_move() -> void:
 	sortierung_abgeschlossen = false
 	_prepare_algorithm()
 	#print("Manuelle Aenderung erkannt. Simulation zurueckgesetzt.")
-	melde_zustand()
 	_aktualisiere_lichterketten()
 
 func next_step() -> void:
@@ -171,13 +167,20 @@ func next_step() -> void:
 				kugeln[a].set_highlight(true)
 				kugeln[b].set_highlight(true)
 				
+		"sorted":
+			var index: int = int(step["index"])
+			var value: Variant = step["value"]
+			var aktuelle_werte: Array[int] = []
+			for kugel in kugeln:
+				aktuelle_werte.append(int(kugel.get("number")))
+			heap_sort.element_sorted.emit(value, index, aktuelle_werte)
+				
 
 		"done":
 			#print("--- Simulation beendet ---")
 			pruefe_sortierung()
 
 	_aktualisiere_lichterketten()
-	melde_zustand()
 	step_index += 1
 
 
@@ -217,16 +220,9 @@ func aktualisiere_nach_aktion() -> void:
 		aktuelle_werte.append(int(kugel.get("number")))
 	
 
-func _mark_sorted(indices: Array[int]) -> void:
-	if indices.is_empty():
-		return
-	for idx in indices:
-		sorted_indices.append(idx)
-	# Merken, welche Action diese Markierungen erzeugt hat (fuer Zurueck)
-	if not ActionStack.action_list.is_empty():
-		ActionStack.action_list.back().marked_sorted = indices
 
-# Naechster Tausch-Schritt ab step_index (compare/info werden uebersprungen).
+
+## Naechster Tausch-Schritt ab step_index (compare/info werden uebersprungen).
 func _find_next_swap_step() -> int:
 	for j in range(step_index, steps.size()):
 		if str(steps[j].get("type", "")) == "swap":
@@ -249,10 +245,6 @@ func _consume_manual_step(j: int) -> void:
 	kugeln[int(step["a"])].set_highlight(true)
 	kugeln[int(step["b"])].set_highlight(true)
 
-	var neu: Array[int] = []
-	for idx in step.get("sorted", []):
-		neu.append(int(idx))
-	_mark_sorted(neu)
 	pruefe_sortierung()
 
 func _zeige_meldung(text: String) -> void:
@@ -289,7 +281,6 @@ func setze_zahlen(werte: Array[int]) -> void:
 	baue_verbindungen_neu()
 
 	sortierung_abgeschlossen = false
-	sorted_indices.clear()
 	
 	_prepare_algorithm()
 
@@ -447,14 +438,6 @@ func ordne_slots_an(anzahl: int) -> void:
 
 		slots[i].position = Vector2(x, y)
 
-## Meldet den aktuellen Zustand an die Socken.
-func melde_zustand() -> void:
-	if socken.get_child_count() != kugeln.size():
-		socken.aufbauen(kugeln.size())
-	var werte: Array[int] = []
-	for kugel: TreeNode in kugeln:
-		werte.append(kugel.number)
-	print("melde: ", werte, " sortiert: ", sorted_indices)
-	socken.aktualisieren(werte, sorted_indices)
-	print("TEST DU HS")
-	zustand_geaendert.emit(werte, sorted_indices)
+
+func get_kugeln_array() -> Array[TreeNode]:
+	return kugeln

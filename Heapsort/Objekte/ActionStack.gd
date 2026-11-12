@@ -6,7 +6,6 @@ extends Object
 ##Mithilfe von [Action] strukturen.
 static var action_list: Array[Action] = [] ##[Action] Array um Aktionen festzuhalten.
 
-
 ##Aktion zum Stack hinzufügen.
 static func push_action(action: Action) -> void:
 	action_list.push_back(action)
@@ -15,13 +14,17 @@ static func push_action(action: Action) -> void:
 ##Aktion rückgängig machen.
 static func pop_action() -> void:
 	if action_list.is_empty() == false:
-		var tree = action_list.back().first_node.get_parent() #für Auto-Algo zum zurücksetzten (cursed)
+		var tree: Node2D = action_list.back().first_node.get_parent() #für Auto-Algo zum zurücksetzten (cursed)
 		print("POP 1: " , action_list.back().first_node.number, " 2: ", action_list.back().second_node.number)
 		action_list.back().first_node.swap_back(action_list.back().second_node)
 		action_list.pop_back()
 
 		tree.on_manual_move()
-
+		
+		var szene_tree: SceneTree = Engine.get_main_loop() as SceneTree
+		if tree != null:
+			var sock_array:SockArray  = szene_tree.get_nodes_in_group("Socken")[0] as SockArray
+			sock_array.on_pop_action()
 	else:
 		print("action_list is empty")
 

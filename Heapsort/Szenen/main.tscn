@@ -13,13 +13,14 @@ position = Vector2(354, 255)
 heap_sort = NodePath("../HeapSort")
 socken = NodePath("../Socken")
 
-[node name="Socken" type="HBoxContainer" parent="." unique_id=769964590]
+[node name="Socken" type="HBoxContainer" parent="." unique_id=769964590 node_paths=PackedStringArray("baum") groups=["Socken"]]
 offset_left = 636.0
 offset_top = 29.0
 offset_right = 997.0
 offset_bottom = 129.0
 script = ExtResource("2_pw8tf")
 sock_szene = ExtResource("3_ldghw")
+baum = NodePath("../Baum")
 
 [node name="UI" parent="." unique_id=2099053967 node_paths=PackedStringArray("tree") instance=ExtResource("2_ldghw")]
 anchors_preset = 0
@@ -30,3 +31,5 @@ grow_vertical = 1
 tree = NodePath("../Baum")
 
 [node name="HeapSort" parent="." unique_id=856378362 instance=ExtResource("5_evpwq")]
+
+[connection signal="element_sorted" from="HeapSort" to="Socken" method="on_heap_sort_element_sorted"]

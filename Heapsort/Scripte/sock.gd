@@ -9,7 +9,9 @@ extends Control
 @export var textur_voll: Texture2D
 
 ## Zeigt Wert und Zustand (voll = sortiert) der Socke an.
-func anzeigen(wert: int, sortiert: bool) -> void:
-	print("anzeigen: ", wert, " ", sortiert)
+func set_value(wert: int) -> void:
+	print("anzeigen: ", wert)
 	label.text = str(wert)
-	sock_pic.texture = textur_voll if sortiert else textur_leer
+
+func set_sorted(sorted: bool) -> void:
+	sock_pic.texture = textur_voll if sorted else textur_leer
