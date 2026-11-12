@@ -1,19 +1,13 @@
+class_name Sock
 extends Control
 
-@onready var label: Label = $Label
-@onready var socken_bild: TextureRect = $SockPic
+## Grafik der leeren Socke.
+@export var textur_leer: Texture2D
+## Grafik der gefüllten Socke.
+@export var textur_voll: Texture2D
 
-# Hier kannst du die Bilder direkt im Inspector zuweisen oder per Code laden
-@export var normal_textur: Texture2D
-@export var sortiert_textur: Texture2D
-
-func set_value(val: int) -> void:
-	if label:
-		label.text = str(val)
-
-func set_sorted(is_sorted: bool) -> void:
-	if socken_bild:
-		if is_sorted and sortiert_textur:
-			socken_bild.texture = sortiert_textur
-		elif not is_sorted and normal_textur:
-			socken_bild.texture = normal_textur
+## Zeigt Wert und Zustand (voll = sortiert) der Socke an.
+func anzeigen(wert: int, sortiert: bool) -> void:
+	print("anzeigen: ", wert, " ", sortiert)
+	$Label.text = str(wert)
+	$SockPic.texture = textur_voll if sortiert else textur_leer

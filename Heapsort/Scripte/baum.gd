@@ -1,7 +1,10 @@
 extends Node2D
 @onready var lichterketten_head:Node2D = get_node("LichterKetten")
-@onready var sock_array_ui: HBoxContainer = $"../SockArrayUI"
 @export var heap_sort: HeapSort
+## Container, in dem die Socken erzeugt werden.
+@export var socken: SockArray
+
+signal zustand_geaendert(werte: Array[int], sortiert: Array[int])
 
 var lichterkette = preload("res://Objekte/lichterkette.tscn")
 var kugel_szene: PackedScene = preload("res://Objekte/tree_node.tscn")
@@ -14,11 +17,11 @@ var sorted_target_werte: Array = []
 
 var sortierung_abgeschlossen: bool = false
 
-var socken_array: Array[int] = []
 var zufallsgenerator := RandomNumberGenerator.new()
 
 var sorted_indices: Array[int] = []
 func _ready() -> void:
+	zustand_geaendert.connect(socken.aktualisieren)
 	# Slots finden und registrieren
 	for i in range(1, 16):
 		var slot := get_node_or_null("Sprite2D/Slot" + str(i)) as Marker2D
@@ -47,20 +50,9 @@ func _ready() -> void:
 
 	# Eltern-Kind-Verbindungen und Lichterketten erstellen
 	baue_verbindungen_neu()
-
-	# Socken beim Start füllen
-	if sock_array_ui:
-		var start_werte: Array = []
-		for kugel in kugeln:
-			start_werte.append(int(kugel.number))
-		sock_array_ui.call_deferred("initialize", start_werte)
-
-	aktualisiere_socken_array()
-
 	# Heapsort vorbereiten
 	_prepare_algorithm()
-	aktualisiere_socken_array()
-	_prepare_algorithm()
+	melde_zustand()
 
 func _process(_delta: float) -> void:
 	if sortierung_abgeschlossen:
@@ -104,7 +96,6 @@ func _sync_order_from_slots() -> void:
 	for kugel in kugeln:
 		kugel.rest_position = kugel.global_position
 		
-	aktualisiere_socken_array()
 
 func _prepare_algorithm() -> void:
 	print("Kugeln im Algorithmus: ", kugeln.size())
@@ -130,20 +121,12 @@ func _prepare_algorithm() -> void:
 	
 	sorted_target_werte = werte.duplicate()
 	sorted_target_werte.sort()
-	
-	if sock_array_ui:
-		sock_array_ui.update_values(werte)
 
 
 func on_manual_move() -> void:
 	sortierung_abgeschlossen = false
 	_prepare_algorithm()
 	#print("Manuelle Aenderung erkannt. Simulation zurueckgesetzt.")
-	if sock_array_ui:
-		var aktuelle_werte: Array = []
-		for kugel in kugeln:
-			aktuelle_werte.append(int(kugel.get("number")))
-		sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
 
 	_aktualisiere_lichterketten()
 
@@ -188,12 +171,6 @@ func next_step() -> void:
 				kugeln[a].set_highlight(true)
 				kugeln[b].set_highlight(true)
 				
-				if sock_array_ui:
-					var aktuelle_werte: Array = []
-					for kug in kugeln:
-						aktuelle_werte.append(int(kug.get("number")))
-					sock_array_ui.update_values(aktuelle_werte)
-					sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
 
 		"done":
 			#print("--- Simulation beendet ---")
@@ -225,9 +202,6 @@ func pruefe_sortierung() -> bool:
 
 	if korrekt:
 		#print("RICHTIG! Die Zahlen sind aufsteigend sortiert.")
-		if sock_array_ui:
-			for i in range(kugeln.size()):
-				sock_array_ui.set_sorted_state(i)
 		_aktualisiere_lichterketten()
 		return true
 	else:
@@ -241,9 +215,6 @@ func aktualisiere_nach_aktion() -> void:
 	for kugel in kugeln:
 		aktuelle_werte.append(int(kugel.get("number")))
 	
-	if sock_array_ui:
-		sock_array_ui.update_values(aktuelle_werte)
-		sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
 
 func _mark_sorted(indices: Array[int]) -> void:
 	if indices.is_empty():
@@ -253,19 +224,6 @@ func _mark_sorted(indices: Array[int]) -> void:
 	# Merken, welche Action diese Markierungen erzeugt hat (fuer Zurueck)
 	if not ActionStack.action_list.is_empty():
 		ActionStack.action_list.back().marked_sorted = indices
-
-
-# Baut die Socken komplett aus den Daten auf: Werte + sorted_indices.
-func _refresh_socks() -> void:
-	if sock_array_ui == null:
-		return
-	var werte: Array = []
-	for kugel in kugeln:
-		werte.append(int(kugel.get("number")))
-	sock_array_ui.update_values(werte)
-	sock_array_ui.reset_sorted()
-	for i in sorted_indices:
-		sock_array_ui.set_sorted_state(i)
 
 # Naechster Tausch-Schritt ab step_index (compare/info werden uebersprungen).
 func _find_next_swap_step() -> int:
@@ -294,19 +252,10 @@ func _consume_manual_step(j: int) -> void:
 	for idx in step.get("sorted", []):
 		neu.append(int(idx))
 	_mark_sorted(neu)
-	_refresh_socks()
 	pruefe_sortierung()
 
 func _zeige_meldung(text: String) -> void:
 	print(text)
-
-func aktualisiere_socken_array() -> void:
-	socken_array.clear()
-
-	for kugel in kugeln:
-		socken_array.append(kugel.number)
-
-	#print("Socken-Array: ", socken_array)    
 	
 func generiere_zufallszahlen(anzahl: int) -> Array[int]:
 	var zahlen: Array[int] = []
@@ -340,11 +289,7 @@ func setze_zahlen(werte: Array[int]) -> void:
 
 	sortierung_abgeschlossen = false
 	sorted_indices.clear()
-
-	# Socken in der passenden Anzahl neu erstellen
-	sock_array_ui.initialize(werte)
 	
-	aktualisiere_socken_array()
 	_prepare_algorithm()
 
 
@@ -500,3 +445,13 @@ func ordne_slots_an(anzahl: int) -> void:
 			)
 
 		slots[i].position = Vector2(x, y)
+
+## Meldet den aktuellen Zustand an die Socken.
+func melde_zustand() -> void:
+	if socken.get_child_count() != kugeln.size():
+		socken.aufbauen(kugeln.size())
+	var werte: Array[int] = []
+	for kugel: TreeNode in kugeln:
+		werte.append(kugel.number)
+	print("melde: ", werte, " sortiert: ", sorted_indices)
+	zustand_geaendert.emit(werte, sorted_indices)

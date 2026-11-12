@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://boi3ewrj2pxmc" path="res://Scripte/sock.gd" id="1_0td4i"]
 [ext_resource type="Texture2D" uid="uid://dknveg17s4ys6" path="res://Assets/Socke.png" id="2_w38xl"]
-[ext_resource type="Texture2D" uid="uid://ch32tsiqr17qo" path="res://Assets/Socke_Voll.png" id="3_w38xl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2qlpe"]
 font_size = 30
@@ -14,8 +13,6 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_0td4i")
-normal_textur = ExtResource("2_w38xl")
-sortiert_textur = ExtResource("3_w38xl")
 
 [node name="SockPic" type="TextureRect" parent="." unique_id=539412283]
 layout_mode = 0
@@ -30,7 +27,6 @@ offset_left = 37.0
 offset_top = 37.0
 offset_right = 54.0
 offset_bottom = 79.0
-text = "1"
 label_settings = SubResource("LabelSettings_2qlpe")
 horizontal_alignment = 1
 vertical_alignment = 1
