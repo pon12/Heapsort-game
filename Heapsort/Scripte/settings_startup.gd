@@ -12,7 +12,17 @@ func _ready() -> void:
 
 func apply_all_settings() -> void:
 	apply_display()
+	apply_audio()
 
+func apply_audio() -> void:
+		var muted: bool = get_setting("audio", "muted", false)
+		var volume: float = float(get_setting("audio", "volume", 50.0))
+
+		AudioServer.set_bus_mute(0, muted)
+
+		if is_instance_valid(MusicManager):
+			MusicManager.volume_linear = volume / 100.0
+	
 func apply_display() -> void:
 	var fullscreen: bool = get_setting("display", "fullscreen", false)
 	if fullscreen == true:

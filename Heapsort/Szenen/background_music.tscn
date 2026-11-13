@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bmnaaqg28dglj"]
+
+[ext_resource type="AudioStream" uid="uid://glndnvq5o4cx" path="res://Audio/Hollow Knight Cornifer Voice.mp3" id="1_5b1n0"]
+[ext_resource type="Script" uid="uid://cf58l3kwxv648" path="res://Szenen/music_manager.gd" id="2_d7vc2"]
+[ext_resource type="AudioStream" uid="uid://c186k4m4d3n2x" path="res://Audio/Hollow Knight Hornet Voice.mp3" id="3_ahet2"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" unique_id=316331339]
+stream = ExtResource("1_5b1n0")
+volume_db = -10.947
+autoplay = true
+parameters/looping = true
+script = ExtResource("2_d7vc2")
+songs = Array[AudioStream]([ExtResource("1_5b1n0"), ExtResource("3_ahet2")])

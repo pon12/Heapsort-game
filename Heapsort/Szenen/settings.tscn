@@ -148,10 +148,21 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 50.0
 
+[node name="MuteButton" type="CheckBox" parent="Control/VBoxContainer/ScrollContainer/VBoxContainer" unique_id=992005127]
+layout_mode = 2
+text = "Musik Stummschalten"
+alignment = 1
+icon_alignment = 1
+
 [node name="button_save_exit" type="Button" parent="Control/VBoxContainer" unique_id=2077763920]
 layout_mode = 2
 text = "Speichern und Verlassen"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="item_selected" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/ScreenMode/OptionButton" to="." method="on_window_screen_setting"]
+[connection signal="item_selected" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Background_Music/OptionButton" to="." method="_on_song_selected"]
+[connection signal="value_changed" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength/HBoxContainer/HSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/SpinBox" to="." method="_on_music_spinbox_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/HSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="toggled" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]
 [connection signal="pressed" from="Control/VBoxContainer/button_save_exit" to="." method="on_button_save_exit_pressed"]
