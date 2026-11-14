@@ -5,6 +5,8 @@ extends Window
 @onready var song_button: OptionButton = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Background_Music/OptionButton
 @onready var music_slider: HSlider = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength/HBoxContainer/HSlider
 @onready var music_spinbox: SpinBox = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength/HBoxContainer/SpinBox
+@onready var sfx_slider: HSlider = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/HSlider
+@onready var sfx_spinbox: SpinBox = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/SpinBox
 
 func _ready() -> void:
 	match_config()
@@ -22,6 +24,11 @@ func match_config() -> void:
 	var volume: float = float(SettingsStartup.get_setting("audio", "volume", 50.0))
 	music_slider.set_value_no_signal(volume)
 	music_spinbox.set_value_no_signal(volume)
+	var sfx_volume: float = float(
+	SettingsStartup.get_setting("audio", "sfx_volume", 50.0)
+)
+	sfx_slider.set_value_no_signal(sfx_volume)
+	sfx_spinbox.set_value_no_signal(sfx_volume)
 
 func _on_close_requested() -> void:
 	visible = false
@@ -67,3 +74,13 @@ func _on_music_spinbox_value_changed(value: float) -> void:
 	music_slider.set_value_no_signal(value)
 	SettingsStartup.set_setting("audio", "volume", value)
 	SettingsStartup.apply_audio()
+	
+func _on_sfx_slider_value_changed(value: float) -> void:
+	sfx_spinbox.set_value_no_signal(value)
+	SettingsStartup.set_setting("audio", "sfx_volume", value)
+	SettingsStartup.apply_sfx()
+
+func _on_sfx_spinbox_value_changed(value: float) -> void:
+	sfx_slider.set_value_no_signal(value)
+	SettingsStartup.set_setting("audio", "sfx_volume", value)
+	SettingsStartup.apply_sfx()

@@ -163,6 +163,7 @@ text = "Speichern und Verlassen"
 [connection signal="item_selected" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Background_Music/OptionButton" to="." method="_on_song_selected"]
 [connection signal="value_changed" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength/HBoxContainer/HSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/SpinBox" to="." method="_on_music_spinbox_value_changed"]
-[connection signal="value_changed" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/HSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/SpinBox" to="." method="_on_sfx_spinbox_value_changed"]
+[connection signal="value_changed" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/HSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="toggled" from="Control/VBoxContainer/ScrollContainer/VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]
 [connection signal="pressed" from="Control/VBoxContainer/button_save_exit" to="." method="on_button_save_exit_pressed"]

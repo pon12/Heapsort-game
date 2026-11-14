@@ -8,6 +8,7 @@
 stream = ExtResource("1_5b1n0")
 volume_db = -10.947
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 script = ExtResource("2_d7vc2")
 songs = Array[AudioStream]([ExtResource("1_5b1n0"), ExtResource("3_ahet2")])

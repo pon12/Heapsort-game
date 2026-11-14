@@ -13,6 +13,8 @@ func _ready() -> void:
 func apply_all_settings() -> void:
 	apply_display()
 	apply_audio()
+	apply_sfx()
+
 
 func apply_audio() -> void:
 		var muted: bool = get_setting("audio", "muted", false)
@@ -41,3 +43,16 @@ func save_settings() -> void:
 	var error: Error = config.save(PATH)
 	if error != OK:
 		push_error("Settings: save failed (error %d)" % error)
+
+func apply_sfx() -> void:
+	var volume: float = float(get_setting("audio", "sfx_volume", 50.0))
+	var bus_index: int = AudioServer.get_bus_index("SFX")
+
+	if bus_index == -1:
+		push_warning("Audiobus SFX wurde nicht gefunden.")
+		return
+
+	AudioServer.set_bus_volume_linear(
+		bus_index,
+		clampf(volume / 100.0, 0.0, 1.0)
+	)
