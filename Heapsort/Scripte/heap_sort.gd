@@ -22,7 +22,7 @@ func create_steps(input: Array) -> Array[Dictionary]:
 	})
 
 	# Letzten Elternknoten zuerst bearbeiten.
-	for start in range(n / 2 - 1, -1, -1):
+	for start in range(int(n / 2.0) - 1, -1, -1):
 		steps.append({
 			"type": "info",
 			"message": "Pruefe Teilbaum mit Wurzel an Index %d." % start
@@ -43,8 +43,15 @@ func create_steps(input: Array) -> Array[Dictionary]:
 			"message": "Tausche groesstes Element %d an Index %d."
 				% [values[0], end]
 		})
-
+		
 		_swap(values, 0, end)
+		
+		steps.append({
+			"type": "sorted",
+			"index": end,
+			"value": values[end],
+			"message": "Element %d ist an Index %d final sortiert." % [values[end], end]
+		})
 
 		steps.append({
 			"type": "info",
@@ -53,6 +60,14 @@ func create_steps(input: Array) -> Array[Dictionary]:
 
 		_sift_down_steps(values, 0, end, steps, "Rest-Heap")
 
+	if n > 0:
+		steps.append({
+			"type": "sorted",
+			"index": 0,
+			"value": values[0],
+			"message": "Element %d ist an Index 0 final sortiert." % values[0]
+		})
+		
 	steps.append({
 		"type": "done",
 		"message": "Heap Sort abgeschlossen."
@@ -68,7 +83,7 @@ func sort(input: Array) -> Array:
 	sort_started.emit(input.duplicate())
 
 	# Build the max-heap.
-	for start in range(n / 2 - 1, -1, -1):
+	for start in range(int(n / 2.0) - 1, -1, -1):
 		_sift_down(values, start, n)
 
 	max_heap_created.emit(values.duplicate())
@@ -114,7 +129,7 @@ func _sift_down(values: Array, root: int, end_exclusive: int) -> void:
 		_swap(values, parent, largest)
 		values_swapped.emit(
 			parent, largest,
-			values[largest], values[parent],
+			values[parent], values[largest],
 			values.duplicate()
 		)
 		parent = largest
