@@ -14,8 +14,8 @@ offset_right = 1518.0
 offset_bottom = 736.0
 texture = ExtResource("1_ndjl2")
 
-[node name="Baum" parent="." unique_id=1351460824 node_paths=PackedStringArray("heap_sort") instance=ExtResource("2_ekuxy")]
-position = Vector2(354, 255)
+[node name="Baum" parent="." unique_id=1351460824 node_paths=PackedStringArray("heap_sort", "socken") instance=ExtResource("2_ekuxy")]
+position = Vector2(347, 362)
 heap_sort = NodePath("../HeapSort")
 socken = NodePath("../Socken")
 
