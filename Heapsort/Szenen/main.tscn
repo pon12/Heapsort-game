@@ -32,4 +32,5 @@ tree = NodePath("../Baum")
 
 [node name="HeapSort" parent="." unique_id=856378362 instance=ExtResource("5_evpwq")]
 
+[connection signal="element_sorted" from="HeapSort" to="Baum" method="on_heap_sort_element_sorted"]
 [connection signal="element_sorted" from="HeapSort" to="Socken" method="on_heap_sort_element_sorted"]
