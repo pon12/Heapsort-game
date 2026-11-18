@@ -7,26 +7,39 @@ extends HBoxContainer
 ##0 = Nichts sortiert 3 = die letzten 3 elemente sind sortiert
 var sorted_amount: int = 0
 
-## Erzeugt die Socken neu und entfernt vorher alle bisherigen.
-func aufbauen(anzahl: int) -> void:
-	for kind: Node in get_children():
-		kind.queue_free()
-	for i: int in anzahl:
+func ensure_count(anzahl: int) -> void:
+	while get_child_count() > anzahl:
+		var sock := get_child(get_child_count() - 1)
+		remove_child(sock)
+		sock.free()
+
+	while get_child_count() < anzahl:
 		add_child(sock_szene.instantiate())
 
-## Aktualisiert alle Socken passend zum Zustand des Baums.
-func aktualisieren(werte: Array[int]) -> void:
-	print("aktualisieren: ", werte, " Kinder: ", get_child_count())
-	for i: int in werte.size():
-		var sock: Sock = get_child(i)
-		print("Test: " , sock)
-		sock.set_value(i)
 
-	var anzahl: int = get_child_count()
-	var sortiert: int = clampi(sorted_amount, 0, anzahl)
-	for i: int in range(anzahl - sortiert, anzahl):
-		var sock: Sock = get_child(i)
-		sock.set_sorted(true)
+func aufbauen(anzahl: int) -> void:
+	ensure_count(anzahl)
+
+func aktualisieren(werte: Array[int]) -> void:
+	ensure_count(werte.size())
+
+	var erwartet: Array[int] = []
+	for wert in werte:
+		erwartet.append(wert)
+	erwartet.sort()
+
+	var first_sorted := werte.size()
+	for i in range(werte.size() - 1, -1, -1):
+		if werte[i] != erwartet[i]:
+			break
+		first_sorted = i
+
+	for i in range(werte.size()):
+		var sock := get_child(i) as Sock
+		sock.set_value(werte[i], i)
+		sock.set_sorted(i >= first_sorted)
+
+
 
 func set_all_sorted() -> void:
 	for sock in get_children():

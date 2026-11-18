@@ -102,9 +102,14 @@ func _prepare_algorithm() -> void:
 	_sync_order_from_slots()
 	_clear_highlights()
 
-	var werte: Array = []
+	var werte: Array[int] = []
 	for kugel in kugeln:
-		werte.append(int(kugel.get("number")))
+		werte.append(int(kugel.number))
+
+	socken.sorted_amount = 0
+	if socken != null:
+		socken.ensure_count(werte.size())
+		socken.aktualisieren(werte)
 
 	steps = heap_sort.create_steps(werte)
 	step_index = 0
@@ -120,20 +125,25 @@ func _prepare_algorithm() -> void:
 	sorted_target_werte = werte.duplicate()
 	sorted_target_werte.sort()
 	
-	socken.aufbauen(werte.size())
 
 
 func on_manual_move() -> void:
 	sortierung_abgeschlossen = false
+
+	if socken != null:
+		socken.sorted_amount = 0
+
 	_prepare_algorithm()
-	#print("Manuelle Aenderung erkannt. Simulation zurueckgesetzt.")
+	aktualisiere_nach_aktion()
 	_aktualisiere_lichterketten()
+
 
 func next_step() -> void:
 	if ActionStack.has_redo():
 		ActionStack.redo_action()
+		aktualisiere_nach_aktion()
 		return
-
+		
 	if step_index >= steps.size():
 		return
 	if step_index >= steps.size():
@@ -175,6 +185,13 @@ func next_step() -> void:
 
 				kugeln[a].set_highlight(true)
 				kugeln[b].set_highlight(true)
+				
+				if socken != null:
+					var aktuelle_werte: Array[int] = []
+					for kugel in kugeln:
+						aktuelle_werte.append(kugel.number)
+					socken.aktualisieren(aktuelle_werte)
+
 				
 		"sorted":
 			var index: int = int(step["index"])
@@ -230,13 +247,15 @@ func pruefe_sortierung() -> bool:
 
 	return korrekt
 
-# Aktualisiert Werte und Socken-Zustand nach außen hin (z.B. für den Zurück-Button)
 func aktualisiere_nach_aktion() -> void:
 	_sync_order_from_slots()
-	var aktuelle_werte: Array = []
+
+	var aktuelle_werte: Array[int] = []
 	for kugel in kugeln:
-		aktuelle_werte.append(int(kugel.get("number")))
-	
+		aktuelle_werte.append(int(kugel.number))
+
+	if socken != null:
+		socken.aktualisieren(aktuelle_werte)
 
 
 
