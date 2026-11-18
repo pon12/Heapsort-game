@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://dgkdwaql584bm" path="res://Assets/Kugel_Rot.png" id="3_pnr6q"]
 [ext_resource type="Texture2D" uid="uid://bmh7qter5axtq" path="res://Assets/Kugel_Gelb.png" id="4_pnr6q"]
 
+[sub_resource type="GDScript" id="GDScript_pnr6q"]
+script/source = "extends Node2D
+"
+
 [node name="Baum" type="Node2D" unique_id=1351460824]
 position = Vector2(495, 303)
 script = ExtResource("1_s6xw5")
@@ -94,6 +98,7 @@ position = Vector2(235.18451, 90.99238)
 
 [node name="LichterKetten" type="Node2D" parent="." unique_id=1763412770]
 position = Vector2(-41, 67)
+script = SubResource("GDScript_pnr6q")
 
 [node name="Label" type="Label" parent="." unique_id=2108081266]
 offset_right = 40.0

@@ -1,30 +1,52 @@
 class_name ActionStack
 extends Object
-##Der Stack für Undo funktionalität. 
-##[method ActionStack.push_action] um eine getätigte Aktion hinzuzufügen,
-##und [method ActionStack.pop_action] um eine Aktion rückgängig zu machen.
-##Mithilfe von [Action] strukturen.
-static var action_list: Array[Action] = [] ##[Action] Array um Aktionen festzuhalten.
 
+static var action_list: Array[Action] = []
+static var redo_list: Array[Action] = []
 
-##Aktion zum Stack hinzufügen.
 static func push_action(action: Action) -> void:
-	action_list.push_back(action)
-	print("PUSH")
-	
-##Aktion rückgängig machen.
+	action_list.append(action)
+	redo_list.clear()
+
+
 static func pop_action() -> void:
-	if action_list.is_empty() == false:
-		var tree = action_list.back().first_node.get_parent() #für Auto-Algo zum zurücksetzten (cursed)
-		print("POP 1: " , action_list.back().first_node.number, " 2: ", action_list.back().second_node.number)
-		action_list.back().first_node.swap_back(action_list.back().second_node)
-		action_list.pop_back()
+	if action_list.is_empty():
+		return
 
-		tree.on_manual_move()
+	var action: Action = action_list.pop_back()
+	action.first_node.swap_back(action.second_node)
+	redo_list.append(action)
+	notify_history_change(action, false)
 
-	else:
-		print("action_list is empty")
 
-static func debug_print_action_list() -> void:
-	for i in action_list:
-		print("1: ", i.first_node.number , " 2:",  i.second_node.number)
+static func redo_action() -> void:
+	if redo_list.is_empty():
+		return
+
+	var action: Action = redo_list.pop_back()
+	action.first_node.swap_back(action.second_node)
+	action_list.append(action)
+	notify_history_change(action, true)
+
+
+static func notify_history_change(action: Action, is_redo: bool) -> void:
+	var tree := action.first_node.get_parent()
+	if tree == null:
+		return
+
+	# Refresh the displayed/logical order, but don't rebuild the algorithm.
+	if tree.has_method("_sync_order_from_slots"):
+		tree.call("_sync_order_from_slots")
+
+	var callback := "on_redo_action" if is_redo else "on_pop_action"
+	if tree.has_method(callback):
+		tree.call(callback)
+	if tree.has_method("pruefe_sortierung"):
+		tree.call("pruefe_sortierung")
+
+static func has_redo() -> bool:
+	return not redo_list.is_empty()
+
+static func clear() -> void:
+	action_list.clear()
+	redo_list.clear()

@@ -1,9 +1,10 @@
 extends Node2D
 @onready var lichterketten_head:Node2D = get_node("LichterKetten")
-@onready var sock_array_ui: HBoxContainer = $"../SockArrayUI"
 @export var heap_sort: HeapSort
+## Container, in dem die Socken erzeugt werden.
+@export var socken: SockArray
 
-var lichterkette = preload("res://Objekte/lichterkette.tscn")
+var lichterkette: PackedScene = preload("res://Objekte/lichterkette.tscn")
 var kugel_szene: PackedScene = preload("res://Objekte/tree_node.tscn")
 
 var kugeln: Array[TreeNode] = []
@@ -12,12 +13,13 @@ var steps: Array[Dictionary] = []
 var step_index: int = 0
 var sorted_target_werte: Array = []
 
+var lichterketten_array: Array[LichterKette] = []
+var lichterketten_sorted: int = 0
+
 var sortierung_abgeschlossen: bool = false
 
-var socken_array: Array[int] = []
 var zufallsgenerator := RandomNumberGenerator.new()
 
-var sorted_indices: Array[int] = []
 func _ready() -> void:
 	# Slots finden und registrieren
 	for i in range(1, 16):
@@ -47,19 +49,7 @@ func _ready() -> void:
 
 	# Eltern-Kind-Verbindungen und Lichterketten erstellen
 	baue_verbindungen_neu()
-
-	# Socken beim Start füllen
-	if sock_array_ui:
-		var start_werte: Array = []
-		for kugel in kugeln:
-			start_werte.append(int(kugel.number))
-		sock_array_ui.call_deferred("initialize", start_werte)
-
-	aktualisiere_socken_array()
-
 	# Heapsort vorbereiten
-	_prepare_algorithm()
-	aktualisiere_socken_array()
 	_prepare_algorithm()
 
 func _process(_delta: float) -> void:
@@ -104,7 +94,6 @@ func _sync_order_from_slots() -> void:
 	for kugel in kugeln:
 		kugel.rest_position = kugel.global_position
 		
-	aktualisiere_socken_array()
 
 func _prepare_algorithm() -> void:
 	print("Kugeln im Algorithmus: ", kugeln.size())
@@ -113,9 +102,14 @@ func _prepare_algorithm() -> void:
 	_sync_order_from_slots()
 	_clear_highlights()
 
-	var werte: Array = []
+	var werte: Array[int] = []
 	for kugel in kugeln:
-		werte.append(int(kugel.get("number")))
+		werte.append(int(kugel.number))
+
+	socken.sorted_amount = 0
+	if socken != null:
+		socken.ensure_count(werte.size())
+		socken.aktualisieren(werte)
 
 	steps = heap_sort.create_steps(werte)
 	step_index = 0
@@ -131,23 +125,27 @@ func _prepare_algorithm() -> void:
 	sorted_target_werte = werte.duplicate()
 	sorted_target_werte.sort()
 	
-	if sock_array_ui:
-		sock_array_ui.update_values(werte)
 
 
 func on_manual_move() -> void:
 	sortierung_abgeschlossen = false
-	_prepare_algorithm()
-	#print("Manuelle Aenderung erkannt. Simulation zurueckgesetzt.")
-	if sock_array_ui:
-		var aktuelle_werte: Array = []
-		for kugel in kugeln:
-			aktuelle_werte.append(int(kugel.get("number")))
-		sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
 
+	if socken != null:
+		socken.sorted_amount = 0
+
+	_prepare_algorithm()
+	aktualisiere_nach_aktion()
 	_aktualisiere_lichterketten()
 
+
 func next_step() -> void:
+	if ActionStack.has_redo():
+		ActionStack.redo_action()
+		aktualisiere_nach_aktion()
+		return
+		
+	if step_index >= steps.size():
+		return
 	if step_index >= steps.size():
 		#print("Simulation abgeschlossen. Druecke P fuer die Sortierpruefung.")
 		return
@@ -188,16 +186,28 @@ func next_step() -> void:
 				kugeln[a].set_highlight(true)
 				kugeln[b].set_highlight(true)
 				
-				if sock_array_ui:
-					var aktuelle_werte: Array = []
-					for kug in kugeln:
-						aktuelle_werte.append(int(kug.get("number")))
-					sock_array_ui.update_values(aktuelle_werte)
-					sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
+				if socken != null:
+					var aktuelle_werte: Array[int] = []
+					for kugel in kugeln:
+						aktuelle_werte.append(kugel.number)
+					socken.aktualisieren(aktuelle_werte)
+
+				
+		"sorted":
+			var index: int = int(step["index"])
+			var value: Variant = step["value"]
+			var aktuelle_werte: Array[int] = []
+
+			for kugel in kugeln:
+				aktuelle_werte.append(kugel.number)
+
+			print("Emitting element_sorted: index=", index, " value=", value)
+			heap_sort.element_sorted.emit(value, index, aktuelle_werte)
 
 		"done":
-			#print("--- Simulation beendet ---")
+			print("Reached done step")
 			pruefe_sortierung()
+
 
 	_aktualisiere_lichterketten()
 	step_index += 1
@@ -211,63 +221,45 @@ func _clear_highlights() -> void:
 func pruefe_sortierung() -> bool:
 	_sync_order_from_slots()
 
-	var werte: Array[int] = []
-	for kugel in kugeln:
-		werte.append(int(kugel.get("number")))
-
-	var korrekt: bool = true
-	for i in range(1, werte.size()):
-		if werte[i - 1] > werte[i]:
+	var korrekt := true
+	for i in range(1, kugeln.size()):
+		if kugeln[i - 1].number > kugeln[i].number:
 			korrekt = false
 			break
 
-	#print("Pruefung der aktuellen Reihenfolge: ", werte)
+	sortierung_abgeschlossen = korrekt
+	update_lichterketten_array()
 
-	if korrekt:
-		#print("RICHTIG! Die Zahlen sind aufsteigend sortiert.")
-		if sock_array_ui:
-			for i in range(kugeln.size()):
-				sock_array_ui.set_sorted_state(i)
-		_aktualisiere_lichterketten()
-		return true
-	else:
-		#print("NOCH NICHT RICHTIG. Die Zahlen sind nicht aufsteigend sortiert.")
-		return false
+	for licht in lichterketten_array:
+		if not is_instance_valid(licht):
+			continue
 
-# Aktualisiert Werte und Socken-Zustand nach außen hin (z.B. für den Zurück-Button)
+		if korrekt:
+			licht.set_done()
+		else:
+			licht.set_unsorted()
+
+	if socken != null:
+		if korrekt and socken.has_method("set_all_sorted"):
+			socken.call("set_all_sorted")
+		elif not korrekt and socken.has_method("set_all_unsorted"):
+			socken.call("set_all_unsorted")
+
+	return korrekt
+
 func aktualisiere_nach_aktion() -> void:
 	_sync_order_from_slots()
-	var aktuelle_werte: Array = []
+
+	var aktuelle_werte: Array[int] = []
 	for kugel in kugeln:
-		aktuelle_werte.append(int(kugel.get("number")))
-	
-	if sock_array_ui:
-		sock_array_ui.update_values(aktuelle_werte)
-		sock_array_ui.check_individual_socks(aktuelle_werte, sorted_target_werte)
+		aktuelle_werte.append(int(kugel.number))
 
-func _mark_sorted(indices: Array[int]) -> void:
-	if indices.is_empty():
-		return
-	for idx in indices:
-		sorted_indices.append(idx)
-	# Merken, welche Action diese Markierungen erzeugt hat (fuer Zurueck)
-	if not ActionStack.action_list.is_empty():
-		ActionStack.action_list.back().marked_sorted = indices
+	if socken != null:
+		socken.aktualisieren(aktuelle_werte)
 
 
-# Baut die Socken komplett aus den Daten auf: Werte + sorted_indices.
-func _refresh_socks() -> void:
-	if sock_array_ui == null:
-		return
-	var werte: Array = []
-	for kugel in kugeln:
-		werte.append(int(kugel.get("number")))
-	sock_array_ui.update_values(werte)
-	sock_array_ui.reset_sorted()
-	for i in sorted_indices:
-		sock_array_ui.set_sorted_state(i)
 
-# Naechster Tausch-Schritt ab step_index (compare/info werden uebersprungen).
+## Naechster Tausch-Schritt ab step_index (compare/info werden uebersprungen).
 func _find_next_swap_step() -> int:
 	for j in range(step_index, steps.size()):
 		if str(steps[j].get("type", "")) == "swap":
@@ -290,23 +282,10 @@ func _consume_manual_step(j: int) -> void:
 	kugeln[int(step["a"])].set_highlight(true)
 	kugeln[int(step["b"])].set_highlight(true)
 
-	var neu: Array[int] = []
-	for idx in step.get("sorted", []):
-		neu.append(int(idx))
-	_mark_sorted(neu)
-	_refresh_socks()
 	pruefe_sortierung()
 
 func _zeige_meldung(text: String) -> void:
 	print(text)
-
-func aktualisiere_socken_array() -> void:
-	socken_array.clear()
-
-	for kugel in kugeln:
-		socken_array.append(kugel.number)
-
-	#print("Socken-Array: ", socken_array)    
 	
 func generiere_zufallszahlen(anzahl: int) -> Array[int]:
 	var zahlen: Array[int] = []
@@ -339,26 +318,13 @@ func setze_zahlen(werte: Array[int]) -> void:
 	baue_verbindungen_neu()
 
 	sortierung_abgeschlossen = false
-	sorted_indices.clear()
-
-	# Socken in der passenden Anzahl neu erstellen
-	sock_array_ui.initialize(werte)
 	
-	aktualisiere_socken_array()
 	_prepare_algorithm()
 
 
 ##DEFINITIV NOCH NICHT FERTIG
 func _aktualisiere_lichterketten() -> void:
-	if sortierung_abgeschlossen:
-		return
-
-	for kugel in kugeln:
-		if is_instance_valid(kugel.left_lichterkette):
-			kugel.left_lichterkette.set_done()
-
-		if is_instance_valid(kugel.right_lichterkette):
-			kugel.right_lichterkette.set_done()
+	set_lichterketten_status_finished()
 
 func passe_kugelanzahl_an(anzahl: int) -> void:
 	if anzahl < 3 or anzahl > 15:
@@ -434,6 +400,7 @@ func baue_verbindungen_neu() -> void:
 				kugeln[i].global_position,
 				kugeln[rechts].global_position
 			)
+	update_lichterketten_array()
 			
 func ordne_slots_an(anzahl: int) -> void:
 	if anzahl < 3 or anzahl > 15:
@@ -500,3 +467,48 @@ func ordne_slots_an(anzahl: int) -> void:
 			)
 
 		slots[i].position = Vector2(x, y)
+
+
+func get_kugeln_array() -> Array[TreeNode]:
+	return kugeln
+
+func update_lichterketten_array() -> void:
+	var children = get_children()
+	lichterketten_array.clear()
+	for child in children:
+		if child.name == "LichterKetten":
+			var children_of_lichterketten = child.get_children()
+			for child2 in children_of_lichterketten:
+				if child2 is LichterKette :
+					lichterketten_array.push_back(child2)
+
+func set_lichterketten_status_finished() -> void:
+	var start := lichterketten_array.size() - 1
+	var stop := maxi(-1, start - lichterketten_sorted)
+	for i in range(start, stop, -1):
+		lichterketten_array[i].set_done()
+
+func on_heap_sort_element_sorted(value: Variant, index: int, values: Array) -> void:
+	lichterketten_sorted += 1
+	set_lichterketten_status_finished()
+	
+func on_pop_action() -> void:
+	lichterketten_sorted -= 1
+	set_lichterketten_status_finished()
+	
+func on_redo_action() -> void:
+	lichterketten_sorted += 1
+	set_lichterketten_status_finished()
+
+
+
+func _markiere_alle_fertig() -> void:
+	update_lichterketten_array()
+	for licht in lichterketten_array:
+		if is_instance_valid(licht):
+			licht.set_done()
+
+	lichterketten_sorted = lichterketten_array.size()
+
+	if socken != null and socken.has_method("set_all_sorted"):
+		socken.call("set_all_sorted")
