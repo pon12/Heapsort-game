@@ -1,20 +1,15 @@
 [gd_scene format=3 uid="uid://3iwmosgrjqnh"]
 
 [ext_resource type="Script" uid="uid://cwcmkxb2wlg86" path="res://Scripte/lichterkette.gd" id="1_i0wa4"]
-[ext_resource type="Texture2D" uid="uid://j2n21bmpgh0y" path="res://Assets/Lichterkette/nicht_Sortiert_1.png" id="2_0swr6"]
-[ext_resource type="Texture2D" uid="uid://cx04esa4yhl32" path="res://Assets/Lichterkette/done_Sortiert_1.png" id="2_cd74e"]
-[ext_resource type="Texture2D" uid="uid://b0rao3r13othe" path="res://Assets/Lichterkette/Sortiert_2.png" id="3_8fac5"]
-[ext_resource type="Texture2D" uid="uid://bs7mx0ojliupb" path="res://Assets/Lichterkette/done_Sortiert_2.png" id="3_db0kr"]
-[ext_resource type="Texture2D" uid="uid://bk7am2g3u8b3q" path="res://Assets/Lichterkette/Sortiert_3.png" id="4_a1aja"]
+[ext_resource type="Texture2D" uid="uid://cbwq3gq6xowsp" path="res://Assets/Lichterkette/array fertig.png" id="2_a1aja"]
+[ext_resource type="Texture2D" uid="uid://4536po155kaq" path="res://Assets/Lichterkette/knoten falsch.png" id="3_8fac5"]
+[ext_resource type="Texture2D" uid="uid://c8anyc821pqxj" path="res://Assets/Lichterkette/knoten sortiert.png" id="4_a1aja"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yux83"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_cd74e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_db0kr")
+"texture": ExtResource("2_a1aja")
 }],
 "loop": 1,
 "name": &"fertig",
@@ -22,16 +17,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_0swr6")
+"texture": ExtResource("3_8fac5")
 }],
 "loop": 1,
 "name": &"nicht_sortiert",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_8fac5")
-}, {
 "duration": 1.0,
 "texture": ExtResource("4_a1aja")
 }],
@@ -45,6 +37,7 @@ scale = Vector2(0.3, 0.3)
 script = ExtResource("1_i0wa4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=357606837]
-position = Vector2(0, 196.66666)
+position = Vector2(-6.666664, 183.33333)
+scale = Vector2(0.47666666, 0.44777775)
 sprite_frames = SubResource("SpriteFrames_yux83")
-animation = &"fertig"
+animation = &"sortiert"
