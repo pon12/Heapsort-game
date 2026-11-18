@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://dclygssrontcp"]
+
+[ext_resource type="Texture2D" uid="uid://bti1doen50xl" path="res://Pfeil_Links_1.png" id="1_ujtki"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1s7yq"]
+texture = ExtResource("1_ujtki")
+
+[resource]
+default_font_size = 48
+Button/styles/normal = SubResource("StyleBoxTexture_1s7yq")

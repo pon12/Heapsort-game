@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bjfpxuukgfjot"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c5mkx"]
+load_path = "res://.godot/imported/Ui_Preset_1.png-8f99834a839c5fbc92f8cd6960a45824.ctex"
+
+[node name="Start-Screen" type="Node2D" unique_id=1347639692]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=397616768]
+offset_right = 2048.0
+offset_bottom = 2048.0
+texture = SubResource("CompressedTexture2D_c5mkx")

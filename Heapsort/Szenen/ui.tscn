@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://pgn1h54fol1a"]
 
 [ext_resource type="Script" uid="uid://dopl8iiscb0fe" path="res://Scripte/ui.gd" id="1_4j48y"]
-
-[sub_resource type="Theme" id="Theme_yux83"]
-default_font_size = 48
-
-[sub_resource type="Theme" id="Theme_4j48y"]
-default_font_size = 48
+[ext_resource type="Theme" uid="uid://dclygssrontcp" path="res://Szenen/Zuruek.tres" id="2_qxx62"]
+[ext_resource type="Theme" uid="uid://bdhbswbg6edy7" path="res://Szenen/weiter.tres" id="3_tl77u"]
 
 [sub_resource type="Theme" id="Theme_a7e8p"]
 default_font_size = 26
@@ -34,12 +30,12 @@ layout_mode = 2
 
 [node name="Back" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=252816836]
 layout_mode = 2
-theme = SubResource("Theme_yux83")
+theme = ExtResource("2_qxx62")
 text = "Zurück"
 
 [node name="Forward" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=2023089552]
 layout_mode = 2
-theme = SubResource("Theme_4j48y")
+theme = ExtResource("3_tl77u")
 text = "Weiter"
 
 [node name="speed_slider" type="HSlider" parent="VBoxContainer" unique_id=462914027]

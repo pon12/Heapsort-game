@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://bdhbswbg6edy7"]
+
+[ext_resource type="Texture2D" uid="uid://cv51cree0ibdm" path="res://Pfeil_Rechts.png" id="1_6xbiy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qbi4d"]
+texture = ExtResource("1_6xbiy")
+
+[resource]
+default_font_size = 48
+Button/styles/normal = SubResource("StyleBoxTexture_qbi4d")
