@@ -1,19 +1,13 @@
+class_name Sock
 extends Control
 
-@onready var label: Label = $Label
-@onready var socken_bild: TextureRect = $SockPic
+@export var sock_pic: TextureRect
+@export var label: Label
+@export var textur_leer: Texture2D
+@export var textur_voll: Texture2D
 
-# Hier kannst du die Bilder direkt im Inspector zuweisen oder per Code laden
-@export var normal_textur: Texture2D
-@export var sortiert_textur: Texture2D
+func set_value(wert: int, position: int) -> void:
+	label.text = "%d" % [wert]
 
-func set_value(val: int) -> void:
-	if label:
-		label.text = str(val)
-
-func set_sorted(is_sorted: bool) -> void:
-	if socken_bild:
-		if is_sorted and sortiert_textur:
-			socken_bild.texture = sortiert_textur
-		elif not is_sorted and normal_textur:
-			socken_bild.texture = normal_textur
+func set_sorted(sorted: bool) -> void:
+	sock_pic.texture = textur_voll if sorted else textur_leer

@@ -54,7 +54,6 @@ func swap(node: TreeNode) -> void:
 	var new_action: Action = Action.new(self, node)
 	new_action.debug_print_action()
 	ActionStack.push_action(new_action)
-	ActionStack.debug_print_action_list()
 	
 	SoundManager.play_swap()
 
@@ -200,7 +199,9 @@ func check_heapsort_condition() -> void:
 			right_lichterkette.set_unsorted()
 		else:
 			right_lichterkette.set_sorted()
-		
+	get_parent()._aktualisiere_lichterketten()
+	if get_parent().sortierung_abgeschlossen:
+		return
 		
 func swap_child_and_lichterketten_ownership(node: TreeNode) -> TreeNode:
 	if node == null or node == self:
