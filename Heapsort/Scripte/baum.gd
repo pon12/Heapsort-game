@@ -17,7 +17,7 @@ var lichterketten_array: Array[LichterKette] = []
 var lichterketten_sorted: int = 0
 
 var sortierung_abgeschlossen: bool = false
-
+var spiel_gestartet: bool = false
 var zufallsgenerator := RandomNumberGenerator.new()
 
 func _ready() -> void:
@@ -264,6 +264,7 @@ func _consume_manual_step(j: int) -> void:
 	kugeln[int(step["b"])].set_highlight(true)
 
 	pruefe_sortierung()
+	_aktualisiere_lichterketten()
 
 func _zeige_meldung(text: String) -> void:
 	print(text)
@@ -272,13 +273,13 @@ func generiere_zufallszahlen(anzahl: int) -> Array[int]:
 	var zahlen: Array[int] = []
 
 	if anzahl < 3 or anzahl > 15:
-		push_error("Es sind nur 3 bis 15 Zahlen erlaubt.")
+		push_error("Es sind nur 3 bis 15 Kugeln erlaubt.")
 		return zahlen
 
-	zufallsgenerator.randomize()
+	for i in range(1, anzahl + 1):
+		zahlen.append(i)
 
-	for i in range(anzahl):
-		zahlen.append(zufallsgenerator.randi_range(1, anzahl))
+	zahlen.shuffle()
 
 	return zahlen
 	
@@ -299,13 +300,26 @@ func setze_zahlen(werte: Array[int]) -> void:
 	baue_verbindungen_neu()
 
 	sortierung_abgeschlossen = false
-	
+	SoundManager.reset_win()
+
 	_prepare_algorithm()
+
+	spiel_gestartet = true
 
 
 ##DEFINITIV NOCH NICHT FERTIG
 func _aktualisiere_lichterketten() -> void:
+	if not spiel_gestartet:
+		return
+
+	if not pruefe_sortierung():
+		return
+
+	if SoundManager.win_sound_active:
+		return
+
 	set_lichterketten_status_finished()
+	SoundManager.play_win()
 
 func passe_kugelanzahl_an(anzahl: int) -> void:
 	if anzahl < 3 or anzahl > 15:
