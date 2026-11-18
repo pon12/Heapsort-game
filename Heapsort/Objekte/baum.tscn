@@ -47,15 +47,16 @@ number = 7
 picture = ExtResource("3_pnr6q")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1754006987]
-position = Vector2(194.9, 23.499989)
-scale = Vector2(0.69775, 0.8187501)
+position = Vector2(78.223434, 24.893969)
+scale = Vector2(0.6794415, 0.82723486)
 texture = ExtResource("3_4p7yv")
+
+[node name="Slot2" type="Marker2D" parent="Sprite2D" unique_id=831233136]
+position = Vector2(-74.38196, -152.06107)
+scale = Vector2(0.99999994, 1)
 
 [node name="Slot1" type="Marker2D" parent="Sprite2D" unique_id=866485972]
 position = Vector2(1.4234638, -310.05725)
-
-[node name="Slot2" type="Marker2D" parent="Sprite2D" unique_id=831233136]
-position = Vector2(-74.38202, -152.06107)
 
 [node name="Slot3" type="Marker2D" parent="Sprite2D" unique_id=1034434596]
 position = Vector2(99.03254, -143.51143)

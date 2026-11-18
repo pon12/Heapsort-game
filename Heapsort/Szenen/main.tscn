@@ -20,10 +20,10 @@ heap_sort = NodePath("../HeapSort")
 socken = NodePath("../Socken")
 
 [node name="Socken" type="HBoxContainer" parent="." unique_id=769964590 node_paths=PackedStringArray("baum") groups=["Socken"]]
-offset_left = 636.0
-offset_top = 29.0
-offset_right = 997.0
-offset_bottom = 129.0
+offset_left = 596.0
+offset_top = 12.0
+offset_right = 1148.0
+offset_bottom = 198.0
 script = ExtResource("2_pw8tf")
 sock_szene = ExtResource("3_ldghw")
 baum = NodePath("../Baum")
@@ -32,6 +32,8 @@ baum = NodePath("../Baum")
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_left = 0.0
+offset_right = 12.0
 grow_horizontal = 1
 grow_vertical = 1
 tree = NodePath("../Baum")
