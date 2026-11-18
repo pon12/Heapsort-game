@@ -1,0 +1,58 @@
+extends Node
+
+const PATH: String = "user://settings.cfg"
+
+var config: ConfigFile = ConfigFile.new()
+
+func _ready() -> void:
+	var error: Error = config.load(PATH)
+	if error != OK and error != ERR_FILE_NOT_FOUND:
+		push_warning("Settings: could not read %s (error %d)" % [PATH, error])
+	apply_all_settings()
+
+func apply_all_settings() -> void:
+	apply_display()
+	apply_audio()
+	apply_sfx()
+
+
+func apply_audio() -> void:
+		var muted: bool = get_setting("audio", "muted", false)
+		var volume: float = float(get_setting("audio", "volume", 50.0))
+
+		AudioServer.set_bus_mute(0, muted)
+
+		if is_instance_valid(MusicManager):
+			MusicManager.volume_linear = volume / 100.0
+	
+func apply_display() -> void:
+	var fullscreen: bool = get_setting("display", "fullscreen", false)
+	if fullscreen == true:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	elif fullscreen == false:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+
+func get_setting(section: String, key: String, default_value: Variant) -> Variant:
+	return config.get_value(section, key, default_value)
+
+func set_setting(section: String, key: String, value: Variant) -> void:
+	config.set_value(section, key, value)
+
+func save_settings() -> void:
+	var error: Error = config.save(PATH)
+	if error != OK:
+		push_error("Settings: save failed (error %d)" % error)
+
+func apply_sfx() -> void:
+	var volume: float = float(get_setting("audio", "sfx_volume", 50.0))
+	var bus_index: int = AudioServer.get_bus_index("SFX")
+
+	if bus_index == -1:
+		push_warning("Audiobus SFX wurde nicht gefunden.")
+		return
+
+	AudioServer.set_bus_volume_linear(
+		bus_index,
+		clampf(volume / 100.0, 0.0, 1.0)
+	)

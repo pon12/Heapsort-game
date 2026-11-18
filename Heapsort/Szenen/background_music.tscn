@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bmnaaqg28dglj"]
+
+[ext_resource type="AudioStream" uid="uid://glndnvq5o4cx" path="res://Audio/Hollow Knight Cornifer Voice.mp3" id="1_5b1n0"]
+[ext_resource type="Script" uid="uid://cf58l3kwxv648" path="res://Szenen/music_manager.gd" id="2_d7vc2"]
+[ext_resource type="AudioStream" uid="uid://b6eb12iwlwrdt" path="res://Audio/Weihnachtsmusik/Track 1 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav" id="3_bkgeq"]
+[ext_resource type="AudioStream" uid="uid://dqkfqc2ryq7th" path="res://Audio/Weihnachtsmusik/Track 2 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav" id="4_eqlwx"]
+[ext_resource type="AudioStream" uid="uid://wf23b42oy0ud" path="res://Audio/Weihnachtsmusik/Track 3 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav" id="5_eqo3c"]
+[ext_resource type="AudioStream" uid="uid://byjia20l43n6i" path="res://Audio/Weihnachtsmusik/Track 4 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav" id="6_rrncv"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" unique_id=316331339]
+stream = ExtResource("1_5b1n0")
+volume_db = -10.947
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+script = ExtResource("2_d7vc2")
+songs = Array[AudioStream]([ExtResource("3_bkgeq"), ExtResource("4_eqlwx"), ExtResource("5_eqo3c"), ExtResource("6_rrncv")])
