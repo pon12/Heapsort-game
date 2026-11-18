@@ -1,12 +1,12 @@
 extends Window
 
-@onready var screen_mode_button: OptionButton = $Control/VBoxContainer/ScrollContainer/VBoxContainer/ScreenMode/OptionButton
-@onready var mute_button: CheckBox = $Control/VBoxContainer/ScrollContainer/VBoxContainer/MuteButton
-@onready var song_button: OptionButton = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Background_Music/OptionButton
-@onready var music_slider: HSlider = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength/HBoxContainer/HSlider
-@onready var music_spinbox: SpinBox = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Music_Strength/HBoxContainer/SpinBox
-@onready var sfx_slider: HSlider = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/HSlider
-@onready var sfx_spinbox: SpinBox = $Control/VBoxContainer/ScrollContainer/VBoxContainer/Effect_Strength/HBoxContainer/SpinBox
+@export var screen_mode_button: OptionButton
+@export var mute_button: CheckBox
+@export var song_button: OptionButton
+@export var music_slider: HSlider
+@export var music_spinbox: SpinBox
+@export var sfx_slider: HSlider
+@export var sfx_spinbox: SpinBox
 
 func _ready() -> void:
 	match_config()
