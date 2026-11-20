@@ -1,14 +1,19 @@
 [gd_scene format=3 uid="uid://bmnaaqg28dglj"]
 
-[ext_resource type="AudioStream" uid="uid://cdsv2snodhxg8" path="res://Audio/ChristmasWinter.mp3" id="1_ahet2"]
+[ext_resource type="AudioStream" uid="uid://cu82yddlwa5xa" path="res://Audio/Musik/Jazz/Track 1 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav" id="1_rrncv"]
 [ext_resource type="Script" uid="uid://cf58l3kwxv648" path="res://Szenen/music_manager.gd" id="2_d7vc2"]
-[ext_resource type="AudioStream" uid="uid://dqyexdvos48tf" path="res://Audio/MerryChristmas.mp3" id="3_iwlyc"]
+[ext_resource type="AudioStream" uid="uid://c4goks3goxkhx" path="res://Audio/Musik/Jazz/Track 2 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav" id="3_qvv8t"]
+[ext_resource type="AudioStream" uid="uid://den0m325bgmnu" path="res://Audio/Musik/Jazz/Track 3 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav" id="4_phjlv"]
+[ext_resource type="AudioStream" uid="uid://c1m6m3epplroe" path="res://Audio/Musik/Jazz/Track 4 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav" id="5_ick76"]
+[ext_resource type="AudioStream" uid="uid://0r620ps074i6" path="res://Audio/Musik/Lofi/Track 1 - Lofi.wav" id="6_bulnh"]
+[ext_resource type="AudioStream" uid="uid://mnt68vu116al" path="res://Audio/Musik/Lofi/Track 2 - Lofi.wav" id="7_qlqeo"]
+[ext_resource type="AudioStream" uid="uid://bch46cqgv4it" path="res://Audio/Musik/Lofi/Track 3 - Lofi.wav" id="8_f5ikm"]
+[ext_resource type="AudioStream" uid="uid://c3wj1bbxlffk8" path="res://Audio/Musik/Lofi/Track 4 - Lofi.wav" id="9_7n74d"]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" unique_id=316331339]
-stream = ExtResource("1_ahet2")
+stream = ExtResource("1_rrncv")
 volume_db = -10.947
 autoplay = true
 bus = &"Music"
-parameters/looping = true
 script = ExtResource("2_d7vc2")
-songs = Array[AudioStream]([ExtResource("1_ahet2"), ExtResource("3_iwlyc")])
+songs = Array[AudioStream]([ExtResource("1_rrncv"), ExtResource("3_qvv8t"), ExtResource("4_phjlv"), ExtResource("5_ick76"), ExtResource("6_bulnh"), ExtResource("7_qlqeo"), ExtResource("8_f5ikm"), ExtResource("9_7n74d")])

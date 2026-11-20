@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0r620ps074i6"
+path="res://.godot/imported/Track 1 - Lofi.wav-4922190a250b857fcf04b9e6e344cd75.sample"
+
+[deps]
+
+source_file="res://Audio/Musik/Lofi/Track 1 - Lofi.wav"
+dest_files=["res://.godot/imported/Track 1 - Lofi.wav-4922190a250b857fcf04b9e6e344cd75.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
