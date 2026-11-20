@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c1m6m3epplroe"
+path="res://.godot/imported/Track 4 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav-db82b72229a5c8d93ae2a7a0af63052b.sample"
+
+[deps]
+
+source_file="res://Assets/Musik/Jazz/Track 4 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav"
+dest_files=["res://.godot/imported/Track 4 - A Calm christmas jazz song, with jazz style, for a for a chill video game.wav-db82b72229a5c8d93ae2a7a0af63052b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
