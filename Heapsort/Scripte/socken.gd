@@ -28,6 +28,9 @@ func aktualisieren(werte: Array[int]) -> void:
 		var sock: Sock = get_child(i)
 		sock.set_sorted(true)
 
+func set_all_sorted() -> void:
+	for sock in get_children():
+		sock.set_sorted(true)
 
 func on_pop_action() -> void:
 	sorted_amount -= 1
@@ -40,6 +43,6 @@ func on_pop_action() -> void:
 	
 
 func on_heap_sort_element_sorted(value: Variant, index: int, values: Array[int]) -> void:
-	print("SORT TRIGGERED: ", value, "   ",index, "   ",values)
+	#print("SORT TRIGGERED: ", value, "   ",index, "   ",values)
 	sorted_amount += 1
 	aktualisieren(values)

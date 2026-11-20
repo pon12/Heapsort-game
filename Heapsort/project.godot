@@ -11,9 +11,19 @@ config_version=5
 [application]
 
 config/name="Heapsort"
-run/main_scene="uid://bmiq3vx3hrdb1"
+run/main_scene="uid://cbkmiyvkcnnib"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://ceepuqkgogmy"
+
+[autoload]
+
+SettingsStartup="*uid://5vav14nteavc"
+MusicManager="*uid://bmnaaqg28dglj"
+SoundManager="*uid://cyyvkk63nc7ni"
 
 [display]
 

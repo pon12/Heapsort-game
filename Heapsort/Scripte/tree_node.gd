@@ -54,8 +54,8 @@ func swap(node: TreeNode) -> void:
 	var new_action: Action = Action.new(self, node)
 	new_action.debug_print_action()
 	ActionStack.push_action(new_action)
-	ActionStack.debug_print_action_list()
 	
+	SoundManager.play_swap()
 
 func swap_back(node: TreeNode) -> void:
 	if node == self:
@@ -125,6 +125,7 @@ func _snap_to_slot() -> void:
 	# Die gezogene Kugel kommt an deren Position.
 	# Die andere Kugel kommt an die urspruengliche Position.
 	if target_ball != null:
+		SoundManager.play_swap()
 		var target_position: Vector2 = target_ball.global_position
 
 		global_position = target_position
@@ -198,6 +199,7 @@ func check_heapsort_condition() -> void:
 			right_lichterkette.set_unsorted()
 		else:
 			right_lichterkette.set_sorted()
+	get_parent()._aktualisiere_lichterketten()
 	if get_parent().sortierung_abgeschlossen:
 		return
 		

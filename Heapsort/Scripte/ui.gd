@@ -3,7 +3,7 @@ extends Control
 @export var tree: Node2D
 @onready var sorted_label: Label = $VBoxContainer/Label
 @onready var speed_slider: HSlider = $VBoxContainer/speed_slider
-@onready var auto_algo_button: CheckButton = $VBoxContainer/auto_algo_button
+
 
 var auto_speed: float = 1.0
 var auto_timer: float = 0.0
@@ -21,7 +21,18 @@ var auto_is_active: bool = false
 
 func _ready() -> void:
 	if tree == null:
-		print("UI has no Tree assigned")
+		push_error("UI has no Tree assigned")
+		return
+
+	call_deferred("zufallsbaum_beim_start")
+
+
+func zufallsbaum_beim_start() -> void:
+	var anzahl: int = int(kugel_anzahl.value)
+	var zahlen: Array[int] = tree.generiere_zufallszahlen(anzahl)
+
+	tree.setze_zahlen(zahlen)
+	sorted_label.text = "Nicht Sortiert"
 
 func _on_button_pressed() -> void:
 	if tree.pruefe_sortierung():
@@ -63,7 +74,6 @@ func _process(delta: float) -> void:
 
 	if tree.pruefe_sortierung() == true:
 		auto_is_active = false
-		auto_algo_button.button_pressed = false
 		sorted_label.text = "Sortiert"
 		return
 	
@@ -73,13 +83,6 @@ func _process(delta: float) -> void:
 	if auto_timer >= auto_speed:
 		auto_timer -= auto_speed
 		tree.next_step()
-
-func on_auto_algo_button_toggled(toggled_on: bool) -> void:
-	auto_is_active = toggled_on
-	auto_timer = 0.0
-	print("Auto Sort toggled: ", auto_is_active)
-	if tree != null and tree.has_method("step_back"):
-		tree.step_back()
 
 func pruefe_eingabe(text: String) -> Array[int]:
 	var zahlen: Array[int] = []
@@ -117,3 +120,18 @@ func _on_zufallsbutton_pressed() -> void:
 	tree.setze_zahlen(zahlen)
 
 	sorted_label.text = "Nicht Sortiert"
+	
+func _on_start_button_pressed() -> void:
+	if tree == null:
+		return
+
+	if tree.pruefe_sortierung():
+		return
+
+	auto_is_active = true
+	auto_timer = 0.0
+
+
+func _on_pause_button_pressed() -> void:
+	auto_is_active = false
+	auto_timer = 0.0
