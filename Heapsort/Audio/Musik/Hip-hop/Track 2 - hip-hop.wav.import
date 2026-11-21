@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://f0pkew8ji0rp"
+path="res://.godot/imported/Track 2 - hip-hop.wav-c77bfc67a95f6bdeb098d942642fff1b.sample"
+
+[deps]
+
+source_file="res://Audio/Musik/Hip-hop/Track 2 - hip-hop.wav"
+dest_files=["res://.godot/imported/Track 2 - hip-hop.wav-c77bfc67a95f6bdeb098d942642fff1b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
