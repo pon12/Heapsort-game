@@ -1,5 +1,5 @@
 extends Node
-class_name HeapSort
+class_name HeapSort_old
 
 signal sort_started(input: Array) ##Emitted when sorting begins. input is a copy of the input array.
 signal sift_down_started(root: int, end_exclusive: int) ##Emitted when the heap-restoration step begins. Only elements before end_exclusive are included in the heap.

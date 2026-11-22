@@ -1,7 +1,7 @@
 extends Control
 @export var settings: Window
 @export var credits: Window
-const PLAY_SZENE = preload("uid://bmiq3vx3hrdb1")
+const PLAY_SZENE = preload("uid://dotqstm7li6l")
 func _ready() -> void:
 	pass
 

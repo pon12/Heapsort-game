@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://dotqstm7li6l"]
+
+[ext_resource type="Script" uid="uid://ixpnw6lucilc" path="res://Scripte/refactor/heapsort_szene.gd" id="1_0tcyg"]
+[ext_resource type="Script" uid="uid://bw67fy0t34c5b" path="res://Scripte/refactor/heapsort.gd" id="2_m66yo"]
+[ext_resource type="Script" uid="uid://c6f8sewcr3q24" path="res://Objekte/refactor/heaptree.gd" id="3_m66yo"]
+[ext_resource type="Script" uid="uid://brnxye72tnhkw" path="res://Objekte/refactor/arrayview.gd" id="4_hxg46"]
+[ext_resource type="Texture2D" uid="uid://ctao18uygva4x" path="res://Assets/Lichterkette/knoten falsch_rotated.png" id="4_jlp4e"]
+[ext_resource type="Texture2D" uid="uid://dgkdwaql584bm" path="res://Assets/Kugel_Rot.png" id="4_oxgjd"]
+[ext_resource type="PackedScene" uid="uid://d11jyp2y3aeva" path="res://Szenen/refactor/heapsort_main_ui.tscn" id="5_c6fh0"]
+[ext_resource type="Texture2D" uid="uid://diap0oko2058r" path="res://Assets/Lichterkette/array fertig_rotated.png" id="5_jlp4e"]
+[ext_resource type="Texture2D" uid="uid://ctl08x30sdnbn" path="res://Assets/Kugel_Lila.png" id="5_ktes0"]
+[ext_resource type="Texture2D" uid="uid://dknveg17s4ys6" path="res://Assets/Socke.png" id="5_u5qf6"]
+[ext_resource type="Texture2D" uid="uid://bmh7qter5axtq" path="res://Assets/Kugel_Gelb.png" id="6_8hhcy"]
+[ext_resource type="Texture2D" uid="uid://cvip6owhhn0s5" path="res://Assets/Lichterkette/knoten sortiert_rotated.png" id="6_11r03"]
+[ext_resource type="Texture2D" uid="uid://ch32tsiqr17qo" path="res://Assets/Socke_Voll.png" id="6_e8t2e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxgjd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jlp4e")
+}],
+"loop": 1,
+"name": &"invalid",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jlp4e")
+}],
+"loop": 1,
+"name": &"sorted",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_11r03")
+}],
+"loop": 1,
+"name": &"valid",
+"speed": 5.0
+}]
+
+[node name="Main" type="Node2D" unique_id=748724598]
+script = ExtResource("1_0tcyg")
+
+[node name="HeapSort" type="Node" parent="." unique_id=2133388298]
+script = ExtResource("2_m66yo")
+
+[node name="HeapTree" type="Node2D" parent="." unique_id=1171801073]
+position = Vector2(0, -123)
+script = ExtResource("3_m66yo")
+edgeFrames = SubResource("SpriteFrames_oxgjd")
+edgeThickness = 80.0
+fontSize = 25
+normalTexture = ExtResource("4_oxgjd")
+sortedTexture = ExtResource("5_ktes0")
+highlightTexture = ExtResource("6_8hhcy")
+textureScale = 2.0
+
+[node name="ArrayView" type="Node2D" parent="." unique_id=813461971]
+position = Vector2(1, -283)
+script = ExtResource("4_hxg46")
+cellTexture = ExtResource("5_u5qf6")
+sortedTexture = ExtResource("6_e8t2e")
+textureScale = 2.0
+textureOffset = Vector2(5, -10)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1478873313]
+
+[node name="HeapsortMainUI" parent="." unique_id=1254715391 node_paths=PackedStringArray("heapsort") instance=ExtResource("5_c6fh0")]
+offset_left = -575.0
+offset_top = -323.0
+offset_right = -575.0
+offset_bottom = -323.0
+heapsort = NodePath("../HeapSort")

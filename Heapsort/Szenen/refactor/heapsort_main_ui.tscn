@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://d11jyp2y3aeva"]
+
+[ext_resource type="Script" uid="uid://m3ame2vsmbsd" path="res://Scripte/refactor/heapsort_main_ui.gd" id="1_iyoqn"]
+
+[node name="HeapsortMainUI" type="Control" unique_id=1254715391]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iyoqn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1227982092]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=439012218]
+layout_mode = 2
+
+[node name="Backward" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=453191614]
+layout_mode = 2
+text = "Zurück"
+
+[node name="Forward" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=771150337]
+layout_mode = 2
+text = "Weiter"
+
+[node name="AutoAlgo" type="Button" parent="VBoxContainer" unique_id=98197699]
+layout_mode = 2
+toggle_mode = true
+text = "Start"
+
+[node name="AutoAlgoSpeed" type="HSlider" parent="VBoxContainer" unique_id=1111575505]
+layout_mode = 2
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+
+[node name="Numbers" type="LineEdit" parent="VBoxContainer" unique_id=1966533418]
+layout_mode = 2
+placeholder_text = "Beispiel: 1,2,3"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Backward" to="." method="on_backward_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Forward" to="." method="on_forward_pressed"]
+[connection signal="toggled" from="VBoxContainer/AutoAlgo" to="." method="on_auto_algo_toggled"]
+[connection signal="value_changed" from="VBoxContainer/AutoAlgoSpeed" to="." method="on_auto_algo_speed_value_changed"]
+[connection signal="text_submitted" from="VBoxContainer/Numbers" to="." method="on_numbers_text_submitted"]
