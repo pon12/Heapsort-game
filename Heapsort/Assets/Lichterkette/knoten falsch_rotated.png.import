@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx04esa4yhl32"
-path="res://.godot/imported/done_Sortiert_1.png-3f861e77cb0b2130c4339531736f298b.ctex"
+uid="uid://ctao18uygva4x"
+path="res://.godot/imported/knoten falsch_rotated.png-73948028db621ecd35926cbb732bfbf8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Lichterkette/done_Sortiert_1.png"
-dest_files=["res://.godot/imported/done_Sortiert_1.png-3f861e77cb0b2130c4339531736f298b.ctex"]
+source_file="res://Assets/Lichterkette/knoten falsch_rotated.png"
+dest_files=["res://.godot/imported/knoten falsch_rotated.png-73948028db621ecd35926cbb732bfbf8.ctex"]
 
 [params]
 

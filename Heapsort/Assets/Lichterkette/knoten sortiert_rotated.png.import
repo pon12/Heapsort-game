@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://44o6bv3kft81"
-path="res://.godot/imported/Sortiert_1.png-7732ef5b6f066a8b86e750a5b1cf9031.ctex"
+uid="uid://cvip6owhhn0s5"
+path="res://.godot/imported/knoten sortiert_rotated.png-495df2f86c9d308819311d8989b28ead.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Lichterkette/Sortiert_1.png"
-dest_files=["res://.godot/imported/Sortiert_1.png-7732ef5b6f066a8b86e750a5b1cf9031.ctex"]
+source_file="res://Assets/Lichterkette/knoten sortiert_rotated.png"
+dest_files=["res://.godot/imported/knoten sortiert_rotated.png-495df2f86c9d308819311d8989b28ead.ctex"]
 
 [params]
 
