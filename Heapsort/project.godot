@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://ceepuqkgogmy"
 SettingsStartup="*uid://5vav14nteavc"
 MusicManager="*uid://bmnaaqg28dglj"
 SoundManager="*uid://cyyvkk63nc7ni"
+MenuManager="*uid://bnlyei1ovj8lc"
 
 [display]
 

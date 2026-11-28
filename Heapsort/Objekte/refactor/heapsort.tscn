@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bmh7qter5axtq" path="res://Assets/Kugel_Gelb.png" id="6_8hhcy"]
 [ext_resource type="Texture2D" uid="uid://cvip6owhhn0s5" path="res://Assets/Lichterkette/knoten sortiert_rotated.png" id="6_11r03"]
 [ext_resource type="Texture2D" uid="uid://ch32tsiqr17qo" path="res://Assets/Socke_Voll.png" id="6_e8t2e"]
+[ext_resource type="PackedScene" uid="uid://bcfcj5k8jsxfj" path="res://Szenen/pause_menu.tscn" id="14_11r03"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oxgjd"]
 animations = [{
@@ -74,3 +75,5 @@ offset_top = -323.0
 offset_right = -575.0
 offset_bottom = -323.0
 heapsort = NodePath("../HeapSort")
+
+[node name="PauseMenu" parent="." unique_id=715388355 instance=ExtResource("14_11r03")]

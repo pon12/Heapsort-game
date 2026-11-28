@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://crv45geviscpb"]
+
+[node name="HeapsortGuide" type="Control" unique_id=1490730865]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimBackground" type="ColorRect" parent="." unique_id=422427685]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Background" type="TextureRect" parent="." unique_id=1572146400]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=271121912]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1966687858]
+layout_mode = 2
+text = "Wie funktionert HEAPSORT?"
+
+[node name="HeapTitle" type="Label" parent="VBoxContainer" unique_id=913288855]
+layout_mode = 2
+text = "1. MAX-Heap aufbauen (Sift-Down)"
+
+[node name="HeapText" type="Label" parent="VBoxContainer" unique_id=288834225]
+layout_mode = 2
+text = "1. Erklrungstext
+"
+
+[node name="SortTitle" type="Label" parent="VBoxContainer" unique_id=39135958]
+layout_mode = 2
+text = "2. Sortieren und Absenken"
+
+[node name="SortText" type="Label" parent="VBoxContainer" unique_id=1954534332]
+layout_mode = 2
+text = "2. ERklärungstext
+"
+
+[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=1365705590]
+layout_mode = 2
+text = "Zurück
+"

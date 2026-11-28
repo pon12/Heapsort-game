@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bcfcj5k8jsxfj"]
+
+[ext_resource type="Script" uid="uid://bqpadta3p2drr" path="res://Szenen/pause_menu.gd" id="1_gewvb"]
+[ext_resource type="PackedScene" uid="uid://ciu1bp2sicbv4" path="res://Szenen/settings.tscn" id="2_ydjhs"]
+[ext_resource type="PackedScene" uid="uid://crv45geviscpb" path="res://Szenen/heapsort_guide.tscn" id="3_w5hpk"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=715388355]
+process_mode = 3
+script = ExtResource("1_gewvb")
+
+[node name="Overlay" type="Control" parent="." unique_id=1188501106]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimBackground" type="ColorRect" parent="Overlay" unique_id=1785961436]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.14901961)
+
+[node name="Background" type="TextureRect" parent="Overlay" unique_id=1484065247]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay" unique_id=641364787]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -76.0
+offset_right = 20.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="Overlay/VBoxContainer" unique_id=1115520823]
+layout_mode = 2
+text = "PAUSE"
+
+[node name="PhaseLabel" type="Label" parent="Overlay/VBoxContainer" unique_id=184407769]
+layout_mode = 2
+text = "Aktuelle Phase:"
+
+[node name="HintLabel" type="Label" parent="Overlay/VBoxContainer" unique_id=15319586]
+layout_mode = 2
+text = "Algorithmus-Hinweis:"
+
+[node name="LegendLabel" type="Label" parent="Overlay/VBoxContainer" unique_id=866652336]
+layout_mode = 2
+text = "Rot: Fehler - Bunt: Korrekt - Dunkel: Inaktiv"
+
+[node name="ResumeButton" type="Button" parent="Overlay/VBoxContainer" unique_id=2100051637]
+layout_mode = 2
+text = "Weiter spielen"
+
+[node name="GuideButton" type="Button" parent="Overlay/VBoxContainer" unique_id=395195448]
+layout_mode = 2
+text = "Heapsort Guide / Hilfe"
+
+[node name="SettingsButton" type="Button" parent="Overlay/VBoxContainer" unique_id=969117418]
+layout_mode = 2
+text = "Einstellungen"
+
+[node name="MainMenuButton" type="Button" parent="Overlay/VBoxContainer" unique_id=676528579]
+layout_mode = 2
+text = "Hauptmenü (Abbrechen)"
+
+[node name="Settings" parent="." unique_id=253413779 instance=ExtResource("2_ydjhs")]
+process_mode = 3
+visible = false
+
+[node name="HeapsortGuide" parent="." unique_id=1490730865 instance=ExtResource("3_w5hpk")]
+process_mode = 3
+visible = false
+
+[connection signal="pressed" from="Overlay/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Overlay/VBoxContainer/GuideButton" to="." method="_on_guide_button_pressed"]
+[connection signal="pressed" from="Overlay/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Overlay/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
