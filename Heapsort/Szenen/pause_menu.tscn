@@ -1,8 +1,57 @@
 [gd_scene format=3 uid="uid://bcfcj5k8jsxfj"]
 
 [ext_resource type="Script" uid="uid://bqpadta3p2drr" path="res://Szenen/pause_menu.gd" id="1_gewvb"]
+[ext_resource type="Texture2D" uid="uid://bq1pnjfrla1wc" path="res://Assets/UI/Ui_Preset.png" id="2_5qyby"]
 [ext_resource type="PackedScene" uid="uid://ciu1bp2sicbv4" path="res://Szenen/settings.tscn" id="2_ydjhs"]
+[ext_resource type="Texture2D" uid="uid://b3owokv3bqwg5" path="res://Assets/UI/base/Play.png" id="3_55rjw"]
 [ext_resource type="PackedScene" uid="uid://crv45geviscpb" path="res://Szenen/heapsort_guide.tscn" id="3_w5hpk"]
+[ext_resource type="Texture2D" uid="uid://ben0pk131aoxe" path="res://Assets/UI/clicked/Play_clicked.png" id="4_mhu3n"]
+[ext_resource type="Texture2D" uid="uid://igipj3scsi5v" path="res://Assets/UI/hover/Play_hover.png" id="5_5blef"]
+[ext_resource type="Texture2D" uid="uid://c6ars7noak6rj" path="res://Assets/UI/base/Settings.png" id="6_b6w4c"]
+[ext_resource type="Texture2D" uid="uid://ul5bjy1b44ng" path="res://Assets/UI/base/Credits.png" id="6_yydui"]
+[ext_resource type="Texture2D" uid="uid://th13es3s8454" path="res://Assets/UI/clicked/Credits_clicked.png" id="7_57hc3"]
+[ext_resource type="Texture2D" uid="uid://cq8bi30p61j4w" path="res://Assets/UI/clicked/Settings_clicked.png" id="7_wccvr"]
+[ext_resource type="Texture2D" uid="uid://b8yy84d6jxnkp" path="res://Assets/UI/hover/Credits_hover.png" id="8_4uryn"]
+[ext_resource type="Texture2D" uid="uid://dhfmm8wuq7j1r" path="res://Assets/UI/hover/Settings_hover.png" id="8_v1xl7"]
+[ext_resource type="Texture2D" uid="uid://ywpog2tdjyyk" path="res://Assets/UI/base/Quit.png" id="9_jplsy"]
+[ext_resource type="Texture2D" uid="uid://djwsv6wfqo5by" path="res://Assets/UI/clicked/Quit_clicked.png" id="10_8d6hx"]
+[ext_resource type="Texture2D" uid="uid://cpsebpfic1oxj" path="res://Assets/UI/hover/Quit_hover.png" id="11_ufep0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5qyby"]
+texture = ExtResource("3_55rjw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ltgk"]
+texture = ExtResource("4_mhu3n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x22qq"]
+texture = ExtResource("5_5blef")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yydui"]
+texture = ExtResource("6_yydui")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4uryn"]
+texture = ExtResource("7_57hc3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_57hc3"]
+texture = ExtResource("8_4uryn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_55rjw"]
+texture = ExtResource("6_b6w4c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mhu3n"]
+texture = ExtResource("7_wccvr")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5blef"]
+texture = ExtResource("8_v1xl7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b6w4c"]
+texture = ExtResource("9_jplsy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wccvr"]
+texture = ExtResource("10_8d6hx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v1xl7"]
+texture = ExtResource("11_ufep0")
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=715388355]
 process_mode = 3
@@ -23,59 +72,130 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.14901961)
+color = Color(0, 0, 0, 0.39215687)
 
 [node name="Background" type="TextureRect" parent="Overlay" unique_id=1484065247]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+pivot_offset_ratio = Vector2(0.5, 0.7)
+mouse_filter = 2
+texture = ExtResource("2_5qyby")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Overlay" unique_id=641364787]
+[node name="Title" type="Label" parent="Overlay" unique_id=1115520823]
+layout_mode = 0
+offset_left = 393.0
+offset_top = 35.0
+offset_right = 776.0
+offset_bottom = 185.0
+theme_override_colors/font_color = Color(1, 0.9490196, 0.8392157, 1)
+theme_override_colors/font_outline_color = Color(0.23137255, 0.14117648, 0.09411765, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 40
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Overlay" unique_id=715758899]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -76.0
-offset_right = 20.0
-offset_bottom = 76.0
+offset_left = -220.0
+offset_top = -121.0
+offset_right = 233.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 15
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
 
-[node name="Title" type="Label" parent="Overlay/VBoxContainer" unique_id=1115520823]
+[node name="ResumeButton" type="Button" parent="Overlay/GridContainer" unique_id=2100051637]
+custom_minimum_size = Vector2(210, 55)
 layout_mode = 2
-text = "PAUSE"
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_5qyby")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2ltgk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_x22qq")
+text = "    Weiter spielen"
 
-[node name="PhaseLabel" type="Label" parent="Overlay/VBoxContainer" unique_id=184407769]
+[node name="GuideButton" type="Button" parent="Overlay/GridContainer" unique_id=395195448]
+custom_minimum_size = Vector2(210, 55)
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_yydui")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4uryn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_57hc3")
+text = "     Heapsort Guide"
+
+[node name="SettingsButton" type="Button" parent="Overlay/GridContainer" unique_id=969117418]
+custom_minimum_size = Vector2(210, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_55rjw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_mhu3n")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5blef")
+text = "    Einstellungen"
+
+[node name="MainMenuButton" type="Button" parent="Overlay/GridContainer" unique_id=676528579]
+custom_minimum_size = Vector2(210, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxTexture_b6w4c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wccvr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v1xl7")
+text = "       zum Hauptmenü"
+
+[node name="InfoContainer" type="VBoxContainer" parent="Overlay" unique_id=334084493]
+custom_minimum_size = Vector2(420, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = 87.0
+offset_right = 214.0
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhaseLabel" type="Label" parent="Overlay/InfoContainer" unique_id=184407769]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Aktuelle Phase:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="HintLabel" type="Label" parent="Overlay/VBoxContainer" unique_id=15319586]
+[node name="HintLabel" type="Label" parent="Overlay/InfoContainer" unique_id=15319586]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Algorithmus-Hinweis:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
-[node name="LegendLabel" type="Label" parent="Overlay/VBoxContainer" unique_id=866652336]
+[node name="LegendLabel" type="Label" parent="Overlay/InfoContainer" unique_id=866652336]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
 text = "Rot: Fehler - Bunt: Korrekt - Dunkel: Inaktiv"
-
-[node name="ResumeButton" type="Button" parent="Overlay/VBoxContainer" unique_id=2100051637]
-layout_mode = 2
-text = "Weiter spielen"
-
-[node name="GuideButton" type="Button" parent="Overlay/VBoxContainer" unique_id=395195448]
-layout_mode = 2
-text = "Heapsort Guide / Hilfe"
-
-[node name="SettingsButton" type="Button" parent="Overlay/VBoxContainer" unique_id=969117418]
-layout_mode = 2
-text = "Einstellungen"
-
-[node name="MainMenuButton" type="Button" parent="Overlay/VBoxContainer" unique_id=676528579]
-layout_mode = 2
-text = "Hauptmenü (Abbrechen)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Settings" parent="." unique_id=253413779 instance=ExtResource("2_ydjhs")]
 process_mode = 3
@@ -85,7 +205,7 @@ visible = false
 process_mode = 3
 visible = false
 
-[connection signal="pressed" from="Overlay/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
-[connection signal="pressed" from="Overlay/VBoxContainer/GuideButton" to="." method="_on_guide_button_pressed"]
-[connection signal="pressed" from="Overlay/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="Overlay/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Overlay/GridContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Overlay/GridContainer/GuideButton" to="." method="_on_guide_button_pressed"]
+[connection signal="pressed" from="Overlay/GridContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Overlay/GridContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

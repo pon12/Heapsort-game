@@ -1,5 +1,17 @@
 [gd_scene format=3 uid="uid://crv45geviscpb"]
 
+[ext_resource type="Texture2D" uid="uid://bbd5vhhu2m4u6" path="res://Assets/Ui_Guide.png" id="1_ryq7s"]
+[ext_resource type="Texture2D" uid="uid://bn8n6i8wwqoq6" path="res://Assets/Lichterkette/Pfeil_Links.png" id="2_ecxhx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k4c06"]
+texture = ExtResource("2_ecxhx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ukf1j"]
+texture = ExtResource("2_ecxhx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jg2gd"]
+texture = ExtResource("2_ecxhx")
+
 [node name="HeapsortGuide" type="Control" unique_id=1490730865]
 layout_mode = 3
 anchors_preset = 15
@@ -15,42 +27,110 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 0.39215687)
 
 [node name="Background" type="TextureRect" parent="." unique_id=1572146400]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+pivot_offset_ratio = Vector2(0.5, 0.7)
+mouse_filter = 2
+texture = ExtResource("1_ryq7s")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=271121912]
+[node name="Title" type="Label" parent="." unique_id=1966687858]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -241.0
+offset_right = 200.5
+offset_bottom = -199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.9490196, 0.8392157, 1)
+theme_override_colors/font_outline_color = Color(0.23137255, 0.14117648, 0.09411765, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 27
+text = "Wie funktionert Heapsort?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoContainer" type="VBoxContainer" parent="." unique_id=271121912]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 363.0
+offset_top = 218.0
+offset_right = 823.0
+offset_bottom = 576.0
 theme_override_constants/separation = 15
 
-[node name="Title" type="Label" parent="VBoxContainer" unique_id=1966687858]
+[node name="BuildTitle" type="Label" parent="InfoContainer" unique_id=913288855]
 layout_mode = 2
-text = "Wie funktionert HEAPSORT?"
+theme_override_colors/font_color = Color(0.23137255, 0.14117648, 0.09411765, 1)
+theme_override_font_sizes/font_size = 19
+text = "1. Max-Heap aufbauen"
+autowrap_mode = 3
 
-[node name="HeapTitle" type="Label" parent="VBoxContainer" unique_id=913288855]
+[node name="BuildText" type="Label" parent="InfoContainer" unique_id=288834225]
 layout_mode = 2
-text = "1. MAX-Heap aufbauen (Sift-Down)"
+theme_override_colors/font_color = Color(0.23137255, 0.14117648, 0.09411765, 1)
+theme_override_font_sizes/font_size = 15
+text = "Jeder Elternknoten muss mindestens so groß sein wie seine Kinder. Dadurch steht der größte Wert an der Wurzel des Baumes."
+autowrap_mode = 3
 
-[node name="HeapText" type="Label" parent="VBoxContainer" unique_id=288834225]
+[node name="SortTitle" type="Label" parent="InfoContainer" unique_id=39135958]
 layout_mode = 2
-text = "1. Erklrungstext
-"
+theme_override_colors/font_color = Color(0.23137255, 0.14117648, 0.09411765, 1)
+theme_override_font_sizes/font_size = 19
+text = "2. Elemente sortieren"
+autowrap_mode = 3
 
-[node name="SortTitle" type="Label" parent="VBoxContainer" unique_id=39135958]
+[node name="SortText" type="Label" parent="InfoContainer" unique_id=1954534332]
 layout_mode = 2
-text = "2. Sortieren und Absenken"
+theme_override_colors/font_color = Color(0.23137255, 0.14117648, 0.09411765, 1)
+theme_override_font_sizes/font_size = 15
+text = "Tausche die Wurzel mit dem letzten Element des unsortierten Heaps. Der größte Wert landet im sortierten Bereich. Stelle anschließend die Max-Heap-Eigenschaft wieder her."
+autowrap_mode = 3
 
-[node name="SortText" type="Label" parent="VBoxContainer" unique_id=1954534332]
+[node name="RepeatTitle" type="Label" parent="InfoContainer" unique_id=1620799526]
 layout_mode = 2
-text = "2. ERklärungstext
-"
+theme_override_colors/font_color = Color(0.23137255, 0.14117648, 0.09411765, 1)
+theme_override_font_sizes/font_size = 19
+text = "3. Wiederholen"
+autowrap_mode = 3
+
+[node name="RepeatText" type="Label" parent="InfoContainer" unique_id=1971634165]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.23137255, 0.14117648, 0.09411765, 1)
+theme_override_font_sizes/font_size = 15
+text = "Wiederhole diesen Vorgang, bis alle Elemente sortiert sind."
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1240027744]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = 222.5
+offset_right = 71.0
+offset_bottom = 289.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BackButton" type="Button" parent="VBoxContainer" unique_id=1365705590]
 layout_mode = 2
-text = "Zurück
-"
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_k4c06")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ukf1j")
+theme_override_styles/hover = SubResource("StyleBoxTexture_jg2gd")

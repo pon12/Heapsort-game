@@ -6,6 +6,8 @@ signal swapPerformed(a: int, b: int, byUser: bool)
 signal swapUndone(a: int, b: int)
 signal autoPlayChanged(running: bool)
 signal finished
+signal phaseChanged(phase: int)
+signal hintChanged(hint: String)
 
 enum SwapResult { REJECTED, WRONG, CORRECT }
 
@@ -187,8 +189,23 @@ func afterChange() -> void:
 
 func emitChanged() -> void:
 	arrayChanged.emit(getArray(), getSortedCount())
+	phaseChanged.emit(state.phase)
+	hintChanged.emit(getCurrentHint())
 
 
 func onTimer() -> void:
 	if not stepForward():
 		pauseAuto()
+		
+func getCurrentHint() -> String:
+	match state.phase:
+		HeapSortState.Phase.BUILD:
+			return "Vergleiche die Elternknoten mit ihren Kindern. Der größte Wert muss oben stehen."
+
+		HeapSortState.Phase.SORT:
+			return "Tausche die Wurzel mit dem letzten unsortierten Element oder stelle die Max-Heap-Bedingung wieder her."
+
+		HeapSortState.Phase.DONE:
+			return "Alle Elemente wurden erfolgreich sortiert!"
+
+	return ""
